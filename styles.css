@@ -106,6 +106,26 @@ section { padding: 104px 0; position: relative; }
 .nav-links { display: flex; align-items: center; gap: 34px; list-style: none; }
 .nav-links a { font-size: .9rem; font-weight: 500; letter-spacing: .02em; color: var(--text-soft); transition: color .15s; }
 .nav-links a:hover, .nav-links a.active { color: var(--heading); }
+
+/* dropdown */
+.has-dropdown { position: relative; }
+.has-dropdown > a::after { content: "⌄"; font-size: .85em; margin-left: 6px; position: relative; top: -2px; opacity: .7; }
+.dropdown {
+  position: absolute; top: 100%; left: -14px; min-width: 248px; display: none;
+  flex-direction: column; gap: 2px; padding: 8px;
+  background: var(--bg-2); border: 1px solid var(--line-2); border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.55);
+}
+.has-dropdown:hover .dropdown { display: flex; }
+.dropdown a {
+  display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 9px;
+  color: var(--text); font-size: .95rem; font-weight: 500; white-space: nowrap;
+}
+.dropdown a:hover { background: var(--bg-3); color: var(--heading); }
+.dropdown img { height: 22px; width: auto; display: block; }
+.dropdown .dd-mark { height: 30px; width: 30px; object-fit: contain; }
+.dropdown .dd-sub { display: block; font-size: .76rem; color: var(--text-soft); font-weight: 400; margin-top: 1px; }
+.dropdown .dd-text { display: flex; flex-direction: column; }
 .nav-actions { display: flex; align-items: center; gap: 14px; }
 .nav-toggle { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
 .nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: .2s; }
@@ -319,6 +339,24 @@ select option { background: var(--bg-2); }
 .page-hero .bg-monogram { width: min(42%, 460px); opacity: .04; }
 .hero-inner, .page-hero .inner { position: relative; z-index: 2; }
 @media (max-width: 760px) { .bg-monogram { right: -18%; width: 90%; opacity: .035; } }
+
+/* ---------- Product logos ---------- */
+.product-logo { height: 30px; width: auto; display: block; margin-bottom: 20px; }
+.product-logo-lg { height: 46px; width: auto; display: block; margin-bottom: 22px; }
+.product-mark-icon { width: 56px; height: 56px; border-radius: 14px; display: block; margin-bottom: 20px; }
+.product-mark-icon.sm { width: 50px; height: 50px; margin-bottom: 20px; }
+.product-mark-box { width: 56px; height: 56px; border-radius: 14px; background: #0e1012; border: 1px solid var(--line-2); display: grid; place-items: center; margin-bottom: 20px; }
+.product-mark-box img { max-width: 58%; max-height: 58%; }
+
+/* mobile dropdown: render inline under Products */
+@media (max-width: 900px) {
+  .dropdown {
+    position: static; display: flex; box-shadow: none; border: 0; background: transparent;
+    padding: 0 0 6px 8px; min-width: 0;
+  }
+  .has-dropdown > a::after { display: none; }
+  .dropdown a { padding: 11px 0; border-bottom: 1px solid var(--line) !important; }
+}
 
 /* ---------- Beta access gate ---------- */
 .ark-ok .gate-overlay { display: none !important; }
