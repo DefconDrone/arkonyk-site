@@ -10,8 +10,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="favicon.svg">
+<script>try{if(sessionStorage.getItem("ark_auth")==="ok")document.documentElement.classList.add("ark-ok")}catch(e){}</script>
 </head>
 <body>
+<div class="gate-overlay">
+  <div class="gate-card">
+    <img src="logo-horizontal-white.svg" alt="Arkonyk">
+    <div class="gate-eyebrow">Private beta</div>
+    <h2>Truth in Payments</h2>
+    <p>This site is in private beta. Please sign in to continue.</p>
+    <form id="gate-form">
+      <input id="gate-user" type="text" placeholder="Username" autocomplete="username" required>
+      <input id="gate-pass" type="password" placeholder="Password" autocomplete="current-password" required>
+      <button class="btn btn-primary gate-btn" type="submit">Enter site</button>
+      <div class="gate-error" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+
 
 <header class="site-header">
   <div class="container nav">
@@ -30,9 +46,10 @@
 </header>
 
 <section class="page-hero">
+  <img class="bg-monogram" src="monogram-white.svg" alt="" aria-hidden="true">
   <div class="container inner">
     <span class="eyebrow">About Arkonyk</span>
-    <h1 class="display">Building what's next.</h1>
+    <h1 class="display">Truth in Payments.</h1>
     <p class="lead">Arkonyk is a payments intelligence company. Our mission: make payments more transparent, more efficient, and easier to understand for every participant in the payment ecosystem.</p>
   </div>
 </section>
@@ -107,11 +124,12 @@
     </div>
     <div class="footer-bottom">
       <span>© <span data-year>2026</span> Arkonyk, Inc. All rights reserved.</span>
-      <span>Building what's next.</span>
+      <span>Truth in Payments.</span>
     </div>
   </div>
 </footer>
 
+<script src="gate.js"></script>
 <script src="main.js"></script>
 </body>
 </html>

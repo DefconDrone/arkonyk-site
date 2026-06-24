@@ -3,15 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arkonyk — Payments intelligence. Building what's next.</title>
+<title>Arkonyk — Truth in Payments</title>
 <meta name="description" content="Arkonyk is a payments intelligence company. Descriptors.com, FeeSuite, and ARKITEKT help merchants, processors, acquirers, and enterprises reduce costs, lift authorization rates, and cut disputes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="favicon.svg">
+<script>try{if(sessionStorage.getItem("ark_auth")==="ok")document.documentElement.classList.add("ark-ok")}catch(e){}</script>
 </head>
 <body>
+<div class="gate-overlay">
+  <div class="gate-card">
+    <img src="logo-horizontal-white.svg" alt="Arkonyk">
+    <div class="gate-eyebrow">Private beta</div>
+    <h2>Truth in Payments</h2>
+    <p>This site is in private beta. Please sign in to continue.</p>
+    <form id="gate-form">
+      <input id="gate-user" type="text" placeholder="Username" autocomplete="username" required>
+      <input id="gate-pass" type="password" placeholder="Password" autocomplete="current-password" required>
+      <button class="btn btn-primary gate-btn" type="submit">Enter site</button>
+      <div class="gate-error" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+
 
 <header class="site-header">
   <div class="container nav">
@@ -31,9 +47,10 @@
 
 <!-- ===== Hero ===== -->
 <section class="hero">
+  <img class="bg-monogram" src="monogram-white.svg" alt="" aria-hidden="true">
   <div class="container hero-inner">
     <span class="eyebrow">Payments intelligence</span>
-    <h1 class="display">Building<br>what's <em>next</em>.</h1>
+    <h1 class="display">Truth in<br><em>Payments</em>.</h1>
     <p class="lead">Arkonyk helps merchants, processors, acquiring banks, ISOs, and enterprises solve complex payment acceptance challenges — reducing costs, lifting authorization rates, and cutting disputes across the entire payment lifecycle.</p>
     <div class="hero-cta">
       <a class="btn btn-primary btn-lg" href="contact.html">Book a demo <span class="arrow">→</span></a>
@@ -196,11 +213,12 @@
     </div>
     <div class="footer-bottom">
       <span>© <span data-year>2026</span> Arkonyk, Inc. All rights reserved.</span>
-      <span>Building what's next.</span>
+      <span>Truth in Payments.</span>
     </div>
   </div>
 </footer>
 
+<script src="gate.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
