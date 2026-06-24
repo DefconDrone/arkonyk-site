@@ -101,8 +101,8 @@ section { padding: 104px 0; position: relative; }
   backdrop-filter: saturate(150%) blur(14px);
   border-bottom: 1px solid var(--line);
 }
-.nav { display: flex; align-items: center; justify-content: space-between; height: 88px; }
-.brand-logo { height: 42px; width: auto; display: block; }
+.nav { display: flex; align-items: center; justify-content: space-between; height: 92px; }
+.brand-logo { height: 48px; width: auto; display: block; }
 .nav-links { display: flex; align-items: center; gap: 34px; list-style: none; }
 .nav-links a { font-size: .9rem; font-weight: 500; letter-spacing: .02em; color: var(--text-soft); transition: color .15s; }
 .nav-links a:hover, .nav-links a.active { color: var(--heading); }
@@ -291,7 +291,7 @@ select option { background: var(--bg-2); }
 /* ---------- Footer ---------- */
 .site-footer { background: var(--bg-2); border-top: 1px solid var(--line); padding: 66px 0 30px; }
 .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(3,1fr); gap: 40px; }
-.footer-logo { height: 36px; margin-bottom: 16px; }
+.footer-logo { height: 34px; margin-bottom: 16px; }
 .site-footer p { font-size: .92rem; color: var(--text-soft); max-width: 34ch; }
 .footer-col h4 { font-family: var(--body); color: var(--heading); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 15px; font-weight: 600; }
 .footer-col a { display: block; font-size: .92rem; color: var(--text-soft); padding: 6px 0; transition: color .15s; }
@@ -314,7 +314,7 @@ select option { background: var(--bg-2); }
 
   .nav-toggle { display: block; }
   .nav-links {
-    position: absolute; top: 88px; left: 0; right: 0; display: none;
+    position: absolute; top: 92px; left: 0; right: 0; display: none;
     flex-direction: column; align-items: flex-start; gap: 0;
     background: var(--bg-2); border-bottom: 1px solid var(--line); padding: 8px 26px 18px;
   }
@@ -370,7 +370,7 @@ select option { background: var(--bg-2); }
   border: 1px solid var(--line-2); border-radius: var(--radius-lg);
   padding: 38px 34px; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,.5);
 }
-.gate-card img { height: 46px; width: auto; margin: 0 auto 22px; display: block; }
+.gate-card img { height: 40px; width: auto; margin: 0 auto 22px; display: block; }
 .gate-card .gate-eyebrow { font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
 .gate-card h2 { font-size: 1.5rem; text-transform: none; margin: 8px 0 6px; color: var(--heading); }
 .gate-card p { color: var(--text-soft); font-size: .92rem; margin-bottom: 22px; }
