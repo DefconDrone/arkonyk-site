@@ -118,14 +118,12 @@ section { padding: 104px 0; position: relative; }
 }
 .has-dropdown:hover .dropdown { display: flex; }
 .dropdown a {
-  display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 9px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding: 12px 12px; border-radius: 9px;
   color: var(--text); font-size: .95rem; font-weight: 500; white-space: nowrap;
 }
-.dropdown a:hover { background: var(--bg-3); color: var(--heading); }
-.dropdown img { height: 22px; width: auto; display: block; }
-.dropdown .dd-mark { height: 30px; width: 30px; object-fit: contain; }
-.dropdown .dd-sub { display: block; font-size: .76rem; color: var(--text-soft); font-weight: 400; margin-top: 1px; }
-.dropdown .dd-text { display: flex; flex-direction: column; }
+.dropdown a:hover { background: var(--bg-3); }
+.dropdown .dd-logo { height: 19px; width: auto; display: block; margin-bottom: 7px; }
+.dropdown .dd-sub { display: block; font-size: .78rem; color: var(--text-soft); font-weight: 400; }
 .nav-actions { display: flex; align-items: center; gap: 14px; }
 .nav-toggle { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
 .nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: .2s; }
@@ -347,6 +345,7 @@ select option { background: var(--bg-2); }
 .product-mark-icon.sm { width: 50px; height: 50px; margin-bottom: 20px; }
 .product-mark-box { width: 56px; height: 56px; border-radius: 14px; background: #0e1012; border: 1px solid var(--line-2); display: grid; place-items: center; margin-bottom: 20px; }
 .product-mark-box img { max-width: 58%; max-height: 58%; }
+.product-card-logo { height: 28px; width: auto; max-width: 100%; display: block; margin-bottom: 18px; }
 .product-illustration { width: 92%; max-width: 520px; height: auto; display: block; margin: 0 auto; border-radius: 16px; border: 1px solid rgba(255,255,255,.08); box-shadow: 0 24px 60px rgba(0,0,0,.35); }
 @media (max-width: 900px) { .product-illustration { width: 100%; max-width: 460px; } }
 
