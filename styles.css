@@ -81,7 +81,7 @@ section { padding: 104px 0; position: relative; }
 .btn {
   display: inline-flex; align-items: center; gap: 9px;
   font-family: var(--body); font-weight: 600; font-size: .92rem;
-  letter-spacing: .02em; padding: 13px 26px; border-radius: 999px;
+  letter-spacing: .03em; padding: 13px 26px; border-radius: 2px;
   border: 1px solid transparent; cursor: pointer; transition: all .16s ease; white-space: nowrap;
 }
 .btn-primary { background: var(--accent); color: #042020; }
