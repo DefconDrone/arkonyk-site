@@ -347,6 +347,8 @@ select option { background: var(--bg-2); }
 .product-mark-icon.sm { width: 50px; height: 50px; margin-bottom: 20px; }
 .product-mark-box { width: 56px; height: 56px; border-radius: 14px; background: #0e1012; border: 1px solid var(--line-2); display: grid; place-items: center; margin-bottom: 20px; }
 .product-mark-box img { max-width: 58%; max-height: 58%; }
+.product-illustration { width: 92%; max-width: 520px; height: auto; display: block; margin: 0 auto; border-radius: 16px; border: 1px solid rgba(255,255,255,.08); box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+@media (max-width: 900px) { .product-illustration { width: 100%; max-width: 460px; } }
 
 /* mobile dropdown: render inline under Products */
 @media (max-width: 900px) {
