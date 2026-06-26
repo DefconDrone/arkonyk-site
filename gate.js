@@ -7,7 +7,7 @@
   // Set to a Formspree (or similar) endpoint to collect launch-update emails silently.
   // While empty, the form falls back to a pre-addressed email to hello@arkonyk.com.
   var NOTIFY_ENDPOINT = "";
-  var NOTIFY_TO = "hello@arkonyk.com";
+  var NOTIFY_TO = "Rick@arkonyk.com";
 
   // already authenticated this session?
   try { if (sessionStorage.getItem(KEY) === "ok") { document.documentElement.classList.add("ark-ok"); return; } } catch (e) {}
