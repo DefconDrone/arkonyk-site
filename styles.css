@@ -371,7 +371,7 @@ select option { background: var(--bg-2); }
   border: 1px solid var(--line-2); border-radius: var(--radius-lg);
   padding: 38px 34px; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,.5);
 }
-.gate-card img { height: 40px; width: auto; margin: 0 auto 22px; display: block; }
+.gate-card img { height: 80px; width: auto; margin: 0 auto 24px; display: block; }
 .gate-card .gate-eyebrow { font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
 .gate-card h2 { font-size: 1.5rem; text-transform: none; margin: 8px 0 6px; color: var(--heading); }
 .gate-card p { color: var(--text-soft); font-size: .92rem; margin-bottom: 22px; }
