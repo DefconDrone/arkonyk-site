@@ -378,3 +378,7 @@ select option { background: var(--bg-2); }
 .gate-card form { display: grid; gap: 12px; text-align: left; }
 .gate-card .gate-btn { margin-top: 6px; justify-content: center; width: 100%; }
 .gate-error { color: #ff6b6b; font-size: .85rem; min-height: 18px; text-align: center; margin-top: 2px; }
+.gate-divider { display: flex; align-items: center; gap: 12px; margin: 24px 0 14px; color: var(--text-soft); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; }
+.gate-divider::before, .gate-divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.gate-notify-label { font-size: .86rem; color: var(--text-soft); margin-bottom: 12px; text-align: left; }
+.gate-notify-msg { color: var(--accent); font-size: .84rem; min-height: 16px; margin-top: 6px; text-align: left; }

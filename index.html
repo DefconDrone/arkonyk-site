@@ -16,14 +16,21 @@
 <div class="gate-overlay">
   <div class="gate-card">
     <img src="logo-horizontal-white.svg" alt="Arkonyk">
-    <div class="gate-eyebrow">Private beta</div>
+    <div class="gate-eyebrow">Stealth Mode</div>
     <h2>Truth in Payments</h2>
-    <p>This site is in private beta. Please sign in to continue.</p>
+    <p>Arkonyk is in stealth. Please sign in to continue.</p>
     <form id="gate-form">
       <input id="gate-user" type="text" placeholder="Username" autocomplete="username" required>
       <input id="gate-pass" type="password" placeholder="Password" autocomplete="current-password" required>
       <button class="btn btn-primary gate-btn" type="submit">Enter site</button>
       <div class="gate-error" aria-live="polite"></div>
+    </form>
+    <div class="gate-divider"><span>Curious?</span></div>
+    <p class="gate-notify-label">Leave your email and we'll share updates as we approach launch.</p>
+    <form id="notify-form" novalidate>
+      <input id="notify-email" type="email" placeholder="you@company.com" autocomplete="email" required>
+      <button class="btn btn-outline gate-btn" type="submit">Notify me at launch</button>
+      <div class="gate-notify-msg" aria-live="polite"></div>
     </form>
   </div>
 </div>
