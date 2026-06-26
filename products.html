@@ -30,10 +30,14 @@
       </form>
       <div class="gate-divider"><span>Inquiries</span></div>
       <p class="gate-notify-label">Share your email to receive updates.</p>
-      <form id="notify-form" novalidate>
-        <input id="notify-email" type="email" placeholder="you@company.com" autocomplete="email" required>
+      <form id="notify-form" action="https://formsubmit.co/Rick@arkonyk.com" method="POST">
+        <input type="hidden" name="_subject" value="New Arkonyk launch-update request">
+        <input type="hidden" name="_template" value="box">
+        <input type="hidden" name="_autoresponse" value="Thank you for your interest in Arkonyk. We have received your request and will be in touch soon with updates on our launch and products. — The Arkonyk Team, Truth in Payments.">
+        <input type="hidden" name="_next" value="https://arkonyk.com/thanks.html">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input id="notify-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
         <button class="btn btn-outline gate-btn" type="submit">Submit</button>
-        <div class="gate-notify-msg" aria-live="polite"></div>
       </form>
     </div>
   </div>
