@@ -375,6 +375,8 @@ select option { background: var(--bg-2); }
 .gate-card .gate-eyebrow { font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
 .gate-card h2 { font-size: 1.5rem; text-transform: none; margin: 8px 0 6px; color: var(--heading); }
 .gate-card p { color: var(--text-soft); font-size: .92rem; margin-bottom: 22px; }
+.gate-card .gate-mission { font-size: .82rem; line-height: 1.65; color: var(--text-soft); margin: 8px 0 20px; text-align: left; }
+.gate-card .gate-mission span { color: var(--accent); }
 .gate-card form { display: grid; gap: 12px; text-align: left; }
 .gate-card .gate-btn { margin-top: 6px; justify-content: center; width: 100%; }
 .gate-error { color: #ff6b6b; font-size: .85rem; min-height: 18px; text-align: center; margin-top: 2px; }
