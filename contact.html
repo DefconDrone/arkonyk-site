@@ -79,7 +79,12 @@
   <div class="container">
     <div class="split" style="align-items:start">
       <div class="card" style="padding:34px">
-        <form class="form-grid" data-demo novalidate>
+        <form class="form-grid" action="https://formsubmit.co/Rick@arkonyk.com" method="POST">
+          <input type="hidden" name="_subject" value="New Arkonyk contact inquiry">
+          <input type="hidden" name="_template" value="box">
+          <input type="hidden" name="_autoresponse" value="Thank you for contacting Arkonyk. We have received your message and will be in touch within one business day. — The Arkonyk Team, Truth in Payments.">
+          <input type="hidden" name="_next" value="https://arkonyk.com/thanks.html">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="form-row">
             <div><label for="fname">First name</label><input id="fname" name="fname" type="text" required></div>
             <div><label for="lname">Last name</label><input id="lname" name="lname" type="text" required></div>
