@@ -393,3 +393,30 @@ select option { background: var(--bg-2); }
   .gate-right { padding: 32px 30px; }
   .gate-left img { height: 58px; }
 }
+
+/* Inline form success (replaces the form after AJAX submit) */
+.ark-success {
+  border: 1px solid var(--accent);
+  background: rgba(25, 227, 227, .06);
+  border-radius: 12px;
+  padding: 22px 24px;
+  animation: ark-fade-in .35s ease both;
+}
+.ark-success-title {
+  font-family: var(--display);
+  color: var(--accent);
+  font-size: .72rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+.ark-success-text {
+  color: var(--text-soft);
+  line-height: 1.65;
+  font-size: .96rem;
+  margin: 0;
+}
+@keyframes ark-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
