@@ -1,0 +1,4 @@
+# Arkonyk is in stealth — block all indexing until public launch.
+# At launch: replace with an allow policy and add a sitemap reference.
+User-agent: *
+Disallow: /
