@@ -123,6 +123,7 @@ section { padding: 104px 0; position: relative; }
 }
 .dropdown a:hover { background: var(--bg-3); }
 .dropdown .dd-logo { height: 19px; width: auto; display: block; margin-bottom: 7px; }
+.dropdown .dd-name { display: block; color: var(--heading); font-weight: 600; }
 .dropdown .dd-sub { display: block; font-size: .78rem; color: var(--text-soft); font-weight: 400; }
 .nav-actions { display: flex; align-items: center; gap: 14px; }
 .nav-toggle { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
