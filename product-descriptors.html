@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descriptors.com — Products — Arkonyk</title>
+<meta name="description" content="Descriptors.com is a neutral payment descriptor intelligence registry. Map cryptic billing descriptors to verified merchants so cardholders recognize charges — reducing the confusion behind an estimated 55% of disputes. No API, no integration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=5">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script>try{if(sessionStorage.getItem("ark_auth")==="ok")document.documentElement.classList.add("ark-ok")}catch(e){}</script>
+</head>
+<body>
+<div class="gate-overlay">
+  <div class="gate-card">
+    <div class="gate-left">
+      <img src="logo-horizontal-white.svg" alt="Arkonyk">
+      <h2>Truth in Payments</h2>
+      <p class="gate-mission">Arkonyk &mdash; our name represents the merger of two guiding principles: <span>to lead</span>, and <span>to aspire</span>. Our customers are Acquiring Banks, Issuing Banks, and the Merchants and Cardholders they service. We are focused on solving longstanding problems in new ways, leveraging our experience, relationships, and proprietary technology.</p>
+    </div>
+    <div class="gate-right">
+      <div class="gate-divider"><span>Stealth Mode</span></div>
+      <form id="gate-form">
+        <input id="gate-user" type="text" placeholder="Username" autocomplete="username" required>
+        <input id="gate-pass" type="password" placeholder="Password" autocomplete="current-password" required>
+        <button class="btn btn-primary gate-btn" type="submit">Enter site</button>
+        <div class="gate-error" aria-live="polite"></div>
+      </form>
+      <div class="gate-divider"><span>Inquiries</span></div>
+      <p class="gate-notify-label">Share your email to receive updates.</p>
+      <form id="notify-form" action="https://formsubmit.co/Rick@arkonyk.com" method="POST">
+        <input type="hidden" name="_subject" value="New Arkonyk launch-update request">
+        <input type="hidden" name="_template" value="box">
+        <input type="hidden" name="_autoresponse" value="Thank you for your interest in Arkonyk. We have received your request and will be in touch soon with updates on our launch and products. &mdash; The Arkonyk Team, Truth in Payments.">
+        <input type="hidden" name="_next" value="https://arkonyk.com/thanks.html">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input id="notify-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+        <button class="btn btn-outline gate-btn" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html"><img class="brand-logo" src="logo-horizontal-white.svg" alt="Arkonyk"></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li class="has-dropdown"><a href="products.html" class="active">Products</a>
+        <div class="dropdown">
+          <a href="product-descriptors.html"><span class="dd-name">Descriptors.com</span><span class="dd-sub">The Authoritative Record</span></a>
+          <a href="product-feesuite.html"><span class="dd-name">FeeSuite</span><span class="dd-sub">Reconciliation Made Easy</span></a>
+          <a href="product-arkitekt.html"><span class="dd-name">Arkitekt</span><span class="dd-sub">Global Payments By Design</span></a>
+        </div>
+      </li>
+      <li class="has-dropdown"><a href="solutions.html">Solutions</a>
+        <div class="dropdown">
+          <a href="solutions-issuers.html"><span class="dd-name">Issuers</span><span class="dd-sub">Banks &amp; financial institutions</span></a>
+          <a href="solutions-acquirers.html"><span class="dd-name">Acquirers &amp; ISOs</span><span class="dd-sub">Portfolio visibility &amp; retention</span></a>
+          <a href="solutions-payfacs.html"><span class="dd-name">PayFacs &amp; MORs</span><span class="dd-sub">Sub-merchant management at scale</span></a>
+          <a href="solutions-providers.html"><span class="dd-name">Solution Providers</span><span class="dd-sub">ISVs, gateways &amp; platforms</span></a>
+          <a href="solutions-merchants.html"><span class="dd-name">Merchants</span><span class="dd-sub">Enterprise &amp; high-growth</span></a>
+        </div>
+      </li>
+      <li class="has-dropdown"><a href="about.html">Resources</a>
+        <div class="dropdown">
+          <a href="about.html"><span class="dd-name">About Us</span><span class="dd-sub">Who we are</span></a>
+          <a href="contact.html"><span class="dd-name">Contact Us</span><span class="dd-sub">Get in touch</span></a>
+          <a href="contact.html"><span class="dd-name">Book a Demo</span><span class="dd-sub">See the products live</span></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="page-hero">
+  <img class="bg-monogram" src="monogram-white.svg" alt="" aria-hidden="true">
+  <div class="container inner">
+    <span class="eyebrow">Products &middot; Descriptors.com</span>
+    <img class="product-logo-lg" src="descriptors-white.png" alt="Descriptors.com" style="margin-bottom:20px">
+    <h1 class="display" style="font-size:clamp(2rem,4vw,3.2rem)">The authoritative record for payment descriptors</h1>
+    <p class="lead">The descriptor is the merchant name a cardholder sees on their statement &mdash; and one of the most overlooked causes of disputes. Descriptors.com maps every cryptic charge to a verified merchant, so customers, banks, and issuers recognize it on sight. No API. No integration. No processor change.</p>
+    <div style="margin-top:26px"><a class="btn btn-primary btn-lg" href="contact.html">Request access <span class="arrow">&rarr;</span></a></div>
+  </div>
+</section>
+
+<!-- ===== The problem ===== -->
+<section>
+  <div class="container">
+    <div class="split">
+      <div>
+        <span class="eyebrow">The problem</span>
+        <h2>The descriptor is all the customer sees &mdash; and it's not enough</h2>
+        <p class="lead" style="margin-top:14px">A 22-character string, designed decades ago for printed statements, was never built to solve customer confusion. When the label is an unfamiliar acquirer code, a parent-company name, or a truncated abbreviation, the cardholder can't connect it to their purchase. So they call their bank instead of the merchant &mdash; a dispute, a chargeback fee, and lost revenue, all from a moment of confusion.</p>
+        <ul>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> An estimated 55% of disputes begin with an unrecognized charge</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Rising dispute volume becomes portfolio risk for acquirers and ISOs</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> The technology to fix it has existed for years &mdash; it was never prioritized</li>
+        </ul>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:18px">
+          <div class="ptag" style="color:#ff6b6b">&#9679; Unrecognized</div>
+          <div style="font-family:var(--display);color:#fff;font-size:1.15rem;letter-spacing:.02em">SQ *XJ7K LLC 8889991234</div>
+          <p style="margin-top:10px">No business name a customer recognizes. The likely outcome: &ldquo;I didn't make this charge&rdquo; &mdash; a dispute.</p>
+        </div>
+        <div class="card" style="border-color:var(--accent)">
+          <div class="ptag">&#9679; Verified with Descriptors.com</div>
+          <div style="font-family:var(--display);color:#fff;font-size:1.15rem;letter-spacing:.02em">BLUE BOTTLE COFFEE &middot; OAKLAND CA</div>
+          <p style="margin-top:10px">Mapped to the verified business, website, and contact. The customer recognizes it &mdash; no dispute.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stat band ===== -->
+<section class="section-light" style="padding:64px 0">
+  <div class="container">
+    <div class="stats">
+      <div class="stat"><div class="num">55<span>%</span></div><div class="lbl">of disputes start with customer confusion</div></div>
+      <div class="stat"><div class="num">15<span> min</span></div><div class="lbl">to board a descriptor &mdash; no developers</div></div>
+      <div class="stat"><div class="num">$20<span>/mo</span></div><div class="lbl">per descriptor &mdash; less than one chargeback</div></div>
+      <div class="stat"><div class="num">0<span> APIs</span></div><div class="lbl">no code, no integration, no processor change</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== What it is ===== -->
+<section>
+  <div class="container">
+    <div class="split">
+      <div>
+        <span class="eyebrow">What it is</span>
+        <h2>A neutral descriptor intelligence registry</h2>
+        <p class="lead" style="margin-top:14px">Descriptors.com is a single source of truth that connects issuers, acquirers &amp; ISOs, merchants, and cardholders on one payment data layer. Descriptors are sourced from the acquirers and ISOs who know their portfolios best, enriched by merchants who know their own businesses best, and made available so the whole ecosystem can resolve confusion at the source.</p>
+        <ul>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Register, validate &amp; manage descriptor portfolios</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Associate verified logos &amp; business info; identify conflicts</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Look up any descriptor string, merchant name, or keyword</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Improve recognition for merchants, acquirers &amp; issuers alike</li>
+        </ul>
+      </div>
+      <div><img class="product-illustration" src="descriptors-illustration.png" alt="Descriptors.com connects issuers, acquirers, merchants, and cardholders on one payment data layer"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== How it works ===== -->
+<section class="section-light">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">How it works</span>
+      <h2>Three steps to a recognizable charge</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/></svg></div>
+        <h3>1 &middot; Enroll your descriptor</h3>
+        <p>Choose the descriptor that appears on your customers' statements &mdash; or enroll the root if you use dynamic descriptors.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h3>2 &middot; Add your business details</h3>
+        <p>Legal name, DBA, website, phone, and address. We map the descriptor to this verified merchant profile.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <h3>3 &middot; Get recognized</h3>
+        <p>Customers, banks, and issuers can identify the charge instantly &mdash; defusing disputes before they're ever filed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Why it works ===== -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Why it works</span>
+      <h2>Built for the broadest possible participation</h2>
+      <p class="lead">A solution only large, technically sophisticated merchants can access is not a solution to an industry-wide problem. Every part of the platform is designed for low friction and wide reach.</p>
+    </div>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Universal</h3>
+        <p>Works for every merchant, any processor, anywhere in the world. No gateway lock-in.</p>
+      </div>
+      <div class="card">
+        <h3>Easy</h3>
+        <p>Enroll today, live tomorrow. Fill in your business details and you're verified.</p>
+      </div>
+      <div class="card">
+        <h3>No integration</h3>
+        <p>No API, no code, no developers. Board a descriptor in about 15 minutes.</p>
+      </div>
+      <div class="card">
+        <h3>Inexpensive</h3>
+        <p>$20/month per descriptor &mdash; a fraction of the cost of a single chargeback.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Who it's for ===== -->
+<section class="section-light">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Who it's for</span>
+      <h2>Value across the ecosystem</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card product">
+        <h3>Merchants</h3>
+        <div class="ptag">Recognition</div>
+        <p>Make every charge instantly recognizable &mdash; quickly, easily, and inexpensively &mdash; and stop disputes before they start.</p>
+        <a class="plink" href="solutions-merchants.html">Merchant solutions <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="card product">
+        <h3>Acquirers &amp; ISOs</h3>
+        <div class="ptag">Portfolio health</div>
+        <p>Offer every merchant a recognition solution competitors can't match, reduce dispute-driven risk, and lower attrition &mdash; deployed at scale with no integration.</p>
+        <a class="plink" href="solutions-acquirers.html">Acquirer &amp; ISO solutions <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="card product">
+        <h3>Issuers</h3>
+        <div class="ptag">Resolution</div>
+        <p>Give service teams and cardholders a trusted source to identify a charge at the point of statement review &mdash; before it becomes a dispute.</p>
+        <a class="plink" href="solutions-issuers.html">Issuer solutions <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Principles ===== -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Our principles</span>
+      <h2>An industry utility, not a proprietary product</h2>
+      <p class="lead">Descriptors.com's value depends on trust, and trust depends on neutrality. A few principles govern how the platform operates &mdash; and will continue to.</p>
+    </div>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Neutrality</h3>
+        <p>We serve the entire payments ecosystem and have no preference for any network, processor, or payment method.</p>
+      </div>
+      <div class="card">
+        <h3>Acquirer sovereignty</h3>
+        <p>Acquirers own their merchant relationships and the descriptor data that flows from them. It is contributed voluntarily and used only to serve the ecosystem.</p>
+      </div>
+      <div class="card">
+        <h3>Independence</h3>
+        <p>The platform is independently governed, with ownership or control by any card network permanently restricted by charter.</p>
+      </div>
+      <div class="card">
+        <h3>Accessibility</h3>
+        <p>Every feature is designed for the broadest possible participation, at the lowest possible friction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA band ===== -->
+<section style="padding-top:0">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <h2>Make every charge recognizable</h2>
+        <p>Verify one descriptor or an entire portfolio. Enroll today, live tomorrow &mdash; no API, no integration, no processor change.</p>
+      </div>
+      <div class="cta-actions"><a class="btn btn-dark btn-lg" href="contact.html">Request access <span class="arrow">&rarr;</span></a></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="logo-horizontal-white.svg" alt="Arkonyk">
+        <p>Payments intelligence for merchants, processors, acquirers, and enterprises.</p>
+      </div>
+      <div class="footer-col"><h4>Products</h4><a href="product-descriptors.html">Descriptors.com</a><a href="product-feesuite.html">FeeSuite</a><a href="product-arkitekt.html">Arkitekt</a></div>
+      <div class="footer-col"><h4>Solutions</h4><a href="solutions-issuers.html">Issuers</a><a href="solutions-acquirers.html">Acquirers &amp; ISOs</a><a href="solutions-payfacs.html">PayFacs &amp; MORs</a><a href="solutions-providers.html">Solution Providers</a><a href="solutions-merchants.html">Merchants</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact Us</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year>2026</span> Arkonyk, Inc. All rights reserved.</span>
+      <span>Truth in Payments.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="gate.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

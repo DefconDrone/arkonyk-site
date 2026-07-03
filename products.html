@@ -35,7 +35,7 @@
       <form id="notify-form" action="https://formsubmit.co/Rick@arkonyk.com" method="POST">
         <input type="hidden" name="_subject" value="New Arkonyk launch-update request">
         <input type="hidden" name="_template" value="box">
-        <input type="hidden" name="_autoresponse" value="Thank you for your interest in Arkonyk. We have received your request and will be in touch soon with updates on our launch and products. — The Arkonyk Team, Truth in Payments.">
+        <input type="hidden" name="_autoresponse" value="Thank you for your interest in Arkonyk. We have received your request and will be in touch soon with updates on our launch and products. &mdash; The Arkonyk Team, Truth in Payments.">
         <input type="hidden" name="_next" value="https://arkonyk.com/thanks.html">
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input id="notify-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
@@ -52,9 +52,9 @@
     <ul class="nav-links">
       <li class="has-dropdown"><a href="products.html" class="active">Products</a>
         <div class="dropdown">
-          <a href="products.html#descriptors"><span class="dd-name">Descriptors.com</span><span class="dd-sub">The Authoritative Record</span></a>
-          <a href="products.html#feesuite"><span class="dd-name">FeeSuite</span><span class="dd-sub">Reconciliation Made Easy</span></a>
-          <a href="products.html#arkitekt"><span class="dd-name">Arkitekt</span><span class="dd-sub">Global Payments By Design</span></a>
+          <a href="product-descriptors.html"><span class="dd-name">Descriptors.com</span><span class="dd-sub">The Authoritative Record</span></a>
+          <a href="product-feesuite.html"><span class="dd-name">FeeSuite</span><span class="dd-sub">Reconciliation Made Easy</span></a>
+          <a href="product-arkitekt.html"><span class="dd-name">Arkitekt</span><span class="dd-sub">Global Payments By Design</span></a>
         </div>
       </li>
       <li class="has-dropdown"><a href="solutions.html">Solutions</a>
@@ -82,24 +82,50 @@
   <div class="container inner">
     <span class="eyebrow">Products</span>
     <h1 class="display">Software that brings the truth forward</h1>
-    <p class="lead">Three focused products — Descriptors.com, FeeSuite, and ARKITEKT — that give you visibility, control, and strategy across how you accept payments. Use them independently or together.</p>
+    <p class="lead">Three focused products &mdash; Descriptors.com, FeeSuite, and ARKITEKT &mdash; that give you visibility, control, and strategy across how you accept payments. Use them independently or together.</p>
+  </div>
+</section>
+
+<!-- Product overview cards -->
+<section>
+  <div class="container">
+    <div class="grid grid-3">
+      <div class="card product">
+        <img class="product-card-logo" src="descriptors-white.png" alt="Descriptors.com">
+        <div class="ptag">The Authoritative Record</div>
+        <p>Register, manage, and validate the billing descriptors customers see on their statements &mdash; so they recognize charges. An estimated 55% of disputes start with an unrecognized transaction.</p>
+        <a class="plink" href="product-descriptors.html">Explore Descriptors.com <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="card product">
+        <img class="product-card-logo" src="product-feesuite-white.png" alt="FeeSuite">
+        <div class="ptag">Reconciliation Made Easy</div>
+        <p>Automatically reconcile acquirer and processor statements every month, keep a full history, and see your true cost of payments &mdash; with anomalies, errors, and excessive charges surfaced for you.</p>
+        <a class="plink" href="product-feesuite.html">Explore FeeSuite <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="card product">
+        <img class="product-card-logo" src="product-arkitekt-white.png" alt="ARKITEKT">
+        <div class="ptag">Global Payments By Design</div>
+        <p>Arkonyk's payment architecture practice. Independent strategy, processor selection, cost optimization, fraud reduction, and global expansion from senior operators.</p>
+        <a class="plink" href="product-arkitekt.html">Explore ARKITEKT <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- Descriptors.com -->
-<section id="descriptors">
+<section id="descriptors" class="section-light">
   <div class="container">
     <div class="split">
       <div>
         <span class="eyebrow">Source of Truth</span>
-        <img class="product-logo-lg" src="descriptors-white.png" alt="Descriptors.com" style="margin-top:10px">
-        <p class="lead">A payment descriptor management platform. The descriptor is the merchant name a cardholder sees on their statement — and one of the most overlooked causes of disputes. Visa estimates 50%+ of cardholder disputes begin because a customer doesn't recognize a transaction.</p>
+        <img class="product-logo-lg" src="descriptors-white.png" alt="Descriptors.com" style="filter:invert(1);margin-top:10px">
+        <p class="lead">A payment descriptor management platform. The descriptor is the merchant name a cardholder sees on their statement — and one of the most overlooked causes of disputes. An estimated 55% of cardholder disputes begin because a customer doesn't recognize a transaction.</p>
         <ul>
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Register, manage &amp; validate descriptor portfolios</li>
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Associate logos &amp; business info; identify conflicts</li>
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Improve recognition for merchants, acquirers &amp; issuers</li>
         </ul>
-        <div style="margin-top:26px"><a class="btn btn-primary" href="contact.html">Request access <span class="arrow">→</span></a></div>
+        <div style="margin-top:26px"><a class="btn btn-primary" href="product-descriptors.html">Explore Descriptors.com <span class="arrow">&rarr;</span></a></div>
       </div>
       <div><img class="product-illustration" src="descriptors-illustration.png" alt="Descriptors.com connects issuers, acquirers, merchants, and cardholders on one payment data layer"></div>
     </div>
@@ -107,12 +133,12 @@
 </section>
 
 <!-- FeeSuite -->
-<section id="feesuite" class="section-light">
+<section id="feesuite">
   <div class="container">
     <div class="split">
       <div>
         <span class="eyebrow">True Cost of Payments</span>
-        <img class="product-logo-lg" src="product-feesuite-white.png" alt="FeeSuite" style="filter:invert(1);margin-top:10px">
+        <img class="product-logo-lg" src="product-feesuite-white.png" alt="FeeSuite" style="margin-top:10px">
         <p class="lead">A B2B SaaS platform that automatically reconciles your acquirer and processor statements every month and keeps a complete history of them. FeeSuite calculates your true cost of payments and surfaces anomalies, errors, duplicate charges, excessive fees, and other opportunities to manage and lower what you pay.</p>
         <ul>
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Automated monthly reconciliation of acquirer &amp; processor statements</li>
@@ -120,7 +146,7 @@
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Your true cost of payments, calculated automatically</li>
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Anomalies, errors, duplicate &amp; excessive charges surfaced for you</li>
         </ul>
-        <div style="margin-top:26px"><a class="btn btn-primary" href="contact.html">Request access <span class="arrow">→</span></a></div>
+        <div style="margin-top:26px"><a class="btn btn-primary" href="product-feesuite.html">Explore FeeSuite <span class="arrow">&rarr;</span></a></div>
       </div>
       <div><img class="product-illustration" src="feesuite-illustration.png" alt="FeeSuite normalizes acquirer, processor, and statement data into a cost-intelligence dashboard"></div>
     </div>
@@ -128,12 +154,12 @@
 </section>
 
 <!-- ARKITEKT -->
-<section id="arkitekt">
+<section id="arkitekt" class="section-light">
   <div class="container">
     <div class="split">
       <div>
         <span class="eyebrow">True Knowledge Applied</span>
-        <img class="product-logo-lg" src="product-arkitekt-white.png" alt="ARKITEKT" style="margin-top:10px">
+        <img class="product-logo-lg" src="product-arkitekt-white.png" alt="ARKITEKT" style="filter:invert(1);margin-top:10px">
         <p class="lead">Arkonyk's payment architecture practice. Organizations bring in ARKITEKT for independent, experienced guidance navigating complex payment ecosystems — from provider selection and cost optimization to fraud strategy and global expansion.</p>
         <ul>
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Payment strategy, acquirer selection &amp; orchestration design</li>
@@ -141,7 +167,7 @@
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Risk, fraud &amp; dispute reduction, network compliance</li>
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Vendor selection, RFP management &amp; executive advisory</li>
         </ul>
-        <div style="margin-top:26px"><a class="btn btn-primary" href="contact.html">Book a consultation <span class="arrow">→</span></a></div>
+        <div style="margin-top:26px"><a class="btn btn-primary" href="product-arkitekt.html">Explore ARKITEKT <span class="arrow">&rarr;</span></a></div>
       </div>
       <div class="feature-media"><div class="fm-label">ARKITEKT</div><div class="fm-sub">Independent strategy for high-impact payments decisions.</div></div>
     </div>
@@ -155,7 +181,7 @@
         <h2>See your payments clearly</h2>
         <p>Book a demo of Descriptors.com, FeeSuite, and ARKITEKT — independently or as one platform.</p>
       </div>
-      <div class="cta-actions"><a class="btn btn-dark btn-lg" href="contact.html">Book a demo <span class="arrow">→</span></a></div>
+      <div class="cta-actions"><a class="btn btn-dark btn-lg" href="contact.html">Book a demo <span class="arrow">&rarr;</span></a></div>
     </div>
   </div>
 </section>
@@ -167,12 +193,12 @@
         <img class="footer-logo" src="logo-horizontal-white.svg" alt="Arkonyk">
         <p>Payments intelligence for merchants, processors, acquirers, and enterprises.</p>
       </div>
-      <div class="footer-col"><h4>Products</h4><a href="products.html#descriptors">Descriptors.com</a><a href="products.html#feesuite">FeeSuite</a><a href="products.html#arkitekt">Arkitekt</a></div>
+      <div class="footer-col"><h4>Products</h4><a href="product-descriptors.html">Descriptors.com</a><a href="product-feesuite.html">FeeSuite</a><a href="product-arkitekt.html">Arkitekt</a></div>
       <div class="footer-col"><h4>Solutions</h4><a href="solutions-issuers.html">Issuers</a><a href="solutions-acquirers.html">Acquirers &amp; ISOs</a><a href="solutions-payfacs.html">PayFacs &amp; MORs</a><a href="solutions-providers.html">Solution Providers</a><a href="solutions-merchants.html">Merchants</a></div>
       <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact Us</a></div>
     </div>
     <div class="footer-bottom">
-      <span>© <span data-year>2026</span> Arkonyk, Inc. All rights reserved.</span>
+      <span>&copy; <span data-year>2026</span> Arkonyk, Inc. All rights reserved.</span>
       <span>Truth in Payments.</span>
     </div>
   </div>

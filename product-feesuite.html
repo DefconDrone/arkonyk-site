@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FeeSuite — Products — Arkonyk</title>
+<meta name="description" content="FeeSuite automatically reconciles acquirer and processor statements every month, keeps a complete history, calculates your true cost of payments, and surfaces anomalies, errors, and excessive charges.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=5">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script>try{if(sessionStorage.getItem("ark_auth")==="ok")document.documentElement.classList.add("ark-ok")}catch(e){}</script>
+</head>
+<body>
+<div class="gate-overlay">
+  <div class="gate-card">
+    <div class="gate-left">
+      <img src="logo-horizontal-white.svg" alt="Arkonyk">
+      <h2>Truth in Payments</h2>
+      <p class="gate-mission">Arkonyk &mdash; our name represents the merger of two guiding principles: <span>to lead</span>, and <span>to aspire</span>. Our customers are Acquiring Banks, Issuing Banks, and the Merchants and Cardholders they service. We are focused on solving longstanding problems in new ways, leveraging our experience, relationships, and proprietary technology.</p>
+    </div>
+    <div class="gate-right">
+      <div class="gate-divider"><span>Stealth Mode</span></div>
+      <form id="gate-form">
+        <input id="gate-user" type="text" placeholder="Username" autocomplete="username" required>
+        <input id="gate-pass" type="password" placeholder="Password" autocomplete="current-password" required>
+        <button class="btn btn-primary gate-btn" type="submit">Enter site</button>
+        <div class="gate-error" aria-live="polite"></div>
+      </form>
+      <div class="gate-divider"><span>Inquiries</span></div>
+      <p class="gate-notify-label">Share your email to receive updates.</p>
+      <form id="notify-form" action="https://formsubmit.co/Rick@arkonyk.com" method="POST">
+        <input type="hidden" name="_subject" value="New Arkonyk launch-update request">
+        <input type="hidden" name="_template" value="box">
+        <input type="hidden" name="_autoresponse" value="Thank you for your interest in Arkonyk. We have received your request and will be in touch soon with updates on our launch and products. &mdash; The Arkonyk Team, Truth in Payments.">
+        <input type="hidden" name="_next" value="https://arkonyk.com/thanks.html">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input id="notify-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+        <button class="btn btn-outline gate-btn" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html"><img class="brand-logo" src="logo-horizontal-white.svg" alt="Arkonyk"></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li class="has-dropdown"><a href="products.html" class="active">Products</a>
+        <div class="dropdown">
+          <a href="product-descriptors.html"><span class="dd-name">Descriptors.com</span><span class="dd-sub">The Authoritative Record</span></a>
+          <a href="product-feesuite.html"><span class="dd-name">FeeSuite</span><span class="dd-sub">Reconciliation Made Easy</span></a>
+          <a href="product-arkitekt.html"><span class="dd-name">Arkitekt</span><span class="dd-sub">Global Payments By Design</span></a>
+        </div>
+      </li>
+      <li class="has-dropdown"><a href="solutions.html">Solutions</a>
+        <div class="dropdown">
+          <a href="solutions-issuers.html"><span class="dd-name">Issuers</span><span class="dd-sub">Banks &amp; financial institutions</span></a>
+          <a href="solutions-acquirers.html"><span class="dd-name">Acquirers &amp; ISOs</span><span class="dd-sub">Portfolio visibility &amp; retention</span></a>
+          <a href="solutions-payfacs.html"><span class="dd-name">PayFacs &amp; MORs</span><span class="dd-sub">Sub-merchant management at scale</span></a>
+          <a href="solutions-providers.html"><span class="dd-name">Solution Providers</span><span class="dd-sub">ISVs, gateways &amp; platforms</span></a>
+          <a href="solutions-merchants.html"><span class="dd-name">Merchants</span><span class="dd-sub">Enterprise &amp; high-growth</span></a>
+        </div>
+      </li>
+      <li class="has-dropdown"><a href="about.html">Resources</a>
+        <div class="dropdown">
+          <a href="about.html"><span class="dd-name">About Us</span><span class="dd-sub">Who we are</span></a>
+          <a href="contact.html"><span class="dd-name">Contact Us</span><span class="dd-sub">Get in touch</span></a>
+          <a href="contact.html"><span class="dd-name">Book a Demo</span><span class="dd-sub">See the products live</span></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="page-hero">
+  <img class="bg-monogram" src="monogram-white.svg" alt="" aria-hidden="true">
+  <div class="container inner">
+    <span class="eyebrow">Products &middot; FeeSuite</span>
+    <img class="product-logo-lg" src="product-feesuite-white.png" alt="FeeSuite" style="filter:invert(1);margin-bottom:20px">
+    <h1 class="display" style="font-size:clamp(2rem,4vw,3.2rem)">Know your true cost of payments</h1>
+    <p class="lead">FeeSuite automatically reconciles your acquirer and processor statements every month and keeps a complete history of them. It calculates what you actually pay to accept payments &mdash; and surfaces the anomalies, errors, and excessive charges hiding inside statements no one has time to read.</p>
+    <div style="margin-top:26px"><a class="btn btn-primary btn-lg" href="contact.html">Request access <span class="arrow">&rarr;</span></a></div>
+  </div>
+</section>
+
+<!-- ===== The problem ===== -->
+<section>
+  <div class="container">
+    <div class="split">
+      <div>
+        <span class="eyebrow">The problem</span>
+        <h2>Your true cost of payments is buried in statements</h2>
+        <p class="lead" style="margin-top:14px">Interchange, scheme fees, processor markups, and assessments arrive across fragmented statements in formats built to obscure rather than explain. Reconciling them by hand is slow, error-prone, and rarely done &mdash; so overcharges, duplicate fees, and billing errors go unnoticed month after month.</p>
+        <ul>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Fragmented statements across acquirers, processors, and networks</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Scheme and network fees too opaque to reconcile with confidence</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Manual reconciliation that eats finance-team hours every month</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Overcharges and duplicate fees that quietly erode margin</li>
+        </ul>
+      </div>
+      <div class="feature-media"><div class="fm-label">FeeSuite</div><div class="fm-sub">Every statement, normalized into one clear cost picture.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== What it does ===== -->
+<section class="section-light">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">What it does</span>
+      <h2>Reconciliation made easy</h2>
+    </div>
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 3 21 9 15 9"/></svg></div>
+        <h3>Automated monthly reconciliation</h3>
+        <p>FeeSuite reconciles your acquirer and processor statements every month &mdash; automatically, without spreadsheets or manual matching.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <h3>A complete statement history</h3>
+        <p>Every statement is kept in one searchable place, giving you a durable, auditable record of what you were charged and when.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Your true cost of payments</h3>
+        <p>See your real effective rate calculated automatically &mdash; the all-in cost of acceptance, not the headline number on a rate sheet.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <h3>Anomalies &amp; errors surfaced</h3>
+        <p>Duplicate charges, excessive fees, and unexpected changes are flagged for you &mdash; so you can question them and recover margin.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== How it works ===== -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>From raw statements to answers</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>1 &middot; Bring your statements</h3>
+        <p>Add your acquirer and processor statements. No integration project and no change to how you accept payments.</p>
+      </div>
+      <div class="card">
+        <h3>2 &middot; FeeSuite normalizes &amp; reconciles</h3>
+        <p>Fragmented fee data is parsed and normalized into one consistent model, then reconciled month over month.</p>
+      </div>
+      <div class="card">
+        <h3>3 &middot; See cost &amp; catch errors</h3>
+        <p>Review your true effective rate, track it over time, and act on the anomalies and overcharges surfaced for you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Who it's for ===== -->
+<section class="section-light">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Who it's for</span>
+      <h2>Cost clarity for both sides of the statement</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card product">
+        <h3>Merchants</h3>
+        <div class="ptag">Recover margin</div>
+        <p>Understand what you actually pay to accept payments, benchmark it, and catch the overcharges that erode margin.</p>
+        <a class="plink" href="solutions-merchants.html">Merchant solutions <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="card product">
+        <h3>Acquirers &amp; ISOs</h3>
+        <div class="ptag">Retention value-add</div>
+        <p>Reconcile scheme and processor fees across the portfolio, and offer merchants true cost transparency as a differentiator.</p>
+        <a class="plink" href="solutions-acquirers.html">Acquirer &amp; ISO solutions <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="card product">
+        <h3>Finance teams</h3>
+        <div class="ptag">Efficiency</div>
+        <p>Replace manual statement validation and reconciliation with an automated, auditable monthly process.</p>
+        <a class="plink" href="contact.html">Talk to us <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA band ===== -->
+<section style="padding-top:0">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <h2>See what you're really paying</h2>
+        <p>Book a demo and we'll reconcile a recent statement with you &mdash; and show you the anomalies FeeSuite surfaces.</p>
+      </div>
+      <div class="cta-actions"><a class="btn btn-dark btn-lg" href="contact.html">Request access <span class="arrow">&rarr;</span></a></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="logo-horizontal-white.svg" alt="Arkonyk">
+        <p>Payments intelligence for merchants, processors, acquirers, and enterprises.</p>
+      </div>
+      <div class="footer-col"><h4>Products</h4><a href="product-descriptors.html">Descriptors.com</a><a href="product-feesuite.html">FeeSuite</a><a href="product-arkitekt.html">Arkitekt</a></div>
+      <div class="footer-col"><h4>Solutions</h4><a href="solutions-issuers.html">Issuers</a><a href="solutions-acquirers.html">Acquirers &amp; ISOs</a><a href="solutions-payfacs.html">PayFacs &amp; MORs</a><a href="solutions-providers.html">Solution Providers</a><a href="solutions-merchants.html">Merchants</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact Us</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year>2026</span> Arkonyk, Inc. All rights reserved.</span>
+      <span>Truth in Payments.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="gate.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
