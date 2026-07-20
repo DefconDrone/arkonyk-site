@@ -23,13 +23,6 @@
       <p class="gate-mission">Arkonyk &mdash; our name represents the merger of two guiding principles: <span>to lead</span>, and <span>to aspire</span>. Our customers are Acquiring Banks, Issuing Banks, and the Merchants and Cardholders they service. We are focused on solving longstanding problems in new ways, leveraging our experience, relationships, and proprietary technology.</p>
     </div>
     <div class="gate-right">
-      <div class="gate-divider"><span>Stealth Mode</span></div>
-      <form id="gate-form">
-        <input id="gate-user" type="text" placeholder="Username" autocomplete="username" required>
-        <input id="gate-pass" type="password" placeholder="Password" autocomplete="current-password" required>
-        <button class="btn btn-primary gate-btn" type="submit">Enter site</button>
-        <div class="gate-error" aria-live="polite"></div>
-      </form>
       <div class="gate-divider"><span>Inquiries</span></div>
       <p class="gate-notify-label">Share your email to receive updates.</p>
       <form id="notify-form" action="https://formsubmit.co/Rick@arkonyk.com" method="POST">
@@ -40,6 +33,13 @@
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input id="notify-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
         <button class="btn btn-outline gate-btn" type="submit">Submit</button>
+      </form>
+      <div class="gate-divider"><span>Stealth Mode</span></div>
+      <form id="gate-form" class="gate-login-compact">
+        <input id="gate-user" type="text" placeholder="Username" autocomplete="username" required>
+        <input id="gate-pass" type="password" placeholder="Password" autocomplete="current-password" required>
+        <button class="btn btn-primary gate-btn" type="submit">Enter site</button>
+        <div class="gate-error" aria-live="polite"></div>
       </form>
     </div>
   </div>

@@ -388,6 +388,11 @@ select option { background: var(--bg-2); }
 .gate-divider::before, .gate-divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 .gate-notify-label { font-size: .86rem; color: var(--text-soft); margin-bottom: 12px; text-align: left; }
 .gate-notify-msg { color: var(--accent); font-size: .84rem; min-height: 16px; margin-top: 6px; text-align: left; }
+/* Compact stealth-mode login — secondary to the updates form above it */
+.gate-login-compact { gap: 9px; }
+.gate-login-compact input { font-size: .9rem; padding: 10px 13px; }
+.gate-login-compact .gate-btn { padding: 11px 18px; font-size: .86rem; }
+.gate-login-compact .gate-error { font-size: .8rem; min-height: 16px; }
 @media (max-width: 760px) {
   .gate-card { grid-template-columns: 1fr; max-width: 440px; }
   .gate-left { border-right: 0; border-bottom: 1px solid var(--line); padding: 36px 30px; }
