@@ -426,3 +426,13 @@ select option { background: var(--bg-2); }
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: none; }
 }
+
+/* ---------- Key people (Arkitekt) ---------- */
+.people-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 30px; }
+.person { text-align: center; }
+.person-photo { width: 128px; height: 128px; border-radius: 50%; object-fit: cover; margin: 0 auto 18px; }
+.person-name { font-size: 1.12rem; margin-bottom: 4px; }
+.person-role { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-deep); font-weight: 600; margin-bottom: 12px; }
+.person-bio { font-size: .9rem; color: var(--ink-soft); line-height: 1.6; }
+@media (max-width: 860px) { .people-grid { grid-template-columns: repeat(2,1fr); gap: 40px 26px; } }
+@media (max-width: 460px) { .people-grid { grid-template-columns: 1fr; gap: 40px; } }
