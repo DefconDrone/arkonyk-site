@@ -197,6 +197,8 @@ section { padding: 104px 0; position: relative; }
 .product p { color: var(--text-soft); font-size: .97rem; flex: 1; }
 .product .plink { margin-top: 20px; font-weight: 600; font-size: .9rem; color: var(--heading); display: inline-flex; align-items: center; gap: 7px; }
 .product .plink:hover { color: var(--accent); }
+.section-light .product .plink { color: var(--ink); }
+.section-light .product .plink:hover { color: var(--accent-deep); }
 
 /* ---------- Split / feature ---------- */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }

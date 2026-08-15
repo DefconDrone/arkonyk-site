@@ -15,8 +15,9 @@ A fast, static marketing site for Arkonyk (payments intelligence — Descriptors
 - `thanks.html` — Post-submit confirmation page
 - `404.html` — Not-found page
 - `styles.css` — Shared design system (all pages)
-- `main.js` — Mobile nav + small UI helpers
-- `gate.js` — Stealth-mode access gate (see below)
+- `main.js` — Mobile nav + form handling + small UI helpers
+- `sitemap.xml` — Search-engine sitemap (update if pages are added/removed)
+- `og-image.png` — Social-share preview image (Open Graph / Twitter cards)
 
 > Note: all files live at the repo root — there is no `assets/` subfolder, and there is no `pricing.html` page.
 
@@ -52,14 +53,13 @@ This site is deployed to **GitHub Pages** via GitHub Actions. **You do not deplo
 
 ---
 
-## Stealth mode (access gate)
-The site currently launches behind a soft access gate (`gate.js`) shown on `index.html`, and pages include a `noindex,nofollow` meta tag so search engines skip them while in stealth.
+## Launch state (public)
+The stealth gate was removed at launch (2026-08): no `gate.js`, no gate overlay, no `noindex,nofollow` tags (except `thanks.html`, which stays noindexed), and `robots.txt` allows crawling with a `sitemap.xml` reference. Every page carries a canonical URL plus Open Graph/Twitter tags pointing at `og-image.png`.
 
-- The gate is a **soft gate for privacy, not real security** — credentials live in `gate.js` on the client. Don't treat it as protecting anything sensitive.
-- To take the site out of stealth at launch: remove the gate overlay and `gate.js`, and remove the `noindex,nofollow` meta tags from the page `<head>`s.
+- To re-gate the site (e.g., for a future private preview), restore `gate.js`, the gate overlay markup, and the `noindex` tags from git history (pre-launch commits).
 
 ## Forms
-Both the launch-updates email capture (on `index.html`) and the contact form (on `contact.html`) post to **FormSubmit** (`https://formsubmit.co/Rick@arkonyk.com`). On submit, FormSubmit emails the details to Rick@arkonyk.com, sends the visitor an auto-confirmation, and redirects to `thanks.html`. No backend or JavaScript interception is required.
+The contact form (on `contact.html`) posts to **FormSubmit** (`https://formsubmit.co/Rick@arkonyk.com`). On submit, FormSubmit emails the details to Rick@arkonyk.com, sends the visitor an auto-confirmation, and redirects to `thanks.html`. No backend or JavaScript interception is required.
 
 ## Editing notes
 - **Brand palette and type** live as CSS variables at the top of `styles.css` — change colors/fonts in one place.
