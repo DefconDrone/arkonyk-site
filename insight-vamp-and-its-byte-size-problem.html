@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAMP and its byte-size problem — Insights — Arkonyk</title>
+<meta name="description" content="Ask what causes customer confusion and the answer is a constraint set in the 1970s: twenty-two characters, and no one has ever fixed it.">
+<link rel="canonical" href="https://arkonyk.com/insight-vamp-and-its-byte-size-problem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Arkonyk">
+<meta property="og:title" content="VAMP and its byte-size problem — Insights — Arkonyk">
+<meta property="og:description" content="Ask what causes customer confusion and the answer is a constraint set in the 1970s: twenty-two characters, and no one has ever fixed it.">
+<meta property="og:url" content="https://arkonyk.com/insight-vamp-and-its-byte-size-problem.html">
+<meta property="og:image" content="https://arkonyk.com/insight-vamp-and-its-byte-size-problem.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VAMP and its byte-size problem — Insights — Arkonyk">
+<meta name="twitter:description" content="Ask what causes customer confusion and the answer is a constraint set in the 1970s: twenty-two characters, and no one has ever fixed it.">
+<meta name="twitter:image" content="https://arkonyk.com/insight-vamp-and-its-byte-size-problem.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "VAMP and its byte-size problem", "description": "Ask what causes customer confusion and the answer is a constraint set in the 1970s: twenty-two characters, and no one has ever fixed it.", "image": "https://arkonyk.com/insight-vamp-and-its-byte-size-problem.jpg", "datePublished": "2025-05-12", "author": {"@type": "Person", "name": "Rick Lynch"}, "publisher": {"@type": "Organization", "name": "Arkonyk, Inc."}, "mainEntityOfPage": "https://arkonyk.com/insight-vamp-and-its-byte-size-problem.html"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=6">
+<link rel="icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html"><img class="brand-logo" src="logo-horizontal-white.svg" alt="Arkonyk"></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li class="has-dropdown"><a href="products.html">Products</a>
+        <div class="dropdown">
+          <a href="product-descriptors.html"><span class="dd-name">Descriptors.com</span><span class="dd-sub">Solving Customer Confusion</span></a>
+          <a href="product-feesuite.html"><span class="dd-name">FeeSuite</span><span class="dd-sub">Reconciliation Made Easy</span></a>
+          <a href="product-arkitekt.html"><span class="dd-name">ARKITEKT</span><span class="dd-sub">Global Payments By Design</span></a>
+        </div>
+      </li>
+      <li class="has-dropdown"><a href="solutions.html">Solutions</a>
+        <div class="dropdown">
+          <a href="solutions-issuers.html"><span class="dd-name">Issuers</span><span class="dd-sub">Banks &amp; financial institutions</span></a>
+          <a href="solutions-acquirers.html"><span class="dd-name">Acquirers &amp; ISOs</span><span class="dd-sub">Portfolio visibility &amp; retention</span></a>
+          <a href="solutions-payfacs.html"><span class="dd-name">PayFacs &amp; MORs</span><span class="dd-sub">Sub-merchant management at scale</span></a>
+          <a href="solutions-providers.html"><span class="dd-name">Solution Providers</span><span class="dd-sub">Fraud, risk &amp; dispute vendors</span></a>
+          <a href="solutions-merchants.html"><span class="dd-name">Merchants</span><span class="dd-sub">Any business that takes cards</span></a>
+        </div>
+      </li>
+      <li class="has-dropdown"><a href="about.html" class="active">Company</a>
+        <div class="dropdown">
+          <a href="about.html"><span class="dd-name">About Us</span><span class="dd-sub">Who we are</span></a>
+          <a href="insights.html"><span class="dd-name">Insights</span><span class="dd-sub">Analysis &amp; commentary</span></a>
+          <a href="contact.html"><span class="dd-name">Contact Us</span><span class="dd-sub">Get in touch</span></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<article>
+<section class="page-hero" style="padding-bottom:0">
+  <div class="container inner" style="max-width:860px">
+    <div class="ins-kicker">Descriptors <span class="dot"></span> <time datetime="2025-05-12">May 12, 2025</time> <span class="dot"></span> <span class="rt">4 min read</span></div>
+    <h1 class="ins-title" style="margin-top:16px">VAMP and its byte-size problem</h1>
+    <p class="ins-dek">Ask what causes customer confusion and the answer is a constraint set in the 1970s: twenty-two characters, and no one has ever fixed it.</p>
+    <div class="ins-byline">
+      <div class="ins-avatar">RL</div>
+      <div>
+        <div class="ins-byname">Rick Lynch</div>
+        <div class="ins-byrole">CEO, Arkonyk</div>
+      </div>
+    </div>
+  </div>
+  <div class="container" style="max-width:1020px">
+    <figure class="ins-hero-img"><img src="insight-vamp-and-its-byte-size-problem.jpg" alt="VAMP and its byte-size problem"></figure>
+  </div>
+</section>
+
+<section class="section-light">
+  <div class="container">
+    <div class="ins-body">
+        <p>Early in my career, I used to develop Chargeback Mitigation Plans for clients who were in the Chargeback Monitoring Program. One of the key first steps to this plan is clearly identifying the “root cause” for disputes, and then defining specific mitigation steps to address those causes. As I think about the new Visa VAMP program and all the concerns and challenges related to it, I find myself contemplating the same approach.</p>
+        <p>How did we get here? What are the root causes?</p>
+        <p>The root causes to fraud are many, but we know, in fact, that more than half of all disputes are caused by customer confusion. If we dive deeper and ask, "What is the root cause of customer confusion?", the short answer is - a problem that was created 50-60 years ago that has never been fixed.</p>
+        <p>When the card networks were originally developed, data was measured in bytes - not kilo or mega or giga or tera or peta - just bytes. We didn’t have limitless bandwidth and data storage, or the concept of 'the cloud' or data lakes. We had physical hard disks and data storage on tape and later, floppy disks.</p>
+        <p>Our 'modern' transaction processing networks were designed in the 60’s-70’s and were very much constrained by how much data could be included in an authorization message. This led to the data element called the Payment Descriptor being limited to 22 characters.</p>
+        <p>What is a Payment Descriptor? It’s the label on a transaction that tells a customer (cardholder) who they transacted with on their credit card. It is passed in the authorization message by the Merchant, through their Gateway, to their Acquirer, then the Payment Processor and then on to the Card Issuer. If the authorization is approved, it will be displayed on the Cardholders account list of purchases so the cardholder can recall who the purchase was made with. The purpose is obvious, but the archaic 22 character limit presents major challenges.</p>
+        <p>For example, if you buy something from Macy’s, the payment descriptor doesn’t support special characters like an apostrophe so it would read as "MACYS". Not a huge source of confusion, but it illustrates some simple limitations and could result in confusion if a customer doesn’t interpret this properly.</p>
+        <p>But what about this example: "JEFFREY GIANGRANDE CORP" Any idea what this is for? Well, its actually the Payment Descriptor for a single location Burger King restaurant that’s part of a larger chain of franchises owned by a parent corporation. Most likely the acquiring bank/ISO for this chain had them fill out a MID application and they entered their parent corp name, which got entered into the Payment Descriptor, rather than their DBA.</p>
+        <p>Single stores and recognizable brand names aren't so challenging, but the world has gotten much more diverse and complicated since the 1970s. We did not have an internet or eCommerce sales. Today we have PayFacs and "Merchants of Record" and aggregators and of course millions and millions of websites all over the world.</p>
+        <blockquote class="ins-pull">&ldquo;Now you may be thinking &mdash; there must be some master payment descriptor list, like a phone book, that lists them all? Nope.&rdquo;</blockquote>
+        <p>As you all know, if you buy an item in an app on your iPhone now, the purchase comes from Apple, and it may say “ Cupertino" or “apple.com/bill” on your statement, but it likely won’t include the name of the Game or Gaming Company (ie: Angry Birds or Rovio Entertainment).</p>
+        <p>This problem only gets exacerbated when you have companies with unusually long names, or names that sound similar.</p>
+        <p>Now you may be thinking - there must be some master payment descriptor list - like a phone book - that lists them all? Nope.</p>
+        <p>Doesn't some entity ensure no two companies uses the same descriptor? Nope.</p>
+        <p>Isn't there some organization that polices descriptors and fixes any conflicts? Nope.</p>
+        <p>Well at least, since the 1970’s the card brands should have expanded descriptors to allow for more characters? Longer names? Special characters like apostrophes? Clear validated phone numbers? Maybe even the ability to pass the full list of items purchased - a detailed receipt - to the customer? Nope, nope, nope, and nope.</p>
+        <p>So the punchline here is this - we know today that at least 55% of all cardholder purchase disputes are a result of “Customer Confusion” (ie: Claim Do Not Recognize, Buyer Remorse, Family Fraud, Friendly Fraud, First Party Fraud). Is this any surprise?</p>
+        <p>Now, in the context of VAMP, merchants are being told that despite the fact that all the card networks have known for more than 50 years that Payment Descriptors are a “root cause” problem for more than half of all disputes, despite this, merchants are going to be monitored and fined for TC40 cases that are generated, in part, because of this issue.</p>
+        <p>This approach risks penalizing merchants for problems they didn’t create, especially smaller businesses already struggling with tight margins. VAMP’s strict thresholds (e.g., 0.9% by January 2026) could push merchants into non-compliance, leading to fines or even losing their ability to accept Visa payments—all for issues rooted in a “byte-sized” problem from the 1970s.</p>
+    </div>
+  </div>
+</section>
+</article>
+
+<section style="padding-top:0">
+  <div class="container">
+    <div class="ins-nav">
+      <a href="insight-how-are-acquiring-banks-feeling-about-vamp.html"><div class="dir">&larr; Older</div><div class="t">How are acquiring banks feeling about VAMP?</div></a>
+      <a class="next" href="insight-visa-needs-two-doghouses.html"><div class="dir">Newer &rarr;</div><div class="t">Visa needs two doghouses</div></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head"><span class="eyebrow">More from Insights</span></div>
+    <div class="ins-grid ins-grid-dark">
+      <a class="ins-card" href="insight-growing-your-acquiring-business-just-got-harder.html">
+        <div class="thumb"><img src="insight-growing-your-acquiring-business-just-got-harder-card.jpg" alt="" loading="lazy"></div>
+        <div class="body">
+          <div class="ins-kicker">Acquiring <span class="dot"></span> <time datetime="2026-08-12">August 12, 2026</time></div>
+          <h3>Growing your acquiring business just got harder</h3>
+          <p>VAMP cut tolerance thresholds by roughly 60%. GMAP followed. The old growth play — take on riskier accounts at higher margins — has been repriced.</p>
+          <span class="more">Read <span class="arrow">&rarr;</span></span>
+        </div>
+      </a>
+      <a class="ins-card" href="insight-mastercard-collaboration-is-ending.html">
+        <div class="thumb"><img src="insight-mastercard-collaboration-is-ending-card.jpg" alt="" loading="lazy"></div>
+        <div class="body">
+          <div class="ins-kicker">Acquiring <span class="dot"></span> <time datetime="2026-07-28">July 28, 2026</time></div>
+          <h3>Mastercard Collaboration is ending</h3>
+          <p>Acquirer Collaboration sunsets in January 2027, years of integration work with it. Which raises a bigger question about who should be solving disputes at all.</p>
+          <span class="more">Read <span class="arrow">&rarr;</span></span>
+        </div>
+      </a>
+      <a class="ins-card" href="insight-peggy-is-having-a-bad-day.html">
+        <div class="thumb"><img src="insight-peggy-is-having-a-bad-day-card.jpg" alt="" loading="lazy"></div>
+        <div class="body">
+          <div class="ins-kicker">Disputes <span class="dot"></span> <time datetime="2026-07-21">July 21, 2026</time></div>
+          <h3>Peggy is having a bad day</h3>
+          <p>A call-center agent at an issuing bank spends her afternoon apologizing for merchants she has never spoken to. Multiply her by every seat in every call center in the country.</p>
+          <span class="more">Read <span class="arrow">&rarr;</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <h2>Truth in Payments.</h2>
+        <p>Arkonyk builds the tools these pieces keep arguing for. If any of this is a problem you are living with, we should talk.</p>
+      </div>
+      <div class="cta-actions"><a class="btn btn-dark btn-lg" href="contact.html">Get in touch <span class="arrow">&rarr;</span></a></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="logo-horizontal-white.svg" alt="Arkonyk">
+        <p>Payments intelligence for merchants, processors, acquirers, and enterprises.</p>
+      </div>
+      <div class="footer-col"><h4>Products</h4><a href="product-descriptors.html">Descriptors.com</a><a href="product-feesuite.html">FeeSuite</a><a href="product-arkitekt.html">ARKITEKT</a></div>
+      <div class="footer-col"><h4>Solutions</h4><a href="solutions-issuers.html">Issuers</a><a href="solutions-acquirers.html">Acquirers &amp; ISOs</a><a href="solutions-payfacs.html">PayFacs &amp; MORs</a><a href="solutions-providers.html">Solution Providers</a><a href="solutions-merchants.html">Merchants</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="insights.html">Insights</a><a href="contact.html">Contact Us</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year>2026</span> Arkonyk, Inc. All rights reserved.</span>
+      <span>Truth in Payments.</span>
+    </div>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
