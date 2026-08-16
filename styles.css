@@ -522,3 +522,12 @@ select option { background: var(--bg-2); }
   .ins-pull { font-size: 1.15rem; padding-left: 18px; }
   .ins-hero-img { margin-top: 30px; }
 }
+
+/* Nav dropdowns sit at the right end of a right-aligned menu, so anchoring the
+   panel to its trigger's LEFT edge pushes it off the page — Company always, and
+   Solutions below about 1230px because its labels are wider. Anchoring to the
+   trigger's right edge instead means a panel can only ever extend inward.
+   Mobile sets .dropdown to position:static, where these offsets do not apply. */
+@media (min-width: 901px) {
+  .dropdown { left: auto; right: -14px; }
+}
