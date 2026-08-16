@@ -318,6 +318,10 @@ select option { background: var(--bg-2); }
     position: absolute; top: 92px; left: 0; right: 0; display: none;
     flex-direction: column; align-items: flex-start; gap: 0;
     background: var(--bg-2); border-bottom: 1px solid var(--line); padding: 8px 26px 18px;
+    /* Short screens still can't fit eleven items — let the menu scroll rather
+       than run off the bottom where the last links are unreachable. */
+    max-height: calc(100vh - 92px); overflow-y: auto; -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
   .nav-links.open { display: flex; }
   .nav-links li { width: 100%; }
@@ -360,6 +364,9 @@ select option { background: var(--bg-2); }
   }
   .has-dropdown > a::after { display: none; }
   .dropdown a { padding: 11px 0; border-bottom: 1px solid var(--line) !important; }
+  /* Descriptions are dropped on mobile — with them the menu runs past the
+     viewport and the last items can't be reached. */
+  .dropdown .dd-sub { display: none; }
 }
 
 /* ---------- Beta access gate ---------- */
