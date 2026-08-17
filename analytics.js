@@ -4,8 +4,13 @@
    2. Apollo.io website visitor tracking (company-level)
    3. RB2B person-level visitor identification (US traffic)
 
-   All three trackers configured and live. =================== */
-var ARKONYK_GA4_ID = "G-BWNLYB4BTZ";
+   ┌──────────────────────────────────────────────────────────┐
+   │  GA4: put your Measurement ID on the next line and push. │
+   │  Until it is set, the GA4 half does nothing at all.      │
+   │  Apollo and RB2B are configured and live on deploy.      │
+   └──────────────────────────────────────────────────────────┘
+   =========================================================== */
+var ARKONYK_GA4_ID = "";        // e.g. "G-XXXXXXXXXX"
 var ARKONYK_APOLLO_APP_ID = "6a0e0019187e52001820a96c";
 var ARKONYK_RB2B_KEY = "4N210HXQ7M6Z";
 
@@ -170,7 +175,7 @@ var ARKONYK_RB2B_KEY = "4N210HXQ7M6Z";
     }
 
     // Contact form
-    var contact = document.querySelector('form[action*="formsubmit"]');
+    var contact = document.getElementById("contact-form");
     if (contact) {
       contact.addEventListener("submit", function () {
         gtag("event", "generate_lead", { source: "contact_form" });
