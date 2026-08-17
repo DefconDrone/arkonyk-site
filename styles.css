@@ -635,21 +635,21 @@ details.calc-adv .calc-inner { padding-top: 15px; }
 }
 
 /* ---------- Legal pages ---------- */
-.legal { max-width: 76ch; margin: 0 auto; font-size: 1rem; line-height: 1.75; color: var(--ink-soft); }
-.legal h2 { font-size: clamp(1.15rem,2vw,1.4rem); text-transform: none; letter-spacing: -.01em; color: var(--ink); margin: 2.4em 0 .7em; line-height: 1.25; }
+.legal { max-width: 76ch; margin: 0 auto; font-size: .88rem; line-height: 1.7; color: var(--ink-soft); }
+.legal h2 { font-size: clamp(1.02rem,1.7vw,1.18rem); text-transform: none; letter-spacing: -.01em; color: var(--ink); margin: 2.4em 0 .7em; line-height: 1.25; }
 .legal h2:first-child { margin-top: 0; }
-.legal h3 { font-size: 1.02rem; color: var(--ink); margin: 1.8em 0 .5em; letter-spacing: 0; }
+.legal h3 { font-size: .94rem; color: var(--ink); margin: 1.8em 0 .5em; letter-spacing: 0; }
 .legal p { margin-bottom: 1.15em; }
 .legal ul, .legal ol { margin: 0 0 1.15em; padding-left: 1.3em; }
 .legal li { margin-bottom: .5em; }
 .legal strong { color: var(--ink); font-weight: 600; }
 .legal a { color: var(--accent-deep); text-decoration: underline; }
-.legal table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: .92rem; }
-.legal th, .legal td { text-align: left; padding: 11px 13px; border: 1px solid var(--line-light); vertical-align: top; }
+.legal table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: .82rem; }
+.legal th, .legal td { text-align: left; padding: 9px 11px; border: 1px solid var(--line-light); vertical-align: top; }
 .legal th { background: var(--light-2); color: var(--ink); font-weight: 600; }
 .legal .todo { background: #fff6e8; border: 1px solid #e8c89a; border-radius: 8px; padding: 14px 16px; margin: 0 0 1.3em; font-size: .93rem; color: #6b4a13; }
 .legal .todo strong { color: #4a3208; }
-.legal .updated { font-size: .88rem; color: var(--ink-soft); padding-bottom: 1.4em; margin-bottom: 2em; border-bottom: 1px solid var(--line-light); }
+.legal .updated { font-size: .8rem; color: var(--ink-soft); padding-bottom: 1.4em; margin-bottom: 2em; border-bottom: 1px solid var(--line-light); }
 .legal-toc { background: var(--light-2); border: 1px solid var(--line-light); border-radius: var(--radius); padding: 20px 24px; margin: 0 0 2.4em; }
 .legal-toc ol { margin: 0; padding-left: 1.2em; columns: 2; column-gap: 30px; }
 .legal-toc li { margin-bottom: .35em; font-size: .93rem; }
