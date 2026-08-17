@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VAMP &amp; Cost Calculator — PayFacs & MORs — Arkonyk</title>
-<meta name="description" content="As merchant of record, the disputes are yours. See your VAMP position against the 1.5% threshold that took effect April 2026, and what confusion-dispute reduction is worth in dispute costs and support contacts.">
-<link rel="canonical" href="https://arkonyk.com/payfac-calculator.html">
+<title>Partner Revenue Calculator — Solution Providers — Arkonyk</title>
+<meta name="description" content="What is the managed descriptor model worth across your client book? A 30% revenue share on every subscription plus a management fee you price and keep — put in your own client count.">
+<link rel="canonical" href="https://arkonyk.com/provider-calculator.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Arkonyk">
-<meta property="og:title" content="VAMP &amp; Cost Calculator — PayFacs & MORs">
-<meta property="og:description" content="As merchant of record, the disputes are yours. See your VAMP position against the 1.5% threshold that took effect April 2026, and what confusion-dispute reduction is worth in dispute costs and support contacts.">
-<meta property="og:url" content="https://arkonyk.com/payfac-calculator.html">
+<meta property="og:title" content="Partner Revenue Calculator — Solution Providers">
+<meta property="og:description" content="What is the managed descriptor model worth across your client book? A 30% revenue share on every subscription plus a management fee you price and keep — put in your own client count.">
+<meta property="og:url" content="https://arkonyk.com/provider-calculator.html">
 <meta property="og:image" content="https://arkonyk.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="VAMP &amp; Cost Calculator — PayFacs & MORs">
-<meta name="twitter:description" content="As merchant of record, the disputes are yours. See your VAMP position against the 1.5% threshold that took effect April 2026, and what confusion-dispute reduction is worth in dispute costs and support contacts.">
+<meta name="twitter:title" content="Partner Revenue Calculator — Solution Providers">
+<meta name="twitter:description" content="What is the managed descriptor model worth across your client book? A 30% revenue share on every subscription plus a management fee you price and keep — put in your own client count.">
 <meta name="twitter:image" content="https://arkonyk.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,77 +62,45 @@
 <section class="page-hero" style="padding-bottom:44px">
   <img class="bg-monogram" src="monogram-white.svg" alt="" aria-hidden="true">
   <div class="container inner" style="max-width:820px">
-    <span class="eyebrow">Descriptors.com &middot; PayFac &amp; MOR calculator</span>
-    <h1 class="display" style="font-size:clamp(1.9rem,3.6vw,3rem)">You are the merchant of record. The ratio is yours.</h1>
-    <p class="lead">In April 2026 Visa cut the merchant Excessive threshold from 2.2% to 1.5% &mdash; and the count is event-based, which is exactly why low-ticket recurring portfolios feel it first. Put in your book's volumes and see your position, then what a cleaner descriptor is worth in avoided disputes and support contacts.</p>
+    <span class="eyebrow">Descriptors.com &middot; Partner revenue calculator</span>
+    <h1 class="display" style="font-size:clamp(1.9rem,3.6vw,3rem)">What is the managed model worth across your book?</h1>
+    <p class="lead">Two revenue streams on every client you enroll: a 30% share of the Descriptors.com subscription, and a management fee for maintaining the record that is entirely yours to price and keep. Put in your own client count.</p>
   </div>
 </section>
 
 <section id="calculator" style="padding-top:44px">
   <div class="container">
-<div class="calc" data-calc="payfac">
+<div class="calc" data-calc="provider">
       <form class="calc-panel" novalidate onsubmit="return false">
         <h3>Your numbers</h3>
 
         <div class="calc-field">
-          <label for="pc-tc05">Settled transactions per month</label>
-          <span class="calc-hint">Across the whole book &mdash; as MOR, the count is yours</span>
-          <div class="calc-in"><input type="number" id="pc-tc05" value="600000" min="0" step="1" inputmode="numeric"></div>
+          <label for="pc-clients">Clients in your book</label>
+          <span class="calc-hint">Merchants you already serve &mdash; dispute, fraud, risk or advisory</span>
+          <div class="calc-in"><input type="number" id="pc-clients" value="500" min="0" step="1" inputmode="numeric"></div>
         </div>
 
         <div class="calc-field">
-          <label for="pc-tc15">Disputes per month</label>
-          <span class="calc-hint">TC15 events across all sub-brands, all causes</span>
-          <div class="calc-in"><input type="number" id="pc-tc15" value="6000" min="0" step="1" inputmode="numeric"></div>
+          <label for="pc-mgmt">Your monthly management fee</label>
+          <span class="calc-hint">What you charge for maintaining the record &mdash; yours to price, 100% retained. $100 is a default, not a rule</span>
+          <div class="calc-in"><span class="pre">$</span><input class="has-pre" type="number" id="pc-mgmt" value="100" min="0" step="1" inputmode="decimal"></div>
         </div>
 
-        <div class="calc-field">
-          <label for="pc-tc40">Fraud reports per month</label>
-          <span class="calc-hint">TC40 events</span>
-          <div class="calc-in"><input type="number" id="pc-tc40" value="2400" min="0" step="1" inputmode="numeric"></div>
-        </div>
-
-        <details class="calc-adv" id="pc-advanced">
-          <summary>Advanced assumptions</summary>
-          <div class="calc-inner">
-            <div class="calc-field">
-          <label for="pc-cbcost">Cost per dispute</label>
-          <span class="calc-hint">Network fees plus your ops cost to work one</span>
-          <div class="calc-in"><span class="pre">$</span><input class="has-pre" type="number" id="pc-cbcost" value="35" min="0" step="1" inputmode="decimal"></div>
-        </div>
-            <div class="calc-field">
-          <label for="pc-tickets">&ldquo;What is this charge?&rdquo; contacts per month</label>
-          <span class="calc-hint">Tickets, emails and calls about unrecognized charges</span>
-          <div class="calc-in"><input type="number" id="pc-tickets" value="15000" min="0" step="1" inputmode="numeric"></div>
-        </div>
-            <div class="calc-field">
-          <label for="pc-tcost">Cost per contact</label>
-          <span class="calc-hint">Fully loaded support cost</span>
-          <div class="calc-in"><span class="pre">$</span><input class="has-pre" type="number" id="pc-tcost" value="5" min="0" step="1" inputmode="decimal"></div>
-        </div>
-            <div class="calc-field">
-          <label for="pc-share">Share of disputes from confusion</label>
-          <span class="calc-hint">The addressable ceiling</span>
-          <div class="calc-in"><input class="has-post" type="number" id="pc-share" value="55" min="0" max="100" step="1" inputmode="numeric"><span class="post">%</span></div>
-        </div>
-          </div>
-        </details>
         <button type="button" class="calc-reset" id="pc-reset">Reset to defaults</button>
       </form>
 
       <div>
         <div class="calc-hero-box">
-          <div class="calc-hero-k">Your VAMP position as merchant of record</div>
+          <div class="calc-hero-k">Your book at program rates</div>
           <div class="calc-hero-v" id="pc-hero">&mdash;</div>
-          <div id="pc-meter" aria-hidden="true"></div>
           <p id="pc-hero-copy">&mdash;</p>
         </div>
 
         <div class="calc-ladder-box">
           <div class="calc-lhead">
-            <div>Reduction</div>
-            <div>Monthly cost avoided</div>
-            <div class="r">New ratio</div>
+            <div>Enrollment</div>
+            <div>Monthly revenue</div>
+            <div class="r">Annualized</div>
           </div>
           <div id="pc-ladder" aria-live="polite"></div>
         </div>
@@ -140,8 +108,8 @@
 
         <div class="calc-ctaband">
           <div class="t">
-            <h3>One contract covers the whole book.</h3>
-            <p>Board every sub-merchant descriptor in bulk from records you already hold. Dual-brand display puts your sub-brand in front of the cardholder.</p>
+            <h3>Resell it, or run it for them.</h3>
+            <p>Most partners do both. Tell us how you want to work and we set the terms up accordingly.</p>
           </div>
           <div class="b">
             <a class="btn btn-dark" id="pc-cta" href="contact.html">Talk to us <span class="arrow">&rarr;</span></a>
@@ -153,10 +121,10 @@
 
     <div class="calc-notes">
       <h3>How this is calculated</h3>
-      <p><strong>The ratio</strong> is (fraud reports + disputes) &divide; settled transactions, in <strong>events</strong>. The merchant Excessive threshold shown &mdash; 1.5% for US, Canada and EU &mdash; took effect April 2026, down from 2.2%. Program thresholds change; verify against current Visa documentation before relying on them.</p>
-      <p><strong>The ladder reduces disputes (TC15) only</strong>, and applies the same percentage to your unrecognized-charge support contacts. Recognition pressure on fraud reports (TC40) is real upside the model leaves out.</p>
-      <p><strong>Dispute and contact costs are your own inputs.</strong> The defaults are placeholders, not benchmarks &mdash; the model is only as good as the numbers you put in.</p>
-      <p><strong>This is an arithmetic model of your own inputs, not a performance guarantee, a forecast, or a compliance determination.</strong> Actual program standing depends on Visa's calculations and your full portfolio mix.</p>
+      <p><strong>The revenue share is a program term:</strong> 30% of the $20 monthly Descriptors.com subscription &mdash; $6 per enrolled client per month, paid to you for as long as the subscription runs.</p>
+      <p><strong>The management fee is your product.</strong> Boarding the descriptors, adding the logo and support channels, keeping refund and cancellation paths current as the business changes &mdash; you already hold the data and already act on your clients' behalf. You bill for the service and keep all of it. Change the default to whatever your service is worth.</p>
+      <p><strong>The enrollment ladder is a scenario dial across your existing book</strong>, not a forecast &mdash; and it assumes every enrolled client stays subscribed. Attrition, discounts and your own packaging all move the number.</p>
+      <p><strong>This is an arithmetic model of your own inputs, not a performance guarantee or a forecast.</strong> Program terms are confirmed when we set up your partnership.</p>
     </div>
     </div>
 </section>
