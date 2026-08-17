@@ -21,7 +21,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=6">
+<script src="analytics.js?v=1"></script>
+<link rel="stylesheet" href="styles.css?v=8">
 <link rel="icon" href="favicon.svg">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
@@ -251,8 +252,121 @@
   </div>
 </section>
 
+<!-- ===== Value calculator ===== -->
+<section id="calculator">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Value calculator</span>
+      <h2 style="font-size:clamp(1.5rem,2.8vw,2.2rem)">What is customer confusion costing you?</h2>
+      <p class="lead">Roughly 55% of all disputes come from a cardholder not recognizing a charge. Put your own numbers in and see what removing even a small slice of that is worth &mdash; against the alert fees, chargeback fees and lost order value you are paying today.</p>
+    </div>
+
+    <div class="calc" id="calc">
+      <form class="calc-panel" novalidate onsubmit="return false">
+        <h3>Your numbers</h3>
+
+        <div class="calc-field">
+          <label for="vol">Disputes per month</label>
+          <span class="calc-hint">Chargebacks and prevention alerts combined, all causes</span>
+          <div class="calc-in"><input type="number" id="vol" value="500" min="0" step="1" inputmode="numeric"></div>
+        </div>
+
+        <div class="calc-field">
+          <label for="aov">Average order value</label>
+          <span class="calc-hint">You lose this on every refund</span>
+          <div class="calc-in"><span class="pre">$</span><input class="has-pre" type="number" id="aov" value="85" min="0" step="1" inputmode="decimal"></div>
+        </div>
+
+        <div class="calc-field">
+          <label for="alert">Alert fee</label>
+          <span class="calc-hint">Ethoca or Verifi alerts, billed whether or not you refund</span>
+          <div class="calc-in"><span class="pre">$</span><input class="has-pre" type="number" id="alert" value="30" min="0" step="1" inputmode="decimal"></div>
+        </div>
+
+        <details class="calc-adv" id="calc-advanced">
+          <summary>Advanced assumptions</summary>
+          <div class="calc-inner">
+            <div class="calc-field">
+              <label for="cbfee">Chargeback fee</label>
+              <span class="calc-hint">Charged by your acquirer per chargeback</span>
+              <div class="calc-in"><span class="pre">$</span><input class="has-pre" type="number" id="cbfee" value="40" min="0" step="1" inputmode="decimal"></div>
+            </div>
+            <div class="calc-field">
+              <label for="caught">Share currently caught by alerts</label>
+              <span class="calc-hint">The rest become chargebacks</span>
+              <div class="calc-in"><input class="has-post" type="number" id="caught" value="60" min="0" max="100" step="1" inputmode="numeric"><span class="post">%</span></div>
+            </div>
+            <div class="calc-field">
+              <label for="share">Share of disputes from confusion</label>
+              <span class="calc-hint">The addressable ceiling</span>
+              <div class="calc-in"><input class="has-post" type="number" id="share" value="55" min="0" max="100" step="1" inputmode="numeric"><span class="post">%</span></div>
+            </div>
+            <div class="calc-field">
+              <label for="fraudc">Share coded as fraud by issuers</label>
+              <span class="calc-hint">Drives the fraud-record count</span>
+              <div class="calc-in"><input class="has-post" type="number" id="fraudc" value="45" min="0" max="100" step="1" inputmode="numeric"><span class="post">%</span></div>
+            </div>
+          </div>
+        </details>
+
+        <button type="button" class="calc-reset" id="calc-reset">Reset to defaults</button>
+      </form>
+
+      <div>
+        <div class="calc-hero-box">
+          <div class="calc-hero-k">Even at a 1% reduction in disputes</div>
+          <div class="calc-hero-v" id="calc-hero">&mdash;</div>
+          <p id="calc-hero-copy">&mdash;</p>
+          <p class="calc-be" id="calc-breakeven" hidden></p>
+        </div>
+
+        <div class="calc-ladder-box">
+          <div class="calc-lhead">
+            <div>Reduction</div>
+            <div>Fees you stop paying</div>
+            <div class="r">Return on the fee</div>
+          </div>
+          <div id="calc-ladder" aria-live="polite"></div>
+        </div>
+        <p class="calc-ceiling" id="calc-ceiling"></p>
+
+        <div class="calc-records">
+          <div class="calc-rec">
+            <div class="n" id="calc-tc15">&mdash;</div>
+            <div class="l">Dispute records avoided per month at a 10% reduction <em>&mdash; TC15 on Visa, first chargeback on Mastercard</em></div>
+          </div>
+          <div class="calc-rec">
+            <div class="n" id="calc-tc40">&mdash;</div>
+            <div class="l">Fraud records avoided per month <em>&mdash; TC40 / SAFE. Prevention avoids these; alerts arrive after they are filed and cannot remove them.</em></div>
+          </div>
+        </div>
+
+        <div class="calc-ctaband">
+          <div class="t">
+            <h3>$20 a month. No integration, no API.</h3>
+            <p>Every payment type, every market. Nothing to build.</p>
+          </div>
+          <div class="b">
+            <a class="btn btn-dark" id="calc-cta" href="https://www.descriptors.com" target="_blank" rel="noopener">Get started <span class="arrow">&rarr;</span></a>
+            <button class="btn btn-outline" id="calc-share" type="button" style="color:#042020;border-color:rgba(4,32,32,.35)">Copy my results link</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-notes">
+      <h3>How this is calculated</h3>
+      <p><strong>Fees you stop paying</strong> counts only money you do not get invoiced for &mdash; the alert fee on disputes your alert program would have caught, and the acquirer chargeback fee on the rest. It excludes order value, so it is the conservative figure. <strong>Including revenue kept</strong> adds back the order value you no longer refund.</p>
+      <p>Percentages are a reduction in <strong>total</strong> dispute volume, not a share of the addressable pool. The confusion-share assumption above sets that pool and you can change it.</p>
+      <p>This model defaults to a deliberately conservative <strong>55%</strong> confusion share. Elsewhere on this site we cite 61%, from a named industry source. The point of the default is that the arithmetic holds at the lower figure, and the assumption is yours to move.</p>
+      <p>Not included, and all of which push the number up: card-network monitoring fines, remediation costs, staff time spent working an alert queue, and the acquirer-relationship cost of sitting near a VAMP, ECM/HECM or EFM threshold. Fraud-record counts assume deflected disputes were fraud-coded at the rate set above; issuers classify a considerably higher share of disputes as fraud than merchants typically expect.</p>
+      <p><strong>This is an arithmetic model of your own inputs, not a performance guarantee or a forecast.</strong> Actual results depend on your descriptor quality, customer base, vertical and payment mix.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===== Also from Arkonyk ===== -->
-<section>
+<section class="section-light">
   <div class="container">
     <div class="section-head center">
       <span class="eyebrow">Also from Arkonyk</span>
@@ -296,7 +410,7 @@
       </div>
       <div class="footer-col"><h4>Products</h4><a href="product-descriptors.html">Descriptors.com</a><a href="product-feesuite.html">FeeSuite</a><a href="product-arkitekt.html">ARKITEKT</a></div>
       <div class="footer-col"><h4>Solutions</h4><a href="solutions-issuers.html">Issuers</a><a href="solutions-acquirers.html">Acquirers &amp; ISOs</a><a href="solutions-payfacs.html">PayFacs &amp; MORs</a><a href="solutions-providers.html">Solution Providers</a><a href="solutions-merchants.html">Merchants</a></div>
-      <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="insights.html">Insights</a><a href="contact.html">Contact Us</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="insights.html">Insights</a><a href="contact.html">Contact Us</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></div>
     </div>
     <div class="footer-bottom">
       <span>&copy; <span data-year>2026</span> Arkonyk, Inc. All rights reserved.</span>
@@ -304,6 +418,8 @@
     </div>
   </div>
 </footer>
+<div class="calc-toast" id="calc-toast" role="status" aria-live="polite">Link copied</div>
 <script src="main.js"></script>
+<script src="calculator.js?v=1"></script>
 </body>
 </html>

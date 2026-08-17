@@ -531,3 +531,126 @@ select option { background: var(--bg-2); }
 @media (min-width: 901px) {
   .dropdown { left: auto; right: -14px; }
 }
+
+/* ---------- Dispute reduction value calculator ---------- */
+/* Ordinal ramp: single hue, monotone lightness, validated dark-mode
+   (adjacent ΔL ≥ 0.06, dim end 2.15:1 on the row surface, hue spread 6°). */
+.calc-step-1 { background: #0d5559; }
+.calc-step-2 { background: #127f84; }
+.calc-step-3 { background: #16a8ad; }
+.calc-step-4 { background: #1cc9cd; }
+.calc-step-5 { background: #19e3e3; }
+
+.calc { display: grid; grid-template-columns: minmax(280px,340px) 1fr; gap: 26px; align-items: start; }
+.calc-panel { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+.calc-panel h3 { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 18px; font-family: var(--body); font-weight: 600; }
+.calc-field { margin-bottom: 15px; }
+.calc-field label { display: block; font-size: .88rem; font-weight: 600; color: var(--heading); margin-bottom: 2px; }
+.calc-field .calc-hint { display: block; font-size: .75rem; color: var(--text-soft); margin-bottom: 7px; line-height: 1.4; }
+.calc-in { position: relative; display: flex; align-items: center; }
+.calc-in .pre, .calc-in .post { position: absolute; font-size: .85rem; font-weight: 600; color: var(--text-soft); pointer-events: none; }
+.calc-in .pre { left: 12px; } .calc-in .post { right: 12px; }
+.calc-field input[type=number] {
+  width: 100%; background: var(--bg); border: 1.5px solid var(--line-2); color: var(--heading);
+  border-radius: 9px; padding: 11px 13px; font-family: var(--display); font-size: 1rem; font-weight: 600;
+  outline: none; -moz-appearance: textfield; transition: border-color .14s, box-shadow .14s;
+}
+.calc-field input.has-pre { padding-left: 27px; }
+.calc-field input.has-post { padding-right: 34px; }
+.calc-field input[type=number]::-webkit-outer-spin-button,
+.calc-field input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.calc-field input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(25,227,227,.18); }
+.calc-field input[aria-invalid="true"] { border-color: #e0794f; }
+
+details.calc-adv { margin-top: 4px; border-top: 1px solid var(--line); padding-top: 15px; }
+details.calc-adv summary { cursor: pointer; font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-soft); font-weight: 600; list-style: none; padding: 11px 0; min-height: 44px; display: flex; align-items: center; }
+details.calc-adv summary::-webkit-details-marker { display: none; }
+details.calc-adv summary::before { content: "+ "; font-weight: 700; }
+details.calc-adv[open] summary::before { content: "\2013 "; }
+details.calc-adv summary:hover { color: var(--heading); }
+details.calc-adv .calc-inner { padding-top: 15px; }
+.calc-reset { margin-top: 12px; width: 100%; background: transparent; border: 1px solid var(--line-2); color: var(--text-soft); border-radius: 9px; padding: 10px; font-family: var(--body); font-size: .74rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+.calc-reset:hover { color: var(--heading); border-color: var(--accent); }
+
+.calc-hero-box { background: var(--bg-2); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 22px 24px; margin-bottom: 16px; }
+.calc-hero-k { font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-soft); font-weight: 600; margin-bottom: 12px; }
+.calc-hero-v { font-family: var(--display); font-size: clamp(1.7rem,4vw,2.5rem); font-weight: 600; line-height: 1; letter-spacing: -.025em; color: var(--accent); margin-bottom: 12px; }
+.calc-hero-box p { font-size: .92rem; line-height: 1.55; color: var(--text-soft); max-width: 60ch; margin: 0; }
+.calc-hero-box p strong { color: var(--heading); }
+.calc-be { margin-top: 12px !important; padding-top: 12px; border-top: 1px solid var(--line); font-size: .86rem !important; }
+
+.calc-ladder-box { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.calc-lhead { display: grid; grid-template-columns: 108px 1fr 158px; gap: 14px; padding: 12px 18px; background: var(--bg-3); border-bottom: 1px solid var(--line); font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-soft); }
+.calc-lhead .r { text-align: right; }
+.calc-row { display: grid; grid-template-columns: 108px 1fr 158px; gap: 14px; align-items: center; padding: 15px 18px; border-bottom: 1px solid var(--line); transition: background .14s; }
+.calc-row:last-child { border-bottom: none; }
+.calc-row:nth-child(even) { background: var(--bg-2); }
+.calc-row:hover { background: var(--bg-3); }
+.calc-pct { font-family: var(--display); font-size: 1.3rem; font-weight: 600; letter-spacing: -.02em; color: var(--heading); }
+.calc-stage { display: block; font-size: .72rem; line-height: 1.3; color: var(--text-soft); margin-top: 4px; }
+.calc-barwrap { display: grid; grid-template-columns: 1fr 110px; gap: 12px; align-items: center; min-width: 0; }
+.calc-track { min-width: 0; }
+.calc-bar { height: 22px; border-radius: 0 4px 4px 0; min-width: 4px; transition: width .25s ease; }
+.calc-fees { font-family: var(--display); font-size: .95rem; font-weight: 600; color: var(--heading); white-space: nowrap; }
+.calc-fees em { display: block; font-family: var(--body); font-size: .68rem; font-style: normal; font-weight: 400; color: var(--text-soft); margin-top: 3px; }
+.calc-right { text-align: right; }
+.calc-mult { font-family: var(--display); font-size: 1.25rem; font-weight: 600; letter-spacing: -.02em; color: var(--heading); }
+.calc-sub { display: block; font-size: .7rem; line-height: 1.45; color: var(--text-soft); margin-top: 5px; }
+.calc-ceiling { margin-top: 14px; font-size: .84rem; line-height: 1.55; color: var(--text-soft); }
+.calc-ceiling strong { color: var(--heading); }
+
+.calc-records { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.calc-rec { background: var(--bg-2); border: 1px solid var(--line); border-radius: 11px; padding: 16px 18px; }
+.calc-rec .n { font-family: var(--display); font-size: 1.6rem; font-weight: 600; letter-spacing: -.02em; color: var(--heading); margin-bottom: 6px; }
+.calc-rec .l { font-size: .8rem; line-height: 1.5; color: var(--text-soft); }
+.calc-rec .l em { font-style: normal; color: var(--text-soft); opacity: .82; }
+
+.calc-ctaband { margin-top: 16px; background: var(--accent); border-radius: var(--radius); padding: 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+.calc-ctaband .t { flex: 1 1 300px; color: #042020; }
+.calc-ctaband .t h3 { margin: 0 0 5px; font-size: 1.08rem; letter-spacing: -.015em; color: #042020; }
+.calc-ctaband .t p { margin: 0; font-size: .88rem; line-height: 1.5; color: #084040; }
+.calc-ctaband .b { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.calc-notes { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--line); }
+.calc-notes h3 { font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-soft); font-family: var(--body); font-weight: 600; margin-bottom: 12px; }
+.calc-notes p { margin: 0 0 11px; font-size: .82rem; line-height: 1.7; color: var(--text-soft); max-width: 96ch; }
+.calc-notes p:last-child { margin-bottom: 0; }
+.calc-notes strong { color: var(--text); }
+.section-light .calc-notes p { color: var(--ink-soft); }
+
+.calc-toast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%,14px); opacity: 0; pointer-events: none; background: var(--heading); color: var(--bg); font-size: .86rem; font-weight: 600; padding: 12px 20px; border-radius: 999px; transition: opacity .2s, transform .2s; z-index: 99; }
+.calc-toast.on { opacity: 1; transform: translate(-50%,0); }
+
+@media (max-width: 980px) { .calc { grid-template-columns: 1fr; gap: 20px; } }
+@media (max-width: 640px) {
+  .calc-lhead { display: none; }
+  .calc-row { grid-template-columns: 1fr auto; gap: 8px 12px; padding: 15px; }
+  .calc-barwrap { grid-column: 1 / -1; grid-template-columns: 1fr 100px; }
+  .calc-right { grid-row: 1; grid-column: 2; }
+  .calc-records { grid-template-columns: 1fr; }
+}
+@media print {
+  .calc-ctaband, .calc-reset, details.calc-adv summary { display: none; }
+  .calc-row, .calc-hero-box, .calc-panel, .calc-rec { break-inside: avoid; }
+}
+
+/* ---------- Legal pages ---------- */
+.legal { max-width: 76ch; margin: 0 auto; font-size: 1rem; line-height: 1.75; color: var(--ink-soft); }
+.legal h2 { font-size: clamp(1.15rem,2vw,1.4rem); text-transform: none; letter-spacing: -.01em; color: var(--ink); margin: 2.4em 0 .7em; line-height: 1.25; }
+.legal h2:first-child { margin-top: 0; }
+.legal h3 { font-size: 1.02rem; color: var(--ink); margin: 1.8em 0 .5em; letter-spacing: 0; }
+.legal p { margin-bottom: 1.15em; }
+.legal ul, .legal ol { margin: 0 0 1.15em; padding-left: 1.3em; }
+.legal li { margin-bottom: .5em; }
+.legal strong { color: var(--ink); font-weight: 600; }
+.legal a { color: var(--accent-deep); text-decoration: underline; }
+.legal table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: .92rem; }
+.legal th, .legal td { text-align: left; padding: 11px 13px; border: 1px solid var(--line-light); vertical-align: top; }
+.legal th { background: var(--light-2); color: var(--ink); font-weight: 600; }
+.legal .todo { background: #fff6e8; border: 1px solid #e8c89a; border-radius: 8px; padding: 14px 16px; margin: 0 0 1.3em; font-size: .93rem; color: #6b4a13; }
+.legal .todo strong { color: #4a3208; }
+.legal .updated { font-size: .88rem; color: var(--ink-soft); padding-bottom: 1.4em; margin-bottom: 2em; border-bottom: 1px solid var(--line-light); }
+.legal-toc { background: var(--light-2); border: 1px solid var(--line-light); border-radius: var(--radius); padding: 20px 24px; margin: 0 0 2.4em; }
+.legal-toc ol { margin: 0; padding-left: 1.2em; columns: 2; column-gap: 30px; }
+.legal-toc li { margin-bottom: .35em; font-size: .93rem; }
+@media (max-width: 640px) { .legal-toc ol { columns: 1; } .legal table { font-size: .86rem; } .legal th, .legal td { padding: 8px 9px; } }
