@@ -152,6 +152,15 @@
         viewed, referring site, approximate location derived from a truncated IP address, device and
         browser type, and interactions such as clicking a call to action or using a calculator.
         See <a href="#cookies">Cookies and analytics</a>.</li>
+        <li><strong>Visitor identification.</strong> On arkonyk.com we use services that try to
+        identify who is visiting. One identifies the <em>company</em> a visit comes from, worldwide.
+        The other &mdash; for visitors in the United States only &mdash; attempts to identify the
+        <em>individual professional</em> visiting, by matching cookies and device identifiers against
+        identity data its provider has compiled across other websites. Where a match is made we may
+        receive a name, job title, business contact details and employer, together with the pages
+        visited. Match rates are partial; most visitors are not identified. See
+        <a href="#cookies">Cookies, analytics and visitor identification</a>, including how to opt
+        out.</li>
         <li><strong>Local storage.</strong> If you make a cookie choice, we store that choice in your
         browser so we do not have to ask again.</li>
         <li><strong>Calculator inputs.</strong> Figures you enter into an on-site calculator are processed
@@ -186,9 +195,12 @@
         <tr><td>Preventing fraud and abuse, and enforcing our terms</td><td>Legitimate interest; legal obligation where applicable</td></tr>
         <tr><td>Meeting legal, tax and accounting obligations</td><td>Legal obligation</td></tr>
       </table>
-      <p><strong>We do not sell your personal information, and we do not use it for cross-context
-      behavioural advertising.</strong> We do not run advertising on our sites, and advertising and
-      personalisation signals are switched off in our analytics configuration.</p>
+      <p><strong>We do not sell your personal information, and we do not use it for advertising of any
+      kind.</strong> We do not run advertising on our sites, and advertising and personalisation signals
+      are switched off in our analytics configuration. We do use visitor-identification services for our
+      own sales and marketing &mdash; described in sections 3, 5 and 6 &mdash; and one of these matches
+      visitors against identity data collected across other websites. You can opt out of that
+      identification at any time; section 6 explains how.</p>
 
       <h2 id="share">5. Who we share it with</h2>
       <p>We share personal data only with service providers who process it on our instructions, and only
@@ -199,6 +211,8 @@
         <tr><td>[[APPLICATION HOST &mdash; e.g. Vercel, Railway]]</td><td>Runs the gated-download service and product applications</td><td>IP address, request logs, form fields you submit</td></tr>
         <tr><td>FormSubmit</td><td>Forwards website form submissions to our inbox</td><td>Everything you enter in a form</td></tr>
         <tr><td>Google Analytics (Google LLC / Google Ireland Ltd)</td><td>Website analytics</td><td>Truncated IP, device and browser data, pages viewed, on-site events</td></tr>
+        <tr><td>Apollo.io (ZenLeads, Inc.)</td><td>Business visitor identification &mdash; matches visits from company networks to the <em>organization</em> visiting. It does not identify individual people on our sites.</td><td>IP address, pages viewed, device and browser data</td></tr>
+        <tr><td>RB2B, Inc.</td><td>Person-level visitor identification, United States visitors only &mdash; matches visits against its own identity graph to tell us which individual professionals visited. RB2B is a registered data broker in several US states; its stated policy is that it does not resell the data it provides to us.</td><td>IP address, cookies and device identifiers, pages viewed</td></tr>
         <tr><td>Google Fonts (Google LLC)</td><td>Serves the typefaces our pages use</td><td>IP address and browser details, at the moment a font loads</td></tr>
         <tr><td>[[EMAIL PROVIDER]]</td><td>Sends our email</td><td>Name, email address, engagement with messages</td></tr>
         <tr><td>[[PAYMENT PROCESSOR]]</td><td>Takes subscription payments</td><td>Payment and billing details, directly from you</td></tr>
@@ -220,12 +234,35 @@
       <table>
         <tr><th>Type</th><th>Purpose</th><th>Set without consent?</th></tr>
         <tr><td>Strictly necessary</td><td>Security, and remembering your cookie choice</td><td>Yes &mdash; the site cannot work without them</td></tr>
-        <tr><td>Analytics</td><td>Understanding which pages are useful and where visitors get stuck</td><td>Outside the EEA, UK and Switzerland: yes. Inside them: no &mdash; not until you agree</td></tr>
+        <tr><td>Analytics &amp; business visitor identification</td><td>Understanding which pages are useful, and recognising which <em>companies</em> visit our business pages</td><td>Outside the EEA, UK and Switzerland: yes. Inside them: no &mdash; not until you agree</td></tr>
+        <tr><td>Person-level visitor identification</td><td>Recognising which individual professionals visit arkonyk.com, United States visitors only</td><td>In the US: yes, unless your browser sends a Global Privacy Control signal. Everywhere else: it does not run</td></tr>
         <tr><td>Advertising</td><td>None. We do not use them.</td><td>&mdash;</td></tr>
       </table>
       <p>For visitors in the European Economic Area, the United Kingdom and Switzerland, analytics storage
-      is <strong>denied by default</strong>. Until you agree, our analytics provider receives only
-      aggregate, cookieless signals, and nothing identifying is stored on your device.</p>
+      is <strong>denied by default</strong> and the visitor-identification service does not load at all.
+      Until you agree, our analytics provider receives only aggregate, cookieless signals, and nothing
+      identifying is stored on your device.</p>
+      <h3>Person-level identification, and how to opt out</h3>
+      <p>For visitors in the United States, arkonyk.com uses RB2B to attempt to identify the individual
+      professional visiting. The matching works by comparing cookies and device identifiers set on our
+      site against identity information RB2B has associated with those identifiers on other websites.
+      This means a third party is using identifiers gathered across different websites to recognise you
+      here. It applies only on arkonyk.com &mdash; not on whobilled.me or descriptors.com &mdash; and only
+      to United States traffic.</p>
+      <p>You can prevent it in any of these ways, each fully effective:</p>
+      <ul>
+        <li>Turn on <strong>Global Privacy Control</strong> in your browser or install a GPC extension
+        &mdash; we detect the signal and the identification service is not loaded at all;</li>
+        <li>Block third-party cookies in your browser settings;</li>
+        <li>Opt out directly with the provider at
+        <a href="https://app.retention.com/optout" target="_blank" rel="noopener nofollow">app.retention.com/optout</a>
+        (RB2B operates on its parent company&rsquo;s platform, which is why the address differs)
+        &mdash; and if you are in the EU or UK, where this service does not run on our sites at all,
+        you can additionally register a GDPR opt-out with the provider at
+        <a href="https://www.rb2b.com/rb2b-gdpr-opt-out" target="_blank" rel="noopener nofollow">rb2b.com/rb2b-gdpr-opt-out</a>;</li>
+        <li>Email us at <a href="mailto:privacy@arkonyk.com">privacy@arkonyk.com</a> and we will delete
+        any identification we hold about you and suppress future contact.</li>
+      </ul>
       <div class="todo">
         <strong>[[CONSENT BANNER &mdash; still required for EEA/UK traffic]]</strong> Google&rsquo;s consent
         mode is a technical control, not a consent mechanism &mdash; Google&rsquo;s own documentation says it
@@ -241,16 +278,14 @@
       <h2 id="dnt">7. Do Not Track</h2>
       <p>Some browsers can send a &ldquo;Do Not Track&rdquo; signal. There is still no common industry
       standard for how a website should respond to one, so <strong>our sites do not currently respond to
-      Do Not Track signals.</strong> We do not permit third parties to collect personally identifiable
-      information about your activity across other websites through our sites.</p>
+      Do Not Track signals.</strong> As described in section 6, the person-level visitor-identification
+      service we use on arkonyk.com does rely on identifiers its provider has collected across other
+      websites; every other part of our sites involves no cross-site tracking.</p>
       <p>We do honour the <strong>Global Privacy Control</strong> signal where your browser or extension
       sends one, and we treat it as a request to disable non-essential analytics.</p>
-      <div class="todo">
-        <strong>[[GPC &mdash; only claim this if it is true]]</strong> If Arkonyk does not yet detect the
-        <code>navigator.globalPrivacyControl</code> flag, either delete that sentence or implement it
-        &mdash; it is a few lines in <code>analytics.js</code>. Do not claim a control you do not have.
-        The Do Not Track disclosure above is required by CalOPPA and should stay.
-      </div>
+      <p>The Global Privacy Control commitment above is implemented in our site code: when your browser
+      sends the signal, the analytics and visitor-identification services described in section 6 are not
+      loaded.</p>
 
       <h2 id="marketing">8. Marketing email</h2>
       <p>If you give us your work email address, or we obtain it from a business source, we may send you
