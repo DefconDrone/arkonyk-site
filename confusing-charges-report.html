@@ -145,9 +145,9 @@
 <script>
 (function () {
   // The PDF is not hosted on this site. ENDPOINT validates the submission
-  // server-side and only then emits the file — that check cannot be bypassed
-  // from here. LEADS is posted from the browser because FormSubmit sits behind
-  // a Cloudflare challenge that server-to-server calls can't pass.
+  // server-side, emails the lead via Resend, and only then emits the file.
+  // LEADS is the legacy FormSubmit path, used ONLY when the endpoint reports
+  // (via the X-Lead-Email header) that it could not send the email itself.
   var ENDPOINT = 'https://arkonyk-gate.vercel.app/api/product-sheet';
   var LEADS    = 'https://formsubmit.co/ajax/sales@arkonyk.com';
 
@@ -195,22 +195,22 @@
     btn.disabled = true;
     btn.innerHTML = 'Preparing your download…';
 
-    // Record the lead. Fire-and-forget: if FormSubmit is slow or down we still
-    // release the file rather than lose the prospect, and the gate logs every
-    // release independently so nothing goes unrecorded.
-    fetch(LEADS, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        _subject: 'Report download - ' + payload.company,
-        _template: 'box',
-        Name: payload.name,
-        'Work email': payload.email,
-        Company: payload.company,
-        Asset: 'Most Confusing Charges Report - Q3 2026',
-        Source: 'arkonyk.com/confusing-charges-report.html'
-      })
-    }).catch(function () { /* never block the download on lead capture */ });
+    // Legacy lead path, invoked only if the server couldn't email the lead.
+    function recordLeadFallback() {
+      fetch(LEADS, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: 'Report download - ' + payload.company,
+          _template: 'box',
+          Name: payload.name,
+          'Work email': payload.email,
+          Company: payload.company,
+          Asset: 'Most Confusing Charges Report - Q3 2026',
+          Source: 'arkonyk.com/confusing-charges-report.html'
+        })
+      }).catch(function () { /* audit log on the server still has it */ });
+    }
 
     fetch(ENDPOINT, {
       method: 'POST',
@@ -220,6 +220,7 @@
       .then(function (r) {
         var type = r.headers.get('content-type') || '';
         if (r.ok && type.indexOf('application/pdf') !== -1) {
+          if (r.headers.get('X-Lead-Email') !== 'sent') recordLeadFallback();
           return r.blob().then(function (blob) {
             saveBlob(blob);
             form.style.display = 'none';

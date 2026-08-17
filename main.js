@@ -46,22 +46,45 @@
       var data = {};
       new FormData(form).forEach(function (v, k) { data[k] = v; });
 
-      var ajaxUrl = form.getAttribute('action').replace('formsubmit.co/', 'formsubmit.co/ajax/');
+      // Primary path: our own endpoint, which emails the enquiry via Resend
+      // from our infrastructure. Field names pass through unchanged. If the
+      // endpoint is unconfigured (503), failing (5xx) or unreachable, fall
+      // back to the legacy FormSubmit AJAX path, then to a native POST — the
+      // chain can never lose a submission.
+      function viaFormSubmit() {
+        var ajaxUrl = form.getAttribute('action').replace('formsubmit.co/', 'formsubmit.co/ajax/');
+        fetch(ajaxUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        })
+          .then(function (r) { return r.json().catch(function () { return {}; }); })
+          .then(function (res) {
+            if (res && (res.success === 'true' || res.success === true)) {
+              showSuccess(form);
+            } else {
+              nativeFallback(form, btn, btnHtml);
+            }
+          })
+          .catch(function () { nativeFallback(form, btn, btnHtml); });
+      }
 
-      fetch(ajaxUrl, {
+      fetch('https://arkonyk-gate.vercel.app/api/lead', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       })
-        .then(function (r) { return r.json().catch(function () { return {}; }); })
-        .then(function (res) {
-          if (res && (res.success === 'true' || res.success === true)) {
-            showSuccess(form);
-          } else {
-            nativeFallback(form, btn, btnHtml);
+        .then(function (r) {
+          if (r.ok) { showSuccess(form); return; }
+          if (r.status === 400) {
+            return r.json().catch(function () { return {}; }).then(function (d) {
+              if (btn) { btn.disabled = false; btn.innerHTML = btnHtml; }
+              window.alert((d && d.message) || 'Please check the form and try again.');
+            });
           }
+          viaFormSubmit();
         })
-        .catch(function () { nativeFallback(form, btn, btnHtml); });
+        .catch(function () { viaFormSubmit(); });
     });
   });
 
