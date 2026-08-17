@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payments Benchmark — ARKITEKT — Arkonyk</title>
+<meta name="description" content="A 6-question, 3-minute benchmark of your payment performance — authorization rate, fraud, chargebacks, refunds, disputes, and processing cost — against ranges for your business model.">
+<link rel="canonical" href="https://arkonyk.com/payments-benchmark.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arkonyk">
+<meta property="og:title" content="Payments Benchmark — how does your processing stack up?">
+<meta property="og:description" content="Six questions, three minutes: see where your payment performance is strong and where it is leaking money.">
+<meta property="og:url" content="https://arkonyk.com/payments-benchmark.html">
+<meta property="og:image" content="https://arkonyk.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script src="analytics.js?v=1"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+/* ===== Arkonyk design tokens ===== */
+:root{
+  /* Arkonyk dark-theme mapping of the original token set */
+  --neutral-0:#121517; --neutral-25:#0c0e10; --neutral-50:#0c0e10; --neutral-100:#181c1f;
+  --neutral-150:#1d2226; --neutral-200:rgba(255,255,255,0.10); --neutral-300:rgba(255,255,255,0.18); --neutral-400:#6f7a84;
+  --neutral-500:#828d98; --neutral-600:#b9c1c9; --neutral-700:#d5dbe1; --neutral-800:#eef1f4; --neutral-900:#ffffff;
+  --teal-50:rgba(25,227,227,0.08); --teal-100:rgba(25,227,227,0.16); --teal-200:#0a4a49; --teal-300:#4deaea; --teal-400:#19e3e3;
+  --teal-500:#0fbfbf; --teal-600:#19e3e3; --teal-700:#19e3e3; --teal-800:#9df1f1; --teal-900:#c9f8f8;
+  --green-50:rgba(39,196,142,0.13); --green-500:#27c48e; --green-600:#39d19c;
+  --amber-50:rgba(224,179,79,0.13); --amber-500:#e0b34f; --amber-600:#e8c26a;
+  --red-50:rgba(224,106,90,0.13); --red-500:#e06a5a; --red-600:#e88a7d;
+  --blue-50:rgba(90,162,240,0.13); --blue-500:#5aa2f0; --blue-600:#7fb6f3;
+  --bg-page:#0c0e10; --surface-card:#121517; --surface-sunken:#181c1f;
+  --surface-inverse:#181c1f; --surface-wash:rgba(25,227,227,0.06);
+  --text-primary:#e8ecef; --text-secondary:#b9c1c9; --text-muted:#828d98;
+  --text-inverse:#ffffff; --text-on-accent:#042020; --text-link:#19e3e3;
+  --accent:#19e3e3; --accent-hover:#4deaea; --accent-press:#0fbfbf;
+  --accent-icon:#19e3e3; --accent-quiet:rgba(25,227,227,0.08);
+  --border-subtle:rgba(255,255,255,0.10); --border-strong:rgba(255,255,255,0.20); --divider:rgba(255,255,255,0.08);
+  --ring: rgba(25,227,227,0.35);
+  --success:var(--green-500); --success-bg:var(--green-50);
+  --warning:var(--amber-500); --warning-bg:var(--amber-50);
+  --danger:var(--red-500); --danger-bg:var(--red-50);
+  --info:var(--blue-500); --info-bg:var(--blue-50);
+  --font-display:'Space Grotesk',system-ui,sans-serif;
+  --font-sans:'Inter',system-ui,-apple-system,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,'SF Mono',monospace;
+  --radius-sm:8px; --radius-md:10px; --radius-lg:14px; --radius-xl:20px; --radius-pill:999px;
+  --shadow-sm:0 1px 2px rgba(0,0,0,0.35), 0 2px 6px rgba(0,0,0,0.28);
+  --shadow-md:0 4px 12px rgba(0,0,0,0.38), 0 1px 3px rgba(0,0,0,0.30);
+  --shadow-lg:0 12px 32px rgba(0,0,0,0.50), 0 3px 8px rgba(0,0,0,0.35);
+  --ease-out:cubic-bezier(0.22,1,0.36,1); --dur-fast:120ms; --dur-base:200ms;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg-page); color:var(--text-primary); font-family:var(--font-sans);
+  font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--font-display); font-weight:700; letter-spacing:-0.02em; line-height:1.05; margin:0;}
+a{color:var(--text-link);}
+button{font-family:var(--font-sans);}
+
+.eyebrow{
+  font-family:var(--font-sans); font-weight:700; font-size:12px; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--teal-700);
+}
+
+/* ===== App shell ===== */
+#app{ min-height:100vh; display:flex; flex-direction:column; }
+
+.topbar{
+  height:72px; display:flex; align-items:center; justify-content:space-between;
+  padding:0 32px; border-bottom:1px solid var(--border-subtle); background:var(--neutral-0);
+  position:sticky; top:0; z-index:20;
+}
+.topbar .brand{ display:flex; align-items:center; gap:10px; }
+.topbar img.mark{ height:30px; width:auto; display:block; }
+.topbar .brand-name{ font-family:var(--font-display); font-weight:700; font-size:19px; letter-spacing:-0.01em; }
+.topbar .tool-name{ font-size:13px; color:var(--text-muted); font-weight:600; padding-left:12px; border-left:1px solid var(--border-subtle); }
+@media (max-width:640px){ .topbar .tool-name{display:none;} }
+
+.progress-track{ height:5px; background:var(--neutral-150); width:100%; }
+.progress-fill{ height:100%; background:var(--accent); transition:width var(--dur-base) var(--ease-out); border-radius:0 4px 4px 0; }
+
+main.stage{
+  flex:1; display:flex; align-items:center; justify-content:center;
+  padding:40px 20px 90px; position:relative;
+}
+.screen{
+  width:100%; max-width:680px; display:none; animation:fadeUp 320ms var(--ease-out);
+}
+.screen.active{ display:block; }
+@keyframes fadeUp{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+.step-tag{ display:flex; align-items:center; gap:8px; margin-bottom:18px; }
+.step-num{
+  font-family:var(--font-mono); font-size:13px; color:var(--text-muted); font-weight:500;
+}
+
+.question-title{
+  font-family:var(--font-display); font-weight:700; font-size:clamp(28px,4.4vw,40px);
+  letter-spacing:-0.02em; line-height:1.08; margin:0 0 12px; color:var(--neutral-900);
+}
+.question-sub{ font-size:16px; color:var(--text-secondary); margin:0 0 32px; max-width:560px; line-height:1.55; }
+
+/* Big input */
+.big-input-wrap{ position:relative; margin-bottom:8px; }
+.big-input{
+  width:100%; font-family:var(--font-mono); font-weight:500; font-size:clamp(36px,7vw,56px);
+  color:var(--neutral-900); background:transparent; border:none; border-bottom:3px solid var(--border-strong);
+  padding:8px 46px 16px 2px; outline:none; letter-spacing:-0.01em; transition:border-color var(--dur-fast) var(--ease-out);
+}
+.big-input::placeholder{ color:var(--neutral-300); }
+.big-input:focus{ border-color:var(--accent); }
+.big-input-suffix{
+  position:absolute; right:2px; bottom:20px; font-family:var(--font-mono); font-size:clamp(22px,4vw,32px);
+  color:var(--text-muted); font-weight:500; pointer-events:none;
+}
+.input-hint{ font-size:13px; color:var(--text-muted); margin-top:10px; }
+
+/* Channel toggle tiles */
+.tile-row{ display:flex; gap:12px; margin-bottom:28px; flex-wrap:wrap; }
+.tile{
+  flex:1; min-width:140px; border:1.5px solid var(--border-subtle); border-radius:var(--radius-md);
+  padding:14px 16px; background:var(--surface-card); cursor:pointer; text-align:left;
+  transition:all var(--dur-fast) var(--ease-out); font-family:var(--font-sans);
+}
+.tile:hover{ border-color:var(--border-strong); }
+.tile.selected{ border-color:var(--accent); background:var(--teal-50); box-shadow:0 0 0 3px var(--ring); }
+.tile .tile-label{ font-weight:700; font-size:14px; color:var(--text-primary); }
+.tile .tile-desc{ font-size:12.5px; color:var(--text-muted); margin-top:2px; }
+
+/* Select */
+.select-wrap{ position:relative; margin-bottom:28px; }
+select.big-select{
+  appearance:none; width:100%; height:64px; padding:0 44px 0 18px;
+  font-family:var(--font-sans); font-size:18px; font-weight:600; color:var(--text-primary);
+  background:var(--surface-card); border:1.5px solid var(--border-subtle); border-radius:var(--radius-md);
+  cursor:pointer; outline:none;
+}
+select.big-select:focus{ border-color:var(--accent); box-shadow:0 0 0 3px var(--ring); }
+.select-wrap svg{ position:absolute; right:16px; top:50%; transform:translateY(-50%); pointer-events:none; color:var(--text-muted); }
+
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:9px;
+  height:52px; padding:0 26px; font-family:var(--font-sans); font-weight:700; font-size:16px;
+  border-radius:var(--radius-md); border:1.5px solid transparent; cursor:pointer;
+  transition:transform var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out); white-space:nowrap;
+}
+.btn:active{ transform:translateY(1px); }
+.btn-primary{ background:var(--accent); color:var(--text-on-accent); box-shadow:var(--shadow-sm); }
+.btn-primary:hover{ background:var(--teal-300); }
+.btn-primary:disabled{ opacity:0.4; cursor:not-allowed; }
+.btn-secondary{ background:var(--surface-card); color:var(--text-primary); border-color:var(--border-strong); }
+.btn-secondary:hover{ border-color:var(--neutral-900); }
+.btn-ghost{ background:transparent; color:var(--text-secondary); font-weight:600; }
+.btn-ghost:hover{ color:var(--text-primary); }
+.btn-dark{ background:var(--neutral-900); color:#fff; }
+.btn-dark:hover{ background:var(--neutral-800); }
+.btn-full{ width:100%; }
+
+.actions-row{ display:flex; align-items:center; gap:18px; margin-top:8px; flex-wrap:wrap; }
+.link-quiet{
+  font-size:14.5px; color:var(--text-muted); text-decoration:underline; text-decoration-color:var(--border-strong);
+  cursor:pointer; background:none; border:none; font-family:var(--font-sans); padding:0;
+}
+.link-quiet:hover{ color:var(--teal-700); text-decoration-color:var(--teal-700); }
+.dontknow-link{
+  display:inline-flex; align-items:center; gap:6px; font-size:14.5px; color:var(--teal-700);
+  cursor:pointer; background:none; border:none; font-family:var(--font-sans); font-weight:600; padding:0; text-decoration:underline;
+}
+.dontknow-link:hover{ color:var(--teal-900); }
+
+/* Error text */
+.err-text{ color:var(--danger); font-size:14px; font-weight:600; margin-top:10px; display:none; }
+.err-text.show{ display:block; }
+
+/* Card */
+.card{ background:var(--surface-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); box-shadow:var(--shadow-sm); }
+
+/* Intro / Email screen */
+.intro-logo{ display:block; height:64px; margin:0 0 28px; }
+.intro-badge{
+  display:inline-flex; align-items:center; gap:8px; background:var(--teal-50); color:var(--teal-800);
+  font-size:12.5px; font-weight:700; padding:7px 14px; border-radius:var(--radius-pill); margin-bottom:20px;
+}
+.feature-list{ list-style:none; margin:26px 0 32px; padding:0; display:flex; flex-direction:column; gap:12px; }
+.feature-list li{ display:flex; align-items:flex-start; gap:10px; font-size:15px; color:var(--text-secondary); }
+.feature-list svg{ flex:none; margin-top:2px; color:var(--teal-600); }
+
+/* Modal (help panel) */
+.modal-overlay{
+  position:fixed; inset:0; background:rgba(11,14,16,0.55); display:none; align-items:flex-end;
+  justify-content:center; z-index:100; padding:0;
+}
+.modal-overlay.open{ display:flex; }
+@media (min-width:640px){ .modal-overlay{ align-items:center; padding:24px; } }
+.modal-panel{
+  background:var(--neutral-0); width:100%; max-width:560px; border-radius:20px 20px 0 0;
+  padding:28px 28px 32px; max-height:85vh; overflow-y:auto; box-shadow:var(--shadow-lg);
+  animation:slideUp 240ms var(--ease-out);
+}
+@media (min-width:640px){ .modal-panel{ border-radius:var(--radius-lg); } }
+@keyframes slideUp{ from{transform:translateY(24px); opacity:0;} to{transform:translateY(0); opacity:1;} }
+.modal-panel h3{ font-family:var(--font-display); font-size:22px; margin-bottom:6px; }
+.modal-panel .modal-kpi{ font-size:13px; color:var(--teal-700); font-weight:700; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px; }
+.modal-panel .modal-body p{ font-size:15px; color:var(--text-secondary); line-height:1.6; margin:0 0 14px; }
+.modal-panel .modal-body strong{ color:var(--text-primary); }
+.modal-close-row{ margin-top:20px; display:flex; justify-content:flex-end; }
+.source-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+.source-list li{ display:flex; gap:10px; font-size:14px; color:var(--text-secondary); background:var(--surface-sunken); padding:10px 12px; border-radius:var(--radius-sm); }
+.source-list b{ color:var(--text-primary); flex:none; min-width:118px; }
+
+/* Progress dots for question steps */
+.qdots{ display:flex; gap:6px; margin-bottom:22px; }
+.qdot{ width:26px; height:5px; border-radius:3px; background:var(--neutral-200); }
+.qdot.done{ background:var(--accent); }
+.qdot.current{ background:var(--neutral-800); }
+
+/* Results screen */
+.results-header{ margin-bottom:28px; }
+.results-tally{ display:flex; gap:10px; margin:18px 0 6px; flex-wrap:wrap; }
+.tally-chip{ display:inline-flex; align-items:center; gap:7px; padding:8px 14px; border-radius:var(--radius-pill); font-weight:700; font-size:14px; }
+.tally-chip .dot{ width:9px; height:9px; border-radius:50%; }
+.tally-chip.green{ background:var(--green-50); color:var(--green-600); }
+.tally-chip.green .dot{ background:var(--success); }
+.tally-chip.amber{ background:var(--amber-50); color:var(--amber-600); }
+.tally-chip.amber .dot{ background:var(--warning); }
+.tally-chip.red{ background:var(--red-50); color:var(--red-600); }
+.tally-chip.red .dot{ background:var(--danger); }
+.tally-chip.gray{ background:var(--neutral-100); color:var(--neutral-600); }
+.tally-chip.gray .dot{ background:var(--neutral-400); }
+
+.disclaimer-line{
+  font-size:13px; color:var(--text-muted); margin:16px 0 26px; line-height:1.5; max-width:600px;
+}
+
+.kpi-results{ display:flex; flex-direction:column; gap:14px; }
+.kpi-card{ padding:20px 22px; }
+.kpi-card-body{ display:flex; align-items:stretch; gap:22px; }
+.kpi-card-main{ flex:1; min-width:0; display:flex; flex-direction:column; gap:10px; }
+.kpi-card-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+.kpi-card-title{ font-weight:700; font-size:16px; color:var(--text-primary); }
+.kpi-card-value{ font-family:var(--font-mono); font-size:15px; color:var(--text-secondary); margin-top:2px; }
+.flag{
+  display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:var(--radius-pill);
+  font-size:12.5px; font-weight:800; letter-spacing:0.02em; text-transform:uppercase; flex:none;
+}
+.flag.green{ background:var(--green-50); color:var(--green-600); }
+.flag.amber{ background:var(--amber-50); color:var(--amber-600); }
+.flag.red{ background:var(--red-50); color:var(--red-600); }
+.flag.gray{ background:var(--neutral-100); color:var(--neutral-600); }
+.kpi-card-note{ font-size:14.5px; color:var(--text-secondary); line-height:1.55; }
+.conf-chip{
+  display:inline-flex; align-items:center; gap:4px; font-family:var(--font-mono); font-size:11px;
+  font-weight:600; color:var(--text-muted); background:var(--neutral-100); padding:2px 8px; border-radius:5px;
+  text-transform:none; letter-spacing:0.02em;
+}
+
+/* Thermometer */
+.thermo-col{ flex:none; width:48px; display:flex; flex-direction:column; align-items:center; gap:8px; }
+.thermo-track{
+  position:relative; width:14px; height:112px; border-radius:7px;
+  background:linear-gradient(to top, var(--red-500) 0%, var(--amber-500) 50%, var(--green-500) 100%);
+  box-shadow:inset 0 0 0 1px rgba(11,14,16,0.12);
+}
+.thermo-track.thermo-empty{ background:var(--neutral-200); }
+.thermo-marker{
+  position:absolute; left:50%; transform:translateX(-50%); width:20px; height:20px; border-radius:50%;
+  background:#fff; border:3px solid var(--neutral-900); box-shadow:0 1px 3px rgba(11,14,16,0.35);
+  transition:bottom var(--dur-base) var(--ease-out);
+}
+.thermo-marker-empty{ border-color:var(--neutral-400); }
+.thermo-caption{
+  font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; color:var(--text-muted);
+  text-align:center; line-height:1.2;
+}
+@media (max-width:520px){
+  .kpi-card-body{ gap:14px; }
+  .thermo-col{ width:40px; }
+  .thermo-track{ width:12px; height:96px; }
+  .thermo-marker{ width:17px; height:17px; }
+}
+.kpi-card.red-flag{ border-color:var(--red-500); border-width:1.5px; }
+.cta-inline{ margin-top:6px; }
+
+.cta-banner{
+  margin-top:34px; padding:28px 26px; border-radius:var(--radius-lg);
+  background:var(--surface-sunken); border:1px solid var(--border-subtle); border-left:3px solid var(--accent);
+  color:var(--text-primary); display:flex; flex-direction:column; gap:14px;
+}
+.cta-banner h2, .cta-banner h3{ color:var(--neutral-900); }
+.cta-banner h3{ color:#fff; font-size:22px; }
+.cta-banner p{ color:var(--text-secondary); font-size:15px; margin:0; line-height:1.55; }
+.cta-banner .btn-primary{ align-self:flex-start; }
+
+.restart-row{ margin-top:26px; text-align:center; }
+
+/* Footer */
+.footer-note{ text-align:center; font-size:12.5px; color:var(--text-muted); padding:20px; }
+
+/* Manual review screen */
+.mrv-icon{ width:56px; height:56px; border-radius:var(--radius-md); background:var(--teal-50); display:flex; align-items:center; justify-content:center; margin-bottom:20px; color:var(--teal-700); }
+
+@media (max-width:640px){
+  .topbar{ padding:0 16px; }
+  main.stage{ padding:24px 16px 80px; }
+  .btn{ height:48px; font-size:15px; padding:0 20px; }
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+  <div class="topbar">
+    <div class="brand">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit"><img class="mark" src="logo-horizontal-white.svg" alt="Arkonyk" style="height:26px"></a>
+      <span class="tool-name">Payments Benchmark</span>
+    </div>
+    <div id="topbarProgressLabel" style="font-size:13px;color:var(--text-muted);font-weight:600;"></div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+
+  <main class="stage">
+    <div id="screens"></div>
+  </main>
+
+  <div class="footer-note">Arkonyk Payments Benchmark — figures are directional estimates unless marked otherwise. Not a substitute for your acquirer's own reporting.<br>
+  <span style="display:inline-block;margin-top:10px">An <a href="product-arkitekt.html">ARKITEKT</a> tool by <a href="index.html">Arkonyk</a> &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms of Use</a> &middot; &copy; <span data-year>2026</span> Arkonyk, LLC</span></div>
+</div>
+
+<div class="modal-overlay" id="helpModal">
+  <div class="modal-panel">
+    <div class="modal-kpi" id="helpKpiLabel"></div>
+    <h3 id="helpTitle">Where to find this</h3>
+    <div class="modal-body" id="helpBody"></div>
+    <div class="modal-close-row">
+      <button class="btn btn-secondary" onclick="closeHelp()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+window.__ASSETS__ = { markB64: "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" };
+</script>
+<script>
+// ============================================================
+// Arkonyk Payments Benchmark — data model
+// Sourced from merchantbenchmarkingspec.md + merchant-categories-v2.json
+// ============================================================
+
+const CATEGORIES = [
+  { value: 'restaurants_food_service', label: 'Restaurants, Bars & Food Service', mcc: '5812', mccDesc: 'Eating places & restaurants', tier: 'F3' },
+  { value: 'grocery_food_retail', label: 'Grocery, Convenience & Food Retail', mcc: '5411', mccDesc: 'Grocery stores and supermarkets', tier: 'F3' },
+  { value: 'general_specialty_retail', label: 'General & Specialty Retail', mcc: '5399', mccDesc: 'Miscellaneous general merchandise', tier: 'F3' },
+  { value: 'apparel_jewelry_accessories', label: 'Apparel, Jewelry & Accessories', mcc: '5651', mccDesc: 'Family clothing stores', tier: 'F3' },
+  { value: 'home_building_retail', label: 'Home, Furniture & Building Supply Retail', mcc: '5712', mccDesc: 'Furniture, home furnishings & equipment stores', tier: 'F3' },
+  { value: 'contractors_trades', label: 'Contractors, Trades & Home Services', mcc: '1520', mccDesc: 'General contractors - residential & commercial', tier: 'F4' },
+  { value: 'electronics_digital', label: 'Electronics, Computers & Digital Goods', mcc: '5732', mccDesc: 'Electronics stores', tier: 'F3' },
+  { value: 'ecommerce_dtc', label: 'Ecommerce, Marketplaces & Direct-to-Consumer', mcc: '5964', mccDesc: 'Direct marketing - catalog merchants', tier: 'F4' },
+  { value: 'automotive_fuel', label: 'Automotive, Fuel & Vehicle Services', mcc: '5511', mccDesc: 'Car & truck dealers - sales, service, repairs, parts, leasing', tier: 'F3' },
+  { value: 'travel_transport_logistics', label: 'Travel, Lodging, Transport & Logistics', mcc: '7011', mccDesc: 'Lodging - hotels, motels, resorts', tier: 'F5' },
+  { value: 'healthcare_pharmacy', label: 'Healthcare, Medical & Pharmacy', mcc: '8011', mccDesc: 'Doctors and physicians (not elsewhere classified)', tier: 'F4' },
+  { value: 'professional_business', label: 'Professional, Business & IT Services', mcc: '7399', mccDesc: 'Business services (not elsewhere classified)', tier: 'F4' },
+  { value: 'personal_consumer_education', label: 'Personal Care, Consumer Services & Education', mcc: '7230', mccDesc: 'Beauty and barber shops', tier: 'F4' },
+  { value: 'entertainment_recreation_gaming', label: 'Entertainment, Recreation, Events & Gaming', mcc: '7999', mccDesc: 'Recreation services (not elsewhere classified)', tier: 'F4' },
+  { value: 'financial_insurance_realestate', label: 'Financial Services, Insurance & Real Estate', mcc: '6300', mccDesc: 'Insurance sales, underwriting, and premiums', tier: 'F2' },
+  { value: 'utilities_government_nonprofit', label: 'Utilities, Telecom, Government & Nonprofit', mcc: '4900', mccDesc: 'Utilities - electric, gas, heating oil, sanitary, water', tier: 'F1' },
+  { value: 'other_not_listed', label: 'Other / not listed', mcc: null, mccDesc: 'Routed to manual review', tier: null },
+];
+
+// Interchange fee tiers — Mastercard US region, consumer credit, eff. 17 Apr 2026 [MC26, A]
+const FEE_TIERS = {
+  F1: { pct: 0.0000, fixed: 0.75, name: 'Flat-fee / near-zero interchange' },
+  F2: { pct: 0.0143, fixed: 0.05, name: 'Reduced-rate named programs' },
+  F3: { pct: 0.0165, fixed: 0.10, name: 'Retail / restaurant card-present' },
+  F4: { pct: 0.0195, fixed: 0.10, name: 'Standard card-not-present' },
+  F5: { pct: 0.0255, fixed: 0.10, name: 'Travel & entertainment' },
+  F6: { pct: 0.0205, fixed: 0.20, name: 'High-integrity-risk (VIRP)' },
+};
+
+// Directional (D) archetype ranges per category, from spec §8 / §8.1.
+// All confidence D unless noted — inference from nearest business-model archetype, not a published figure.
+const BENCHMARKS = {
+  restaurants_food_service:        { auth: { cp: [97,99], cnp: [85,90] },  fraud: [0.01,0.05], refund: [1,3],  disputeWin: [50,70], cbCeiling: 0.3 },
+  grocery_food_retail:             { auth: { cp: [98,99], cnp: null },     fraud: [0.01,0.05], refund: [1,2],  disputeWin: [50,70], cbCeiling: 0.2 },
+  general_specialty_retail:        { auth: { cp: [98,99], cnp: [85,92] },  fraud: [0.10,0.20], refund: [3,8],  disputeWin: [50,70], cbCeiling: 0.6 },
+  apparel_jewelry_accessories:     { auth: { cp: null,    cnp: [85,92] },  fraud: [0.10,0.30], refund: [15,30], disputeWin: [50,70], cbCeiling: 0.8, refundException: true },
+  home_building_retail:            { auth: { cp: null,    cnp: [85,92] },  fraud: [0.30,0.80], refund: [3,8],  disputeWin: [50,70], cbCeiling: 0.8 },
+  contractors_trades:              { auth: { cp: [90,98], cnp: null },     fraud: [0.10,0.30], refund: [0,2],  disputeWin: [30,50], cbCeiling: 1.2 },
+  electronics_digital:             { auth: { cp: [85,92], cnp: [80,88] },  fraud: [0.30,0.80], refund: [2,5],  disputeWin: [30,50], cbCeiling: 0.8 },
+  ecommerce_dtc:                   { auth: { cp: null,    cnp: [85,90] },  fraud: [0.10,0.30], refund: [2,5],  disputeWin: [30,50], cbCeiling: 0.8 },
+  automotive_fuel:                 { auth: { cp: [98,99], cnp: null },     fraud: [0.05,0.20], refund: [1,3],  disputeWin: [50,70], cbCeiling: 0.5 },
+  travel_transport_logistics:      { auth: { cp: null,    cnp: [85,90] },  fraud: [0.50,1.50], refund: [5,10], disputeWin: [40,60], cbCeiling: 1.5 },
+  healthcare_pharmacy:             { auth: { cp: [88,93], cnp: [88,93] },  fraud: [0.05,0.15], refund: [1,3],  disputeWin: [50,70], cbCeiling: 0.5 },
+  professional_business:           { auth: { cp: null,    cnp: [90,95] },  fraud: [0.00,0.10], refund: [1,2],  disputeWin: [50,70], cbCeiling: 0.3 },
+  personal_consumer_education:     { auth: { cp: [88,93], cnp: [88,93] },  fraud: [0.05,0.20], refund: [2,5],  disputeWin: [40,60], cbCeiling: 0.6 },
+  entertainment_recreation_gaming: { auth: { cp: null,    cnp: [85,90] },  fraud: [0.30,1.00], refund: [3,8],  disputeWin: [30,50], cbCeiling: 1.2 },
+  financial_insurance_realestate:  { auth: { cp: null,    cnp: [90,95] },  fraud: [0.00,0.10], refund: [0,1],  disputeWin: [50,70], cbCeiling: 0.3 },
+  utilities_government_nonprofit:  { auth: { cp: null,    cnp: [90,95] },  fraud: [0.00,0.05], refund: [0,1],  disputeWin: [50,70], cbCeiling: 0.2 },
+  other_not_listed: null,
+};
+
+
+// ============================================================
+// Arkonyk Payments Benchmark — app logic
+// ============================================================
+
+// ---------- Disposable / obviously-fake email domains ----------
+const DISPOSABLE_DOMAINS = [
+  'mailinator.com','guerrillamail.com','guerrillamail.info','guerrillamail.biz','guerrillamail.de',
+  '10minutemail.com','10minutemail.net','temp-mail.org','tempmail.com','tempmail.net','throwawaymail.com',
+  'yopmail.com','yopmail.net','trashmail.com','trashmail.net','fakeinbox.com','getnada.com','sharklasers.com',
+  'dispostable.com','mailnesia.com','mintemail.com','mohmal.com','moakt.com','emailondeck.com','maildrop.cc',
+  'spamgourmet.com','mytemp.email','tempinbox.com','discard.email','discardmail.com','einrot.com','fake-mail.ml',
+  'burnermail.io','anonaddy.me','luxusmail.org','mailcatch.com','tempr.email','crazymailing.com','spam4.me',
+  '33mail.com','deadaddress.com','emailfake.com','inboxbear.com','mailbox52.ru','tmpmail.org','tmpeml.com',
+  'test.com','example.com','test.org','example.org','email.com','fake.com'
+];
+
+function isValidEmailFormat(v) {
+  return /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(v.trim());
+}
+function emailDomain(v){
+  const parts = v.trim().toLowerCase().split('@');
+  return parts.length === 2 ? parts[1] : '';
+}
+function isDisposableEmail(v){
+  const d = emailDomain(v);
+  return DISPOSABLE_DOMAINS.includes(d);
+}
+function looksLikeFakeLocalPart(v){
+  const local = v.trim().toLowerCase().split('@')[0] || '';
+  const fakePatterns = ['test','asdf','asd','xxx','fake','foo','bar','abc123','qwerty','aaaa','none','nobody','noone','sample','notreal'];
+  return fakePatterns.some(p => local === p || (local.length <= 4 && /^[a-z]+$/.test(local) && local === p));
+}
+const FREE_WEBMAIL_DOMAINS = ['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','aol.com','live.com','proton.me','protonmail.com'];
+
+// ---------- KPI question definitions ----------
+const KPI_DEFS = [
+  {
+    key: 'authRate',
+    title: 'What is your card-not-present authorization (approval) rate?',
+    sub: 'The share of online, phone, or keyed-in charge attempts that get approved by the card network — not disputed, not declined. We\'re benchmarking card-not-present only for now; a blended card-present + card-not-present number isn\'t comparable to anything.',
+    needsChannel: false,
+    suffix: '%',
+    placeholder: '92',
+    inputHint: 'Enter a percentage between 0 and 100.',
+    higherIsBetter: true,
+    unit: 'percent',
+  },
+  {
+    key: 'fraudRate',
+    title: 'What is your fraud rate?',
+    sub: 'Value or count of transactions reported as fraud (chargebacks coded as fraud, or TC40 reports), divided by total transactions.',
+    needsChannel: false,
+    suffix: '%',
+    placeholder: '0.15',
+    inputHint: 'Enter a percentage — decimals are fine (e.g. 0.15).',
+    higherIsBetter: false,
+    unit: 'percent',
+  },
+  {
+    key: 'chargebackRate',
+    title: 'What is your chargeback rate?',
+    sub: 'Chargebacks received in a month, divided by transaction count. (This is a simple operating rate — not the official Mastercard/Visa compliance ratio, which uses a lagged prior-month denominator.)',
+    needsChannel: false,
+    suffix: '%',
+    placeholder: '0.4',
+    inputHint: 'Enter a percentage — decimals are fine.',
+    higherIsBetter: false,
+    unit: 'percent',
+  },
+  {
+    key: 'refundRate',
+    title: 'What is your refund rate?',
+    sub: 'Refunded transactions divided by settled transactions, over the same period.',
+    needsChannel: false,
+    suffix: '%',
+    placeholder: '3',
+    inputHint: 'Enter a percentage between 0 and 100.',
+    higherIsBetter: false,
+    unit: 'percent',
+  },
+  {
+    key: 'disputeWinRate',
+    title: 'What is your dispute win rate?',
+    sub: 'Of the chargebacks you formally represented (fought), what share did you win?',
+    needsChannel: false,
+    suffix: '%',
+    placeholder: '55',
+    inputHint: 'Enter a percentage between 0 and 100.',
+    higherIsBetter: true,
+    unit: 'percent',
+  },
+  {
+    key: 'effectiveRate',
+    title: 'What is your effective processing rate, and average ticket size?',
+    sub: 'Effective rate is your total processing cost divided by total volume. It only means something alongside your average ticket, because flat per-transaction fees hit small tickets harder.',
+    needsChannel: false,
+    isDual: true,
+    suffix: '%',
+    placeholder: '2.9',
+    secondLabel: 'Average ticket size',
+    secondSuffix: '$',
+    secondPlaceholder: '65',
+    inputHint: 'Enter your blended effective rate as a percentage, and your average transaction size in dollars.',
+    higherIsBetter: false,
+    unit: 'percent',
+  },
+];
+
+// ---------- "I don't know how to find this" help content ----------
+const KPI_HELP = {
+  authRate: {
+    title: 'Finding your authorization rate',
+    body: [
+      "This is usually called <strong>approval rate</strong> or <strong>authorization rate</strong> in your payment processor's reporting or analytics dashboard.",
+      "<strong>Stripe:</strong> Dashboard → Payments → Overview shows an authorization rate chart; or Reports → Payments for the underlying numbers.",
+      "<strong>Square:</strong> Dashboard → Reporting → Sales summary won't show this directly — ask your Square rep for a decline/authorization report, or check Square's API dashboard if you're integrated.",
+      "<strong>Adyen:</strong> Customer Area → Analytics → Authorisation dashboard, split by card-present/card-not-present automatically.",
+      "<strong>Braintree/PayPal:</strong> Control Panel → Reporting → Transaction search, filter by status, divide approved by total attempts.",
+      "<strong>Any acquirer:</strong> Ask for a monthly \"authorization report\" or \"decline report\" — every acquirer produces one, even if it's not in the self-serve dashboard. Make sure to ask them to split card-present from card-not-present."
+    ]
+  },
+  fraudRate: {
+    title: 'Finding your fraud rate',
+    body: [
+      "Look for <strong>fraud-coded chargebacks</strong> or a <strong>TC40 report</strong> (Visa) / <strong>SAFE report</strong> (Mastercard) — your acquirer or fraud tool provides these, since the networks send them to the acquirer, not directly to you.",
+      "<strong>Stripe:</strong> Dashboard → Disputes, filter by reason \"fraudulent\"; Radar (if enabled) also shows a fraud rate directly.",
+      "<strong>Adyen/Braintree/major acquirers:</strong> Ask your account manager for your TC40/SAFE fraud reporting — this is standard and most will have it monthly.",
+      "<strong>If you use a fraud tool</strong> (Sift, Signifyd, Kount, Riskified), their dashboard will show this directly, usually more precisely than your processor's."
+    ]
+  },
+  chargebackRate: {
+    title: 'Finding your chargeback rate',
+    body: [
+      "Almost every processor dashboard has a <strong>Disputes</strong> or <strong>Chargebacks</strong> section — divide the chargeback count for the month by your transaction count for that same month.",
+      "<strong>Stripe:</strong> Dashboard → Disputes.",
+      "<strong>Square:</strong> Dashboard → Disputes.",
+      "<strong>PayPal:</strong> Resolution Center → Disputes.",
+      "<strong>Any acquirer:</strong> Your monthly merchant statement usually has a chargeback count near the fee summary — the transaction count is on the same statement."
+    ]
+  },
+  refundRate: {
+    title: 'Finding your refund rate',
+    body: [
+      "This is a straightforward one — most dashboards report refunds directly, or you can pull it from your own order system.",
+      "<strong>Stripe:</strong> Dashboard → Payments → Refunds, or Reports → Refunds.",
+      "<strong>Square:</strong> Dashboard → Reporting → Sales summary includes refunds.",
+      "<strong>Shopify/BigCommerce/etc.:</strong> Your order management system will have refunded-order counts — divide by total settled orders for the same period."
+    ]
+  },
+  disputeWinRate: {
+    title: 'Finding your dispute win rate',
+    body: [
+      "Look in your <strong>Disputes</strong> section for outcomes — won, lost, or accepted (not contested).",
+      "<strong>Stripe:</strong> Dashboard → Disputes, filter by status \"won\" vs \"lost.\" Only count ones you actually submitted evidence for.",
+      "<strong>Square/PayPal:</strong> Disputes section shows resolution status per case.",
+      "<strong>Any acquirer:</strong> Ask for a \"representment outcomes\" report — this shows exactly what you fought and what you won, which is the number you want (not disputes you simply accepted)."
+    ]
+  },
+  effectiveRate: {
+    title: 'Finding your effective rate and average ticket',
+    body: [
+      "<strong>Effective rate</strong> = total fees paid to your processor ÷ total volume processed, for the same period. Your monthly statement usually has both numbers on the summary page.",
+      "<strong>Average ticket</strong> = total volume ÷ number of transactions, for the same period — most dashboards show this directly as \"average sale\" or \"average order value.\"",
+      "<strong>Stripe:</strong> Dashboard → Balance → Payouts shows fees and volume; Reports → Balance summary has both.",
+      "<strong>Square:</strong> Reporting → Sales summary shows average sale directly; fees are on your deposit/statement detail.",
+      "<strong>Any acquirer:</strong> Your monthly merchant statement should show total volume, total fees, and transaction count on the summary page — that's everything you need."
+    ]
+  }
+};
+
+// ---------- App state ----------
+
+// ---- Arkonyk wiring: analytics + lead/results delivery (site integration) ----
+const BENCH_GATE = 'https://arkonyk-gate.vercel.app/api/benchmark';
+let benchSent = false;
+function benchTrack(ev, payload){
+  try{
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(Object.assign({event: ev}, payload || {}));
+    if (typeof window.gtag === 'function') window.gtag('event', ev, payload || {});
+  }catch(e){}
+}
+function submitBenchmark(results){
+  if (benchSent) return; benchSent = true;
+  benchTrack('benchmark_results', {
+    category: state.category ? state.category.value : null,
+    needs_attention: results.filter(function(r){ return r.flag === 'red'; }).length
+  });
+  try {
+    fetch(BENCH_GATE, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        kind: 'results',
+        email: state.email,
+        category: state.category.value,
+        categoryLabel: state.category.label,
+        mcc: state.category.mcc,
+        answers: state.answers,
+        results: results.map(function(r){ return { key: r.key, flag: r.flag, note: r.note || '' }; })
+      })
+    }).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+      if (d && d.ok) {
+        var box = document.querySelector('.cta-banner') || document.querySelector('.screen.active');
+        if (box) {
+          var p = document.createElement('p');
+          p.style.cssText = 'margin:14px 0 0;font-size:13.5px;color:var(--text-muted)';
+          p.textContent = 'A copy of these results is on its way to ' + state.email + '.';
+          box.appendChild(p);
+        }
+      }
+    }).catch(function(){});
+  } catch(e){}
+}
+function submitManualReview(){
+  try {
+    fetch(BENCH_GATE, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ kind: 'manual_review', email: state.email })
+    }).catch(function(){});
+  } catch(e){}
+  benchTrack('benchmark_manual_review', {});
+}
+
+const state = {
+  step: 'intro',
+  email: '',
+  category: null,
+  answers: {}, // key -> { value, secondValue, channel, skipped }
+};
+
+const KPI_ORDER = KPI_DEFS.map(k => k.key);
+const TOTAL_STEPS = 2 + KPI_ORDER.length; // email, category, then KPIs -> results not counted in progress denominator
+
+function el(html){
+  const t = document.createElement('template');
+  t.innerHTML = html.trim();
+  return t.content.firstElementChild;
+}
+
+function setProgress(stepIndex){
+  const pct = Math.min(100, Math.round((stepIndex / TOTAL_STEPS) * 100));
+  document.getElementById('progressFill').style.width = pct + '%';
+  const label = stepIndex === 0 ? '' : `Step ${stepIndex} of ${TOTAL_STEPS}`;
+  document.getElementById('topbarProgressLabel').textContent = label;
+}
+
+function renderScreen(node){
+  benchTrack('benchmark_screen', { screen: state.step });
+  const container = document.getElementById('screens');
+  container.innerHTML = '';
+  node.classList.add('screen','active');
+  container.appendChild(node);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ============================================================
+// SCREEN 1 — Email capture
+// ============================================================
+function screenEmail(){
+  setProgress(0);
+  const wrap = el(`
+    <div>
+      <img class="intro-logo" src="monogram-white.svg" alt="">
+      <div class="intro-badge">6-question benchmark · about 3 minutes</div>
+      <h1 class="question-title">See how your payment performance stacks up.</h1>
+      <p class="question-sub">Answer a few questions about your processing — approval rate, fraud, chargebacks, refunds, and cost — and get an instant read on where you're strong and where you're leaking money. We'll email your results so you don't lose them.</p>
+      <ul class="feature-list">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Benchmarked against your specific business category, not a generic average</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Skip anything you don't have a number for — no forced answers</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Don't know where to find a number? We'll show you exactly where to look</li>
+      </ul>
+      <label class="input-hint" style="display:block;margin-bottom:8px;font-weight:600;color:var(--text-primary);">Work email</label>
+      <input type="email" id="emailInput" class="big-input" style="font-size:24px;padding:14px 16px;border:1.5px solid var(--border-strong);border-radius:var(--radius-md);border-bottom-width:1.5px;" placeholder="you@company.com" autocomplete="email" value="${state.email || ''}">
+      <div class="err-text" id="emailErr"></div>
+      <div class="actions-row" style="margin-top:22px;">
+        <button class="btn btn-primary" id="emailNextBtn">Start the benchmark</button>
+      </div>
+    </div>
+  `);
+  renderScreen(wrap);
+  const input = wrap.querySelector('#emailInput');
+  const err = wrap.querySelector('#emailErr');
+  const btn = wrap.querySelector('#emailNextBtn');
+  input.focus();
+  function trySubmit(){
+    const v = input.value.trim();
+    if (!v || !isValidEmailFormat(v)) {
+      err.textContent = "That doesn't look like a valid email address.";
+      err.classList.add('show');
+      return;
+    }
+    if (isDisposableEmail(v)) {
+      err.textContent = "That looks like a temporary/disposable email address — please use your regular work email so we can send your results.";
+      err.classList.add('show');
+      return;
+    }
+    if (looksLikeFakeLocalPart(v)) {
+      err.textContent = "That email looks like a placeholder rather than a real address — please double check it.";
+      err.classList.add('show');
+      return;
+    }
+    err.classList.remove('show');
+    state.email = v;
+    screenCategory();
+  }
+  btn.addEventListener('click', trySubmit);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') trySubmit(); });
+  input.addEventListener('input', () => err.classList.remove('show'));
+}
+
+// ============================================================
+// SCREEN 2 — Category dropdown
+// ============================================================
+function screenCategory(){
+  setProgress(1);
+  const options = CATEGORIES.map(c => `<option value="${c.value}" ${state.category && state.category.value === c.value ? 'selected' : ''}>${c.label}</option>`).join('');
+  const wrap = el(`
+    <div>
+      <div class="step-tag"><span class="step-num">01 / 07</span></div>
+      <h1 class="question-title">What best describes your business?</h1>
+      <p class="question-sub">This sets which benchmarks we compare you against — a restaurant and a subscription box business have nothing in common on these numbers.</p>
+      <div class="select-wrap">
+        <select class="big-select" id="categorySelect">
+          <option value="" ${state.category ? '' : 'disabled selected'}>Choose a category&hellip;</option>
+          ${options}
+        </select>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="actions-row">
+        <button class="btn btn-primary" id="catNextBtn" ${state.category ? '' : 'disabled'}>Continue</button>
+        <button class="btn-ghost link-quiet" id="catBackBtn">&larr; Back</button>
+      </div>
+    </div>
+  `);
+  renderScreen(wrap);
+  const sel = wrap.querySelector('#categorySelect');
+  const btn = wrap.querySelector('#catNextBtn');
+  sel.addEventListener('change', () => { btn.disabled = !sel.value; });
+  btn.addEventListener('click', () => {
+    state.category = CATEGORIES.find(c => c.value === sel.value);
+    if (state.category.value === 'other_not_listed') {
+      screenManualReview();
+    } else {
+      screenKpi(0);
+    }
+  });
+  wrap.querySelector('#catBackBtn').addEventListener('click', screenEmail);
+}
+
+// ============================================================
+// Manual-review dead-end for "Other / not listed"
+// ============================================================
+function screenManualReview(){
+  submitManualReview();
+  const wrap = el(`
+    <div>
+      <div class="mrv-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h1 class="question-title">Let's route this one to a person.</h1>
+      <p class="question-sub">"Other / not listed" doesn't map to a business model we can benchmark responsibly — the ranges would be a guess. Rather than give you a false comparison, we'd rather have a real conversation about what you do and what's normal for it.</p>
+      <div class="actions-row">
+        <a class="btn btn-primary" href="contact.html" onclick="benchTrack('benchmark_cta_click',{manual:1})">Email Arkonyk</a>
+        <button class="btn btn-ghost" id="mrvBackBtn">&larr; Pick a different category</button>
+      </div>
+    </div>
+  `);
+  renderScreen(wrap);
+  wrap.querySelector('#mrvBackBtn').addEventListener('click', screenCategory);
+}
+
+// ============================================================
+// SCREENS 3–8 — KPI questions
+// ============================================================
+function qdots(currentIdx){
+  return `<div class="qdots">${KPI_DEFS.map((k,i) => `<div class="qdot ${i<currentIdx?'done':(i===currentIdx?'current':'')}"></div>`).join('')}</div>`;
+}
+
+function screenKpi(idx){
+  if (idx >= KPI_DEFS.length) { screenResults(); return; }
+  setProgress(2 + idx);
+  const def = KPI_DEFS[idx];
+  const stepNumLabel = `${String(idx+2).padStart(2,'0')} / 07`;
+  const existing = state.answers[def.key];
+  const prefillValue = (existing && !existing.skipped && existing.value !== null) ? existing.value : '';
+  const prefillValue2 = (existing && !existing.skipped && existing.secondValue !== null) ? existing.secondValue : '';
+
+  let secondInputHtml = '';
+  if (def.isDual) {
+    secondInputHtml = `
+      <label style="display:block;font-weight:600;font-size:14px;color:var(--text-primary);margin:22px 0 8px;">${def.secondLabel}</label>
+      <div class="big-input-wrap">
+        <span class="big-input-suffix" style="left:2px;right:auto;font-size:clamp(22px,4vw,32px);">${def.secondSuffix}</span>
+        <input type="number" inputmode="decimal" step="any" id="kpiInput2" class="big-input" style="padding-left:36px;" placeholder="${def.secondPlaceholder}" value="${prefillValue2}">
+      </div>
+    `;
+  }
+
+  const wrap = el(`
+    <div>
+      <div class="step-tag"><span class="step-num">${stepNumLabel}</span></div>
+      ${qdots(idx)}
+      <h1 class="question-title">${def.title}</h1>
+      <p class="question-sub">${def.sub}</p>
+      <div class="big-input-wrap">
+        <input type="number" inputmode="decimal" step="any" id="kpiInput" class="big-input" placeholder="${def.placeholder}" value="${prefillValue}">
+        <span class="big-input-suffix">${def.suffix}</span>
+      </div>
+      <div class="input-hint">${def.inputHint}</div>
+      ${secondInputHtml}
+      <div class="err-text" id="kpiErr"></div>
+      <div class="actions-row" style="margin-top:26px;">
+        <button class="btn btn-primary" id="kpiNextBtn">Continue</button>
+        <button class="btn-ghost link-quiet" id="kpiSkipBtn">Skip this one</button>
+        <button class="dontknow-link" id="kpiHelpBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M9.5 9a2.5 2.5 0 115 0c0 1.5-2.5 2-2.5 3.5M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          I don't know how to find this
+        </button>
+      </div>
+      <div class="actions-row" style="margin-top:14px;">
+        <button class="btn-ghost link-quiet" id="kpiBackBtn">&larr; Back</button>
+      </div>
+    </div>
+  `);
+  renderScreen(wrap);
+
+  const input = wrap.querySelector('#kpiInput');
+  const input2 = wrap.querySelector('#kpiInput2');
+  const err = wrap.querySelector('#kpiErr');
+  input.focus();
+
+  function trySubmit(){
+    const raw = input.value.trim();
+    if (raw === '') {
+      err.textContent = 'Enter a number, or use "Skip this one" below.';
+      err.classList.add('show');
+      return;
+    }
+    const num = parseFloat(raw);
+    if (isNaN(num) || num < 0) {
+      err.textContent = 'That needs to be a positive number.';
+      err.classList.add('show');
+      return;
+    }
+    if (def.unit === 'percent' && num > 100) {
+      err.textContent = "That's above 100% — double check the number.";
+      err.classList.add('show');
+      return;
+    }
+    let secondNum = null;
+    if (def.isDual) {
+      const raw2 = input2.value.trim();
+      if (raw2 === '') {
+        err.textContent = `Enter your ${def.secondLabel.toLowerCase()} too, or skip this question.`;
+        err.classList.add('show');
+        return;
+      }
+      secondNum = parseFloat(raw2);
+      if (isNaN(secondNum) || secondNum <= 0) {
+        err.textContent = 'Average ticket needs to be a positive dollar amount.';
+        err.classList.add('show');
+        return;
+      }
+    }
+    state.answers[def.key] = { value: num, secondValue: secondNum, channel: def.key === 'authRate' ? 'cnp' : null, skipped: false };
+    screenKpi(idx + 1);
+  }
+
+  wrap.querySelector('#kpiNextBtn').addEventListener('click', trySubmit);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter' && !def.isDual) trySubmit(); });
+  wrap.querySelector('#kpiSkipBtn').addEventListener('click', () => {
+    state.answers[def.key] = { value: null, secondValue: null, channel: null, skipped: true };
+    screenKpi(idx + 1);
+  });
+  wrap.querySelector('#kpiHelpBtn').addEventListener('click', () => openHelp(def.key));
+  wrap.querySelector('#kpiBackBtn').addEventListener('click', () => {
+    if (idx === 0) screenCategory();
+    else screenKpi(idx - 1);
+  });
+}
+
+// ============================================================
+// Help modal
+// ============================================================
+function openHelp(kpiKey){
+  const help = KPI_HELP[kpiKey];
+  const def = KPI_DEFS.find(k => k.key === kpiKey);
+  document.getElementById('helpKpiLabel').textContent = def.title.replace(/^What is your |\?$/g,'').toUpperCase();
+  document.getElementById('helpTitle').textContent = help.title;
+  document.getElementById('helpBody').innerHTML = help.body.map(p => `<p>${p}</p>`).join('');
+  document.getElementById('helpModal').classList.add('open');
+}
+function closeHelp(){
+  document.getElementById('helpModal').classList.remove('open');
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('helpModal').addEventListener('click', (e) => {
+    if (e.target.id === 'helpModal') closeHelp();
+  });
+});
+window.closeHelp = closeHelp;
+
+// ============================================================
+// Scoring
+// ============================================================
+function bandFromRange(value, range, higherIsBetter){
+  if (!range) return null;
+  const [lo, hi] = range;
+  const width = Math.max(hi - lo, 0.0001);
+  const buffer = width * 0.4;
+  if (higherIsBetter) {
+    if (value >= lo) return 'green';
+    if (value >= lo - buffer) return 'amber';
+    return 'red';
+  } else {
+    if (value <= hi) return 'green';
+    if (value <= hi + buffer) return 'amber';
+    return 'red';
+  }
+}
+
+// ---------- Thermometer position (0 = bottom/red/worst, 1 = top/green/best) ----------
+// Each bandInfo* returns { goodness, greenBoundary, amberBoundary } — the boundary
+// fractions match the same red/amber/green thresholds used by bandFromRange, so the
+// gradient painted behind the marker always agrees with the flag colour.
+function clamp01(n){ return Math.max(0, Math.min(1, n)); }
+
+function bandInfoHigher(value, lo, hi){
+  const width = Math.max(hi - lo, 0.0001);
+  const buffer = width * 0.4, margin = width * 0.6;
+  const worst = lo - buffer - margin, best = hi + margin;
+  const frac = v => clamp01((v - worst) / (best - worst));
+  return { goodness: frac(value), greenBoundary: frac(lo), amberBoundary: frac(lo - buffer) };
+}
+function bandInfoLower(value, lo, hi){
+  const width = Math.max(hi - lo, 0.0001);
+  const buffer = width * 0.4, margin = width * 0.6;
+  const worst = hi + buffer + margin, best = Math.max(lo - margin, 0);
+  const frac = v => clamp01((worst - v) / (worst - best));
+  return { goodness: frac(value), greenBoundary: frac(hi), amberBoundary: frac(hi + buffer) };
+}
+function bandInfoBand(value, lo, hi){
+  const half = Math.max((hi - lo) / 2, 0.0001);
+  const buffer = half * 0.4, margin = half * 0.6;
+  const mid = (lo + hi) / 2;
+  const worstDist = half + buffer + margin;
+  const frac = v => clamp01(1 - Math.abs(v - mid) / worstDist);
+  return { goodness: frac(value), greenBoundary: frac(lo), amberBoundary: frac(lo - buffer) };
+}
+function bandInfoEffective(gapBps){
+  const worst = 150, best = -20; // bps gap over the interchange floor
+  const frac = g => clamp01((worst - g) / (worst - best));
+  return { goodness: frac(gapBps), greenBoundary: frac(15), amberBoundary: frac(50) };
+}
+
+function scoreAnswer(key, answer, bm){
+  if (!answer || answer.skipped) return { flag: 'gray', note: "Skipped — we don't have a number to compare.", conf: null, goodness: null };
+  if (!bm) return { flag: 'gray', note: 'No category selected for comparison.', conf: null, goodness: null };
+
+  if (key === 'authRate') {
+    const range = bm.auth.cnp;
+    if (!range) {
+      return { flag: 'gray', note: `We don't have a directional card-not-present auth range for this category yet — the archetype here mostly runs card-present. We'll add card-present benchmarking soon.`, conf: 'D', goodness: null };
+    }
+    const flag = bandFromRange(answer.value, range, true);
+    const { goodness, greenBoundary, amberBoundary } = bandInfoHigher(answer.value, range[0], range[1]);
+    const note = flag === 'green'
+      ? `Your ${answer.value}% card-not-present auth rate is within the typical range for businesses like yours (${range[0]}–${range[1]}%).`
+      : `Merchants with your business model typically see ${range[0]}–${range[1]}% on card-not-present. Yours is ${answer.value}% — worth understanding why, it may be structural (issuer mix, 3DS friction, BIN) or fixable (retry logic, network tokens).`;
+    return { flag, note, conf: 'D', goodness, greenBoundary, amberBoundary };
+  }
+
+  if (key === 'fraudRate') {
+    const flag = bandFromRange(answer.value, bm.fraud, false);
+    const { goodness, greenBoundary, amberBoundary } = bandInfoLower(answer.value, bm.fraud[0], bm.fraud[1]);
+    const note = flag === 'green'
+      ? `Your ${answer.value}% fraud rate sits within the typical range for your business model (${bm.fraud[0]}–${bm.fraud[1]}%).`
+      : `Typical for your business model is ${bm.fraud[0]}–${bm.fraud[1]}%. Yours is ${answer.value}% — outside the typical range. Worth checking your false-positive rate alongside this before tightening rules further.`;
+    return { flag, note, conf: 'D', goodness, greenBoundary, amberBoundary };
+  }
+
+  if (key === 'chargebackRate') {
+    const range = [0, bm.cbCeiling];
+    const flag = bandFromRange(answer.value, range, false);
+    const { goodness, greenBoundary, amberBoundary } = bandInfoLower(answer.value, range[0], range[1]);
+    const note = flag === 'green'
+      ? `Your ${answer.value}% chargeback rate is in line with what's typical for your business model (roughly under ${bm.cbCeiling}%).`
+      : `Businesses with your model typically stay under ${bm.cbCeiling}%. Yours is ${answer.value}% — outside the typical range for this archetype. If you're near 1,500+ monthly disputes+fraud reports, also check your VAMP exposure directly with your acquirer — that threshold is a hard network rule, not a directional estimate.`;
+    return { flag, note, conf: 'D', goodness, greenBoundary, amberBoundary };
+  }
+
+  if (key === 'refundRate') {
+    const range = bm.refund;
+    const flag = bandFromRange(answer.value, range, false);
+    const { goodness, greenBoundary, amberBoundary } = bm.refundException
+      ? bandInfoBand(answer.value, range[0], range[1])
+      : bandInfoLower(answer.value, range[0], range[1]);
+    let note;
+    if (bm.refundException) {
+      note = flag === 'green'
+        ? `Your ${answer.value}% refund rate is normal for apparel/jewelry — this category structurally runs 15–30%, and that is not a warning sign on its own.`
+        : `Apparel and jewelry structurally run 15–30% refunds — that's expected here, not a red flag by itself. Yours is ${answer.value}%, outside even that wider band. If it's below 15%, that can mean an overly restrictive return policy is pushing customers to dispute instead of refund — check your refund-to-chargeback ratio.`;
+    } else {
+      note = flag === 'green'
+        ? `Your ${answer.value}% refund rate is within the typical range for your business model (${range[0]}–${range[1]}%).`
+        : (answer.value < range[0]
+            ? `Typical is ${range[0]}–${range[1]}%. Yours is ${answer.value}%, below that range — unusually low refund rates can mean a restrictive policy that pushes customers to file disputes instead, which cost more.`
+            : `Typical is ${range[0]}–${range[1]}%. Yours is ${answer.value}%, above that range — worth investigating what's driving returns.`);
+    }
+    return { flag, note, conf: 'D', goodness, greenBoundary, amberBoundary };
+  }
+
+  if (key === 'disputeWinRate') {
+    const flag = bandFromRange(answer.value, bm.disputeWin, true);
+    const { goodness, greenBoundary, amberBoundary } = bandInfoHigher(answer.value, bm.disputeWin[0], bm.disputeWin[1]);
+    const note = flag === 'green'
+      ? `Your ${answer.value}% dispute win rate is within the typical range for your business model (${bm.disputeWin[0]}–${bm.disputeWin[1]}%).`
+      : `Typical for your business model is ${bm.disputeWin[0]}–${bm.disputeWin[1]}%. Yours is ${answer.value}% — largely a function of the evidence you can produce. Proof of delivery and clear billing descriptors are usually the fastest lever.`;
+    return { flag, note, conf: 'D', goodness, greenBoundary, amberBoundary };
+  }
+
+  if (key === 'effectiveRate') {
+    const tier = FEE_TIERS[state.category.tier];
+    if (!tier) return { flag: 'gray', note: 'No fee tier on file for this category.', conf: null, goodness: null };
+    const ticket = answer.secondValue;
+    const floorRate = ((tier.pct * ticket + tier.fixed) / ticket) * 100;
+    const reported = answer.value;
+    const gapBps = (reported - floorRate) * 100;
+    let flag;
+    if (gapBps <= 15) flag = 'green';
+    else if (gapBps <= 50) flag = 'amber';
+    else flag = 'red';
+    const { goodness, greenBoundary, amberBoundary } = bandInfoEffective(gapBps);
+    const note = `At your average ticket of $${ticket}, the interchange floor for your MCC (${state.category.mcc || '—'}, ${tier.name}) is ${floorRate.toFixed(2)}%. You reported ${reported}% — a gap of about ${Math.max(0,Math.round(gapBps))} bps. ${flag === 'green' ? "That's tight to the floor — you're capturing most of the available programme rate." : "That gap is real money: on $1M of annual volume, " + Math.round(gapBps) + " bps is roughly $" + Math.round(Math.abs(gapBps)/10000*1000000).toLocaleString() + "/year."}`;
+    return { flag, note, conf: 'A', goodness, greenBoundary, amberBoundary };
+  }
+
+  return { flag: 'gray', note: '', conf: null, goodness: null };
+}
+
+// ============================================================
+// SCREEN — Results
+// ============================================================
+const KPI_LABELS = {
+  authRate: 'Authorization rate', fraudRate: 'Fraud rate', chargebackRate: 'Chargeback rate',
+  refundRate: 'Refund rate', disputeWinRate: 'Dispute win rate', effectiveRate: 'Effective processing rate',
+};
+
+function screenResults(){
+  setProgress(TOTAL_STEPS);
+  const bm = BENCHMARKS[state.category.value];
+  const results = KPI_ORDER.map(key => ({ key, ...scoreAnswer(key, state.answers[key], bm) }));
+  setTimeout(function(){ submitBenchmark(results); }, 0);
+
+  const counts = { green:0, amber:0, red:0, gray:0 };
+  results.forEach(r => counts[r.flag]++);
+
+  const cards = results.map(r => {
+    const answer = state.answers[r.key];
+    const def = KPI_DEFS.find(k => k.key === r.key);
+    let valueLine = 'Skipped';
+    if (answer && !answer.skipped) {
+      if (r.key === 'effectiveRate') valueLine = `${answer.value}% effective rate · $${answer.secondValue} avg ticket`;
+      else if (r.key === 'authRate') valueLine = `${answer.value}${def.suffix} (card-not-present)`;
+      else valueLine = `${answer.value}${def.suffix}`;
+    }
+    const flagLabel = { green:'On target', amber:'Watch', red:'Needs attention', gray:'Skipped' }[r.flag];
+    let thermoHtml;
+    if (r.goodness === null) {
+      thermoHtml = `<div class="thermo-col"><div class="thermo-track thermo-empty"><div class="thermo-marker thermo-marker-empty" style="bottom:calc(50% - 10px);"></div></div><div class="thermo-caption">No data</div></div>`;
+    } else {
+      const ab = (r.amberBoundary * 100).toFixed(1), gb = (r.greenBoundary * 100).toFixed(1);
+      const gradient = `linear-gradient(to top, var(--red-500) 0%, var(--red-500) ${ab}%, var(--amber-500) ${ab}%, var(--amber-500) ${gb}%, var(--green-500) ${gb}%, var(--green-500) 100%)`;
+      thermoHtml = `<div class="thermo-col"><div class="thermo-track" style="background:${gradient};"><div class="thermo-marker" style="bottom:calc(${(r.goodness*100).toFixed(1)}% - 10px);" title="${Math.round(r.goodness*100)}% toward the good end"></div></div><div class="thermo-caption">${flagLabel}</div></div>`;
+    }
+    return `
+      <div class="card kpi-card ${r.flag === 'red' ? 'red-flag' : ''}">
+        <div class="kpi-card-body">
+          <div class="kpi-card-main">
+            <div class="kpi-card-top">
+              <div>
+                <div class="kpi-card-title">${KPI_LABELS[r.key]}</div>
+                <div class="kpi-card-value">${valueLine}</div>
+              </div>
+              <span class="flag ${r.flag}">${flagLabel}</span>
+            </div>
+            ${r.note ? `<div class="kpi-card-note">${r.note}</div>` : ''}
+          </div>
+          ${thermoHtml}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  const redCount = counts.red;
+  const ctaHtml = redCount > 0 ? `
+    <div class="cta-banner">
+      <h3>${redCount} area${redCount > 1 ? 's' : ''} worth a closer look.</h3>
+      <p>The metrics flagged "needs attention" above are the ones with the clearest room to improve. Arkonyk can dig into the specific one(s) driving your numbers and tell you what's fixable versus structural.</p>
+      <a class="btn btn-primary" href="contact.html" onclick="benchTrack('benchmark_cta_click',{})">Talk to Arkonyk about this &rarr;</a>
+    </div>
+  ` : `
+    <div class="cta-banner">
+      <h3>Looking solid across the board.</h3>
+      <p>Nothing flagged as needing attention right now. If you want a second set of eyes on the numbers you skipped, or want to sanity-check assumptions behind these ranges, we're happy to talk.</p>
+      <a class="btn btn-primary" href="contact.html" onclick="benchTrack('benchmark_cta_click',{})">Talk to Arkonyk &rarr;</a>
+    </div>
+  `;
+
+  const wrap = el(`
+    <div style="max-width:720px;">
+      <div class="results-header">
+        <div class="eyebrow">Your results</div>
+        <h1 class="question-title" style="margin-top:8px;">${state.category.label}</h1>
+        <div class="results-tally">
+          ${counts.green ? `<span class="tally-chip green"><span class="dot"></span>${counts.green} on target</span>` : ''}
+          ${counts.amber ? `<span class="tally-chip amber"><span class="dot"></span>${counts.amber} to watch</span>` : ''}
+          ${counts.red ? `<span class="tally-chip red"><span class="dot"></span>${counts.red} need attention</span>` : ''}
+          ${counts.gray ? `<span class="tally-chip gray"><span class="dot"></span>${counts.gray} skipped</span>` : ''}
+        </div>
+      </div>
+      <div class="kpi-results">${cards}</div>
+      ${ctaHtml}
+      <div class="restart-row" style="display:flex;gap:16px;justify-content:center;align-items:center;">
+        <button class="btn-ghost link-quiet" id="resultsBackBtn">&larr; Back to last question</button>
+        <button class="btn btn-ghost" id="restartBtn">Start over</button>
+      </div>
+    </div>
+  `);
+  renderScreen(wrap);
+  wrap.querySelector('#restartBtn').addEventListener('click', () => {
+    state.category = null; state.answers = {};
+    screenCategory();
+  });
+  wrap.querySelector('#resultsBackBtn').addEventListener('click', () => {
+    screenKpi(KPI_DEFS.length - 1);
+  });
+}
+
+// ============================================================
+// Boot
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  screenEmail();
+});
+
+</script>
+</body>
+</html>
