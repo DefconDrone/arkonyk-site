@@ -306,71 +306,61 @@
     },
 
     /* ============ Solution Providers — revshare + managed fee ============
-       Program terms encoded here (Rick, 2026-08-17): 30% revenue share on
-       the $20/mo Descriptors.com subscription = $6 per enrolled client per
-       month, plus a management fee the provider charges and retains 100%
-       (default $100/mo, fully editable). Ladder = enrollment share of the
-       provider's existing book — a scenario dial, not a forecast. */
+       Program terms encoded here (Rick, 2026-08-17): the partner earns
+       30% of the $20/mo Descriptors.com subscription ($6 per client per
+       month) AND 100% of the management fee they charge for maintaining
+       the record (default $100/mo, fully editable). Straight arithmetic
+       on the client count — no enrollment scenarios. */
     provider: {
       REVSHARE: 6,   // 30% of the $20 monthly subscription
       fields: {
-        clients: { def: 500, min: 0 },   // clients in the book
+        clients: { def: 500, min: 0 },   // clients enrolled
         mgmt:    { def: 100, min: 0 }    // monthly management fee, 100% retained
       },
       adv: [],
       thresholds: null,
-      ladder: [
-        { pct: 10,  stage: "First accounts enrolled", step: 1 },
-        { pct: 25,  stage: "A quarter of the book",   step: 2 },
-        { pct: 50,  stage: "Half the book",           step: 3 },
-        { pct: 75,  stage: "Most of the book",        step: 4 },
-        { pct: 100, stage: "Whole book enrolled",     step: 5 }
-      ],
       compute: function (v) {
-        var per = this.REVSHARE + v.mgmt;
-        var rows = this.ladder.map(function (sc) {
-          var enrolled = v.clients * sc.pct / 100;
-          return { pct: sc.pct, stage: sc.stage, step: sc.step,
-                   enrolled: enrolled,
-                   monthly: enrolled * per,
-                   rev: enrolled * 6,
-                   mg: enrolled * v.mgmt };
-        });
-        return { per: per, fullMonthly: v.clients * per, fullAnnual: v.clients * per * 12,
-                 mgmtShare: per > 0 ? v.mgmt / per * 100 : 0, rows: rows };
+        var rev = v.clients * this.REVSHARE;
+        var mg  = v.clients * v.mgmt;
+        return { per: this.REVSHARE + v.mgmt, rev: rev, mg: mg,
+                 total: rev + mg, annual: (rev + mg) * 12 };
       },
       render: function (v, m) {
         var meterBox = $("pc-meter"); if (meterBox) meterBox.innerHTML = "";
         $("pc-hero").textContent = v.clients > 0
-          ? money(m.fullAnnual) + " a year across your " + num(v.clients) + " clients"
+          ? money(m.annual) + " a year from " + num(v.clients) + " clients"
           : "Enter the number of clients in your book";
         $("pc-hero-copy").innerHTML = v.clients > 0
-          ? "<strong>" + money(m.per) + " per enrolled client per month</strong> &mdash; a $6 program revenue share (30% of the $20 subscription) plus your <strong>" + money(v.mgmt) +
-            " management fee, retained in full</strong>. The ladder below scales it by how much of your book you enroll."
-          : "The revenue share and your management fee are both per enrolled client &mdash; the model needs a client count.";
+          ? "<strong>" + money(m.per) + " per client per month</strong> &mdash; you earn a <strong>$6 revenue share</strong> (30% of the $20 subscription) on every client, plus <strong>100% of your " + money(v.mgmt) +
+            " management fee</strong> for maintaining the record on their behalf."
+          : "You earn 30% of the $20 subscription plus all of your own management fee &mdash; the model just needs a client count.";
 
-        var maxMonthly = Math.max.apply(null, m.rows.map(function (r) { return r.monthly; })) || 1;
-        $("pc-ladder").innerHTML = m.rows.map(function (r) {
-          var w = Math.max(3, r.monthly / maxMonthly * 100);
+        var rows = [
+          { label: "Revenue share", sub: "$6 &times; " + num(v.clients) + " clients &mdash; 30% of the $20 subscription", val: m.rev, step: 3 },
+          { label: "Management fees", sub: money(v.mgmt) + " &times; " + num(v.clients) + " clients &mdash; 100% yours", val: m.mg, step: 4 },
+          { label: "Total", sub: money(m.per) + " per client per month", val: m.total, step: 5 }
+        ];
+        var maxVal = m.total || 1;
+        $("pc-ladder").innerHTML = rows.map(function (r) {
+          var w = Math.max(3, r.val / maxVal * 100);
           return '<div class="calc-row">' +
-            '<div class="calc-scen"><span class="calc-pct">' + r.pct + '%</span>' +
-              '<span class="calc-stage">' + r.stage + '</span></div>' +
+            '<div class="calc-scen"><span class="calc-pct" style="font-size:.95rem">' + r.label + '</span></div>' +
             '<div class="calc-barwrap">' +
               '<div class="calc-track"><div class="calc-bar calc-step-' + r.step + '" style="width:' + w.toFixed(1) + '%"></div></div>' +
-              '<span class="calc-fees">' + money(r.monthly) + '<em>per month</em></span>' +
+              '<span class="calc-fees">' + money(r.val) + '<em>per month</em></span>' +
             '</div>' +
-            '<div class="calc-right"><span class="calc-mult">' + money(r.monthly * 12) + '</span>' +
-              '<span class="calc-sub">a year &middot; ' + num(r.enrolled) + ' clients<br>' + money(r.rev) + ' revshare + ' + money(r.mg) + ' managed fees</span></div>' +
+            '<div class="calc-right"><span class="calc-mult">' + money(r.val * 12) + '</span>' +
+              '<span class="calc-sub">a year<br>' + r.sub + '</span></div>' +
           '</div>';
         }).join("");
 
         $("pc-note").innerHTML = (v.clients > 0 && m.per > 0)
-          ? "At the " + money(v.mgmt) + " default, your managed service is <strong>" + m.mgmtShare.toFixed(0) +
+          ? "At the " + money(v.mgmt) + " default, your managed service is <strong>" + (m.per > 0 ? Math.round(v.mgmt / m.per * 100) : 0) +
             "% of the revenue</strong>. The subscription is the wedge &mdash; the service is the business, and you price the service."
           : "Set a client count and a management fee to see the split.";
       },
       cta: { href: "contact.html", track: function (v, m) {
-        return { clients: v.clients, mgmt_fee: v.mgmt, annual_at_full: Math.round(m.fullAnnual) };
+        return { clients: v.clients, mgmt_fee: v.mgmt, annual_total: Math.round(m.annual) };
       } }
     }
   };
