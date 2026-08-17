@@ -137,8 +137,18 @@ section { padding: 104px 0; position: relative; }
 }
 .hero::before {
   content:""; position: absolute; inset: 0;
-  background: radial-gradient(620px 380px at 88% -5%, rgba(25,227,227,.10), transparent 60%);
+  background:
+    radial-gradient(780px 540px at 88% -5%, rgba(25,227,227,.20), transparent 62%),
+    radial-gradient(420px 300px at 97% 10%, rgba(25,227,227,.12), transparent 65%);
   pointer-events: none;
+  animation: hero-glow 8s ease-in-out infinite alternate;
+}
+@keyframes hero-glow {
+  from { opacity: .5; }
+  to   { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero::before { animation: none; opacity: .8; }
 }
 .hero::after {
   content:""; position:absolute; top:0; right:0; width:46%; height:100%;
