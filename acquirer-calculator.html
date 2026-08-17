@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio VAMP Calculator — Acquirers & ISOs — Arkonyk</title>
+<meta name="description" content="Put in your portfolio's monthly transaction, dispute and fraud counts and see your VAMP position against the 0.5% and 0.7% acquirer thresholds — and what confusion-dispute reduction does to it.">
+<link rel="canonical" href="https://arkonyk.com/acquirer-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arkonyk">
+<meta property="og:title" content="Portfolio VAMP Calculator — Acquirers & ISOs">
+<meta property="og:description" content="Put in your portfolio's monthly transaction, dispute and fraud counts and see your VAMP position against the 0.5% and 0.7% acquirer thresholds — and what confusion-dispute reduction does to it.">
+<meta property="og:url" content="https://arkonyk.com/acquirer-calculator.html">
+<meta property="og:image" content="https://arkonyk.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Portfolio VAMP Calculator — Acquirers & ISOs">
+<meta name="twitter:description" content="Put in your portfolio's monthly transaction, dispute and fraud counts and see your VAMP position against the 0.5% and 0.7% acquirer thresholds — and what confusion-dispute reduction does to it.">
+<meta name="twitter:image" content="https://arkonyk.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="analytics.js?v=1"></script>
+<link rel="stylesheet" href="styles.css?v=10">
+<link rel="icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html"><img class="brand-logo" src="logo-horizontal-white.svg" alt="Arkonyk"></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li class="has-dropdown"><a href="products.html">Products</a>
+        <div class="dropdown">
+          <a href="product-descriptors.html"><span class="dd-name">Descriptors.com</span><span class="dd-sub">Solving Customer Confusion</span></a>
+          <a href="product-feesuite.html"><span class="dd-name">FeeSuite</span><span class="dd-sub">Reconciliation Made Easy</span></a>
+          <a href="product-arkitekt.html"><span class="dd-name">ARKITEKT</span><span class="dd-sub">Global Payments By Design</span></a>
+        </div>
+      </li>
+      <li class="has-dropdown"><a href="solutions.html" class="active">Solutions</a>
+        <div class="dropdown">
+          <a href="solutions-issuers.html"><span class="dd-name">Issuers</span><span class="dd-sub">Banks &amp; financial institutions</span></a>
+          <a href="solutions-acquirers.html"><span class="dd-name">Acquirers &amp; ISOs</span><span class="dd-sub">Portfolio visibility &amp; retention</span></a>
+          <a href="solutions-payfacs.html"><span class="dd-name">PayFacs &amp; MORs</span><span class="dd-sub">Sub-merchant management at scale</span></a>
+          <a href="solutions-providers.html"><span class="dd-name">Solution Providers</span><span class="dd-sub">Fraud, risk &amp; dispute vendors</span></a>
+          <a href="solutions-merchants.html"><span class="dd-name">Merchants</span><span class="dd-sub">Any business that takes cards</span></a>
+        </div>
+      </li>
+      <li class="has-dropdown"><a href="about.html">Company</a>
+        <div class="dropdown">
+          <a href="about.html"><span class="dd-name">About Us</span><span class="dd-sub">Who we are</span></a>
+          <a href="insights.html"><span class="dd-name">Insights</span><span class="dd-sub">Analysis &amp; commentary</span></a>
+          <a href="contact.html"><span class="dd-name">Contact Us</span><span class="dd-sub">Get in touch</span></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<section class="page-hero" style="padding-bottom:44px">
+  <img class="bg-monogram" src="monogram-white.svg" alt="" aria-hidden="true">
+  <div class="container inner" style="max-width:820px">
+    <span class="eyebrow">Descriptors.com &middot; Portfolio VAMP calculator</span>
+    <h1 class="display" style="font-size:clamp(1.9rem,3.6vw,3rem)">Where does your portfolio sit against VAMP?</h1>
+    <p class="lead">Visa measures your whole book: fraud reports plus disputes, divided by settled transactions, counted in events. Put in your own volumes and see your position against the 0.5% Above Standard and 0.7% Excessive lines &mdash; and how far confusion-dispute reduction moves it.</p>
+  </div>
+</section>
+
+<section id="calculator" style="padding-top:44px">
+  <div class="container">
+<div class="calc" data-calc="acquirer">
+      <form class="calc-panel" novalidate onsubmit="return false">
+        <h3>Your numbers</h3>
+
+        <div class="calc-field">
+          <label for="pc-tc05">Settled transactions per month</label>
+          <span class="calc-hint">Portfolio-wide count of settled transactions (TC05)</span>
+          <div class="calc-in"><input type="number" id="pc-tc05" value="2500000" min="0" step="1" inputmode="numeric"></div>
+        </div>
+
+        <div class="calc-field">
+          <label for="pc-tc15">Disputes per month</label>
+          <span class="calc-hint">Portfolio-wide dispute events (TC15), all causes</span>
+          <div class="calc-in"><input type="number" id="pc-tc15" value="10000" min="0" step="1" inputmode="numeric"></div>
+        </div>
+
+        <div class="calc-field">
+          <label for="pc-tc40">Fraud reports per month</label>
+          <span class="calc-hint">TC40 events &mdash; they sit in the same numerator</span>
+          <div class="calc-in"><input type="number" id="pc-tc40" value="4000" min="0" step="1" inputmode="numeric"></div>
+        </div>
+
+        <details class="calc-adv" id="pc-advanced">
+          <summary>Advanced assumptions</summary>
+          <div class="calc-inner">
+            <div class="calc-field">
+          <label for="pc-share">Share of disputes from confusion</label>
+          <span class="calc-hint">The addressable ceiling</span>
+          <div class="calc-in"><input class="has-post" type="number" id="pc-share" value="55" min="0" max="100" step="1" inputmode="numeric"><span class="post">%</span></div>
+        </div>
+          </div>
+        </details>
+        <button type="button" class="calc-reset" id="pc-reset">Reset to defaults</button>
+      </form>
+
+      <div>
+        <div class="calc-hero-box">
+          <div class="calc-hero-k">Your portfolio VAMP position</div>
+          <div class="calc-hero-v" id="pc-hero">&mdash;</div>
+          <div id="pc-meter" aria-hidden="true"></div>
+          <p id="pc-hero-copy">&mdash;</p>
+        </div>
+
+        <div class="calc-ladder-box">
+          <div class="calc-lhead">
+            <div>Reduction</div>
+            <div>New portfolio ratio</div>
+            <div class="r">Change</div>
+          </div>
+          <div id="pc-ladder" aria-live="polite"></div>
+        </div>
+        <p class="calc-ceiling" id="pc-note"></p>
+
+        <div class="calc-ctaband">
+          <div class="t">
+            <h3>Bring the fix to your own book.</h3>
+            <p>Bulk boarding from data you already hold, portfolio tooling, wholesale terms. No build cost.</p>
+          </div>
+          <div class="b">
+            <a class="btn btn-dark" id="pc-cta" href="contact.html">Talk to us <span class="arrow">&rarr;</span></a>
+            <button class="btn btn-outline" id="pc-share" type="button" style="color:#042020;border-color:rgba(4,32,32,.35)">Copy my results link</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-notes">
+      <h3>How this is calculated</h3>
+      <p><strong>The ratio</strong> is (fraud reports + disputes) &divide; settled transactions, in <strong>events</strong> &mdash; a $9.99 dispute counts exactly as much as a $5,000 one. Acquirer portfolio thresholds shown are 0.5% Above Standard and 0.7% Excessive; merchant-level monitoring runs separately at 1.5%. Program thresholds change &mdash; verify against current Visa documentation before relying on them.</p>
+      <p><strong>The ladder reduces disputes (TC15) only.</strong> That is deliberate and conservative: a cardholder who recognizes a charge also doesn't report it as fraud, so recognition pressure on TC40 is real upside the model leaves out.</p>
+      <p><strong>RDR and CDRN resolve disputes after they are raised</strong> &mdash; the fee is paid, and TC40 still counts where fraud was claimed. Preventing the dispute at the descriptor removes the event from the numerator entirely. Both approaches coexist; they are not substitutes.</p>
+      <p><strong>This is an arithmetic model of your own inputs, not a performance guarantee, a forecast, or a compliance determination.</strong> Actual program standing depends on Visa's calculations, enforcement timelines and your full portfolio mix.</p>
+    </div>
+    </div>
+</section>
+
+<section class="section-light">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">The product behind the number</span>
+      <h2 style="font-size:clamp(1.4rem,2.6vw,2rem)">Descriptors.com</h2>
+      <p class="lead">Claim the descriptor your customers actually see, control what it says about your business, and decide how they reach you when they have a question about a charge.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card product">
+        <h3>For merchants</h3>
+        <div class="ptag">Own your profile</div>
+        <p>Claim, enrich and maintain the record consumers and banks look up. $20 per month, no integration, no processor change.</p>
+        <a class="plink" href="solutions-merchants.html">How it works <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="card product">
+        <h3>For acquirers &amp; ISOs</h3>
+        <div class="ptag">Resell it</div>
+        <p>Bring the fix to your own book at your own retail, with portfolio tooling and no build cost.</p>
+        <a class="plink" href="solutions-acquirers.html">Partner economics <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="card product">
+        <h3>The full picture</h3>
+        <div class="ptag">Product overview</div>
+        <p>How descriptors are boarded, enriched and recognized &mdash; and why the data is declared rather than inferred.</p>
+        <a class="plink" href="product-descriptors.html">Read more <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="logo-horizontal-white.svg" alt="Arkonyk">
+        <p>Payments intelligence for merchants, processors, acquirers, and enterprises.</p>
+      </div>
+      <div class="footer-col"><h4>Products</h4><a href="product-descriptors.html">Descriptors.com</a><a href="product-feesuite.html">FeeSuite</a><a href="product-arkitekt.html">ARKITEKT</a></div>
+      <div class="footer-col"><h4>Solutions</h4><a href="solutions-issuers.html">Issuers</a><a href="solutions-acquirers.html">Acquirers &amp; ISOs</a><a href="solutions-payfacs.html">PayFacs &amp; MORs</a><a href="solutions-providers.html">Solution Providers</a><a href="solutions-merchants.html">Merchants</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="insights.html">Insights</a><a href="contact.html">Contact Us</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year>2026</span> Arkonyk, LLC All rights reserved.</span>
+      <span>Truth in Payments.</span>
+    </div>
+  </div>
+</footer>
+<div class="calc-toast" id="pc-toast" role="status" aria-live="polite">Link copied</div>
+<script src="main.js"></script>
+<script src="portfolio-calculators.js?v=1"></script>
+</body>
+</html>

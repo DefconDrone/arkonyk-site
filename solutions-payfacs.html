@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="analytics.js?v=1"></script>
-<link rel="stylesheet" href="styles.css?v=9">
+<link rel="stylesheet" href="styles.css?v=10">
 <link rel="icon" href="favicon.svg">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
@@ -207,6 +207,104 @@
   </div>
 </section>
 
+<section id="calculator">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Value calculator</span>
+      <h2 style="font-size:clamp(1.5rem,2.8vw,2.2rem)">The ratio is yours. So is the fix.</h2>
+      <p class="lead">Your book's VAMP position against the 1.5% merchant line, and what confusion-dispute reduction is worth in dispute costs and support contacts.</p>
+    </div>
+    <div class="calc" data-calc="payfac">
+      <form class="calc-panel" novalidate onsubmit="return false">
+        <h3>Your numbers</h3>
+
+        <div class="calc-field">
+          <label for="pc-tc05">Settled transactions per month</label>
+          <span class="calc-hint">Across the whole book &mdash; as MOR, the count is yours</span>
+          <div class="calc-in"><input type="number" id="pc-tc05" value="600000" min="0" step="1" inputmode="numeric"></div>
+        </div>
+
+        <div class="calc-field">
+          <label for="pc-tc15">Disputes per month</label>
+          <span class="calc-hint">TC15 events across all sub-brands, all causes</span>
+          <div class="calc-in"><input type="number" id="pc-tc15" value="6000" min="0" step="1" inputmode="numeric"></div>
+        </div>
+
+        <div class="calc-field">
+          <label for="pc-tc40">Fraud reports per month</label>
+          <span class="calc-hint">TC40 events</span>
+          <div class="calc-in"><input type="number" id="pc-tc40" value="2400" min="0" step="1" inputmode="numeric"></div>
+        </div>
+
+        <details class="calc-adv" id="pc-advanced">
+          <summary>Advanced assumptions</summary>
+          <div class="calc-inner">
+            <div class="calc-field">
+          <label for="pc-cbcost">Cost per dispute</label>
+          <span class="calc-hint">Network fees plus your ops cost to work one</span>
+          <div class="calc-in"><span class="pre">$</span><input class="has-pre" type="number" id="pc-cbcost" value="35" min="0" step="1" inputmode="decimal"></div>
+        </div>
+            <div class="calc-field">
+          <label for="pc-tickets">&ldquo;What is this charge?&rdquo; contacts per month</label>
+          <span class="calc-hint">Tickets, emails and calls about unrecognized charges</span>
+          <div class="calc-in"><input type="number" id="pc-tickets" value="15000" min="0" step="1" inputmode="numeric"></div>
+        </div>
+            <div class="calc-field">
+          <label for="pc-tcost">Cost per contact</label>
+          <span class="calc-hint">Fully loaded support cost</span>
+          <div class="calc-in"><span class="pre">$</span><input class="has-pre" type="number" id="pc-tcost" value="5" min="0" step="1" inputmode="decimal"></div>
+        </div>
+            <div class="calc-field">
+          <label for="pc-share">Share of disputes from confusion</label>
+          <span class="calc-hint">The addressable ceiling</span>
+          <div class="calc-in"><input class="has-post" type="number" id="pc-share" value="55" min="0" max="100" step="1" inputmode="numeric"><span class="post">%</span></div>
+        </div>
+          </div>
+        </details>
+        <button type="button" class="calc-reset" id="pc-reset">Reset to defaults</button>
+      </form>
+
+      <div>
+        <div class="calc-hero-box">
+          <div class="calc-hero-k">Your VAMP position as merchant of record</div>
+          <div class="calc-hero-v" id="pc-hero">&mdash;</div>
+          <div id="pc-meter" aria-hidden="true"></div>
+          <p id="pc-hero-copy">&mdash;</p>
+        </div>
+
+        <div class="calc-ladder-box">
+          <div class="calc-lhead">
+            <div>Reduction</div>
+            <div>Monthly cost avoided</div>
+            <div class="r">New ratio</div>
+          </div>
+          <div id="pc-ladder" aria-live="polite"></div>
+        </div>
+        <p class="calc-ceiling" id="pc-note"></p>
+
+        <div class="calc-ctaband">
+          <div class="t">
+            <h3>One contract covers the whole book.</h3>
+            <p>Board every sub-merchant descriptor in bulk from records you already hold. Dual-brand display puts your sub-brand in front of the cardholder.</p>
+          </div>
+          <div class="b">
+            <a class="btn btn-dark" id="pc-cta" href="contact.html">Talk to us <span class="arrow">&rarr;</span></a>
+            <button class="btn btn-outline" id="pc-share" type="button" style="color:#042020;border-color:rgba(4,32,32,.35)">Copy my results link</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-notes">
+      <h3>How this is calculated</h3>
+      <p><strong>The ratio</strong> is (fraud reports + disputes) &divide; settled transactions, in <strong>events</strong>. The merchant Excessive threshold shown &mdash; 1.5% for US, Canada and EU &mdash; took effect April 2026, down from 2.2%. Program thresholds change; verify against current Visa documentation before relying on them.</p>
+      <p><strong>The ladder reduces disputes (TC15) only</strong>, and applies the same percentage to your unrecognized-charge support contacts. Recognition pressure on fraud reports (TC40) is real upside the model leaves out.</p>
+      <p><strong>Dispute and contact costs are your own inputs.</strong> The defaults are placeholders, not benchmarks &mdash; the model is only as good as the numbers you put in.</p>
+      <p><strong>This is an arithmetic model of your own inputs, not a performance guarantee, a forecast, or a compliance determination.</strong> Actual program standing depends on Visa's calculations and your full portfolio mix.</p>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="container">
     <div class="cta-band">
@@ -237,5 +335,6 @@
   </div>
 </footer>
 <script src="main.js"></script>
+<script src="portfolio-calculators.js?v=1"></script>
 </body>
 </html>

@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="analytics.js?v=1"></script>
-<link rel="stylesheet" href="styles.css?v=9">
+<link rel="stylesheet" href="styles.css?v=10">
 <link rel="icon" href="favicon.svg">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
@@ -244,6 +244,93 @@
   </div>
 </section>
 
+<section id="calculator">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Value calculator</span>
+      <h2 style="font-size:clamp(1.5rem,2.8vw,2.2rem)">Put a number on the confusion</h2>
+      <p class="lead">Your dispute volume, your cost per dispute, your call volume &mdash; and what deflecting even a small share is worth a year.</p>
+    </div>
+    <div class="calc" data-calc="issuer">
+      <form class="calc-panel" novalidate onsubmit="return false">
+        <h3>Your numbers</h3>
+
+        <div class="calc-field">
+          <label for="pc-disp">Disputes processed per month</label>
+          <span class="calc-hint">Cardholder disputes your back office works, all networks</span>
+          <div class="calc-in"><input type="number" id="pc-disp" value="20000" min="0" step="1" inputmode="numeric"></div>
+        </div>
+
+        <div class="calc-field">
+          <label for="pc-dcost">Fully-loaded cost per dispute</label>
+          <span class="calc-hint">Industry figures run $75&ndash;100+ with staff time, network fees and write-offs counted</span>
+          <div class="calc-in"><span class="pre">$</span><input class="has-pre" type="number" id="pc-dcost" value="85" min="0" step="1" inputmode="decimal"></div>
+        </div>
+
+        <div class="calc-field">
+          <label for="pc-calls">&ldquo;What is this charge?&rdquo; contacts per month</label>
+          <span class="calc-hint">Calls and chats that are recognition questions, not fraud reports</span>
+          <div class="calc-in"><input type="number" id="pc-calls" value="60000" min="0" step="1" inputmode="numeric"></div>
+        </div>
+
+        <details class="calc-adv" id="pc-advanced">
+          <summary>Advanced assumptions</summary>
+          <div class="calc-inner">
+            <div class="calc-field">
+          <label for="pc-ccost">Cost per contact</label>
+          <span class="calc-hint">Fully loaded contact-center cost</span>
+          <div class="calc-in"><span class="pre">$</span><input class="has-pre" type="number" id="pc-ccost" value="7" min="0" step="1" inputmode="decimal"></div>
+        </div>
+            <div class="calc-field">
+          <label for="pc-share">Share of disputes from confusion</label>
+          <span class="calc-hint">The addressable ceiling</span>
+          <div class="calc-in"><input class="has-post" type="number" id="pc-share" value="55" min="0" max="100" step="1" inputmode="numeric"><span class="post">%</span></div>
+        </div>
+          </div>
+        </details>
+        <button type="button" class="calc-reset" id="pc-reset">Reset to defaults</button>
+      </form>
+
+      <div>
+        <div class="calc-hero-box">
+          <div class="calc-hero-k">The annual cost of confusion</div>
+          <div class="calc-hero-v" id="pc-hero">&mdash;</div>
+          <p id="pc-hero-copy">&mdash;</p>
+        </div>
+
+        <div class="calc-ladder-box">
+          <div class="calc-lhead">
+            <div>Deflection</div>
+            <div>Monthly savings</div>
+            <div class="r">Annualized</div>
+          </div>
+          <div id="pc-ladder" aria-live="polite"></div>
+        </div>
+        <p class="calc-ceiling" id="pc-note"></p>
+
+        <div class="calc-ctaband">
+          <div class="t">
+            <h3>Your agents can use this today.</h3>
+            <p>Browser lookup from day one &mdash; no integration, no release cycle. API when you're ready.</p>
+          </div>
+          <div class="b">
+            <a class="btn btn-dark" id="pc-cta" href="contact.html">Talk to us <span class="arrow">&rarr;</span></a>
+            <button class="btn btn-outline" id="pc-share" type="button" style="color:#042020;border-color:rgba(4,32,32,.35)">Copy my results link</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-notes">
+      <h3>How this is calculated</h3>
+      <p><strong>The deflection ladder</strong> applies the percentage to the confusion-driven share of disputes (set above) and to the full &ldquo;what is this charge?&rdquo; contact volume &mdash; those contacts are recognition questions by definition.</p>
+      <p><strong>The $85 default</strong> sits inside the commonly cited $75&ndash;100+ fully-loaded range for working a dispute. It is a default, not a claim about your bank &mdash; replace it with your own figure.</p>
+      <p><strong>Resolution paths sit alongside dispute rights, never in front of them.</strong> A descriptor lookup answers the recognition question; nothing about it gates, delays or discourages a cardholder's right to dispute under Reg E, Reg Z or network rules.</p>
+      <p><strong>This is an arithmetic model of your own inputs, not a performance guarantee or a forecast.</strong> Actual results depend on descriptor coverage, your cardholder base and your dispute mix.</p>
+    </div>
+  </div>
+</section>
+
 <!-- Issuer Early Adopter Program -->
 <section>
   <div class="container">
@@ -302,5 +389,6 @@
   </div>
 </footer>
 <script src="main.js"></script>
+<script src="portfolio-calculators.js?v=1"></script>
 </body>
 </html>

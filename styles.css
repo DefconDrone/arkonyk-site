@@ -654,3 +654,14 @@ details.calc-adv .calc-inner { padding-top: 15px; }
 .legal-toc ol { margin: 0; padding-left: 1.2em; columns: 2; column-gap: 30px; }
 .legal-toc li { margin-bottom: .35em; font-size: .93rem; }
 @media (max-width: 640px) { .legal-toc ol { columns: 1; } .legal table { font-size: .86rem; } .legal th, .legal td { padding: 8px 9px; } }
+
+/* ---- VAMP position meter (portfolio calculators) ---- */
+.vm-track { position: relative; height: 12px; border-radius: 6px; background: var(--bg-3); border: 1px solid var(--line); margin: 18px 2px 42px; }
+.vm-fill { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 6px; background: linear-gradient(90deg, #0d5559, #19e3e3); max-width: 100%; }
+.vm-mark { position: absolute; top: -5px; bottom: -5px; width: 2px; }
+.vm-mark.vm-warn { background: #e0b34f; }
+.vm-mark.vm-bad  { background: #e0794f; }
+.vm-mark span { position: absolute; top: calc(100% + 7px); left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: .67rem; font-weight: 600; letter-spacing: .05em; color: var(--text-soft); }
+.vm-mark:last-of-type span { transform: translateX(-85%); }
+.vm-needle { position: absolute; top: -8px; width: 2px; height: 28px; background: var(--heading); transform: translateX(-1px); border-radius: 1px; }
+@media (max-width: 560px) { .vm-mark span { font-size: .6rem; } }
