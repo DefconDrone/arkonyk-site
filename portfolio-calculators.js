@@ -225,38 +225,57 @@
       } }
     },
 
-    /* ============ Issuers — cost of confusion ============ */
+    /* ============ Issuers — coverage-first cost of confusion ============
+       The issuer sits on the other side of the network: their deflection
+       grows with MERCHANT/registry coverage, and dispute volume is
+       concentrated — the descriptors issuers flag most are a short head,
+       and the registry covers that head today. The ladder is therefore
+       resolution-rate scenarios applied to the COVERED share of the
+       issuer's confusion volume, not adoption stages. */
     issuer: {
       fields: {
         disp:  { def: 20000, min: 0 },   // monthly disputes processed
         dcost: { def: 85,    min: 0 },   // fully-loaded cost per dispute
         calls: { def: 60000, min: 0 },   // monthly "what is this charge?" contacts
+        head:  { def: 50, min: 0, max: 100 }, // share of confusion volume on top-flagged descriptors
         ccost: { def: 7,     min: 0 },   // cost per contact
         share: { def: 55, min: 0, max: 100 }
       },
       adv: ["ccost", "share"],
       thresholds: null,
+      ladder: [
+        { pct: 5,  stage: "1 covered charge in 20 resolved", step: 1 },
+        { pct: 10, stage: "1 in 10",                          step: 2 },
+        { pct: 20, stage: "1 in 5",                           step: 3 },
+        { pct: 35, stage: "1 in 3",                           step: 4 },
+        { pct: 50, stage: "1 in 2",                           step: 5 }
+      ],
       compute: function (v) {
         var confDisputes = v.disp * v.share / 100;
-        var monthly = confDisputes * v.dcost + v.calls * v.ccost;
-        var rows = LADDER.map(function (s) {
-          var dAvoided = confDisputes * s.pct / 100;
-          var cAvoided = v.calls * s.pct / 100;
-          return { pct: s.pct, stage: s.stage, step: s.step,
+        var covDisputes = confDisputes * v.head / 100;
+        var covCalls = v.calls * v.head / 100;
+        var covMonthly = covDisputes * v.dcost + covCalls * v.ccost;
+        var fullMonthly = confDisputes * v.dcost + v.calls * v.ccost;
+        var rows = this.ladder.map(function (sc) {
+          var dAvoided = covDisputes * sc.pct / 100;
+          return { pct: sc.pct, stage: sc.stage, step: sc.step,
                    dAvoided: dAvoided,
-                   saved: dAvoided * v.dcost + cAvoided * v.ccost };
+                   saved: dAvoided * v.dcost + covCalls * sc.pct / 100 * v.ccost };
         });
-        return { confDisputes: confDisputes, monthly: monthly, annual: monthly * 12, rows: rows };
+        return { confDisputes: confDisputes, covDisputes: covDisputes, covCalls: covCalls,
+                 covMonthly: covMonthly, covAnnual: covMonthly * 12,
+                 fullAt10: fullMonthly * 0.10, rows: rows };
       },
       render: function (v, m) {
         var meterBox = $("pc-meter"); if (meterBox) meterBox.innerHTML = "";
-        $("pc-hero").textContent = m.annual > 0
-          ? money(m.annual) + " a year in confusion costs"
-          : "Enter your dispute and contact volumes";
-        $("pc-hero-copy").innerHTML = m.annual > 0
-          ? "At a " + num(v.share) + "% confusion share, <strong>" + num(m.confDisputes) +
-            " disputes a month</strong> begin with a cardholder who did not recognize a legitimate charge — at <strong>" + money(v.dcost) +
-            " fully loaded each</strong> — plus " + num(v.calls) + " &ldquo;what is this charge?&rdquo; contacts at " + money(v.ccost) + "."
+        $("pc-hero").textContent = m.covAnnual > 0
+          ? money(m.covAnnual) + " a year sits on descriptors covered today"
+          : (m.fullAt10 > 0 ? "Set your top-flagged share to see the covered volume"
+                            : "Enter your dispute and contact volumes");
+        $("pc-hero-copy").innerHTML = m.covAnnual > 0
+          ? "At a " + num(v.share) + "% confusion share with <strong>" + num(v.head) +
+            "% of that volume on your top-flagged descriptors</strong>, <strong>" + num(m.covDisputes) +
+            " disputes</strong> and <strong>" + num(m.covCalls) + " &ldquo;what is this charge?&rdquo; contacts a month</strong> trace to descriptors the registry already covers. The ladder below applies a resolution rate to that covered volume only."
           : "The model needs at least one non-zero volume on the left.";
 
         var maxSaved = Math.max.apply(null, m.rows.map(function (r) { return r.saved; })) || 1;
@@ -274,13 +293,14 @@
           '</div>';
         }).join("");
 
-        $("pc-note").innerHTML = v.dcost > 0
-          ? "The comparison that matters: a cardholder who answers &ldquo;what is this charge?&rdquo; in a descriptor lookup costs you <strong>nothing</strong>. The same question resolved by phone costs <strong>" + money(v.ccost) +
-            "</strong>. The same question filed as a dispute costs <strong>" + money(v.dcost) + "</strong> — and the resolution path never competes with the cardholder's dispute rights, it sits alongside them."
-          : "Set a cost per dispute to compare resolution paths.";
+        $("pc-note").innerHTML = m.covAnnual > 0
+          ? "This models your covered head only &mdash; and coverage grows with every merchant that claims its descriptor. At full coverage of your confusion volume, a 1-in-10 resolution rate alone is worth <strong>" + money(m.fullAt10) +
+            " a month</strong>. And the comparison underneath it all: a lookup that answers &ldquo;what is this charge?&rdquo; costs you <strong>nothing</strong>; the same question by phone costs <strong>" + money(v.ccost) +
+            "</strong>; filed as a dispute it costs <strong>" + money(v.dcost) + "</strong>."
+          : "Set your volumes to see the covered head.";
       },
       cta: { href: "contact.html", track: function (v, m) {
-        return { annual_confusion_cost: Math.round(m.annual), monthly_disputes: v.disp };
+        return { covered_annual_cost: Math.round(m.covAnnual), monthly_disputes: v.disp, head_share: v.head };
       } }
     }
   };

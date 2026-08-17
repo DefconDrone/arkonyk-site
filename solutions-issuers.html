@@ -273,6 +273,12 @@
           <div class="calc-in"><input type="number" id="pc-calls" value="60000" min="0" step="1" inputmode="numeric"></div>
         </div>
 
+        <div class="calc-field">
+          <label for="pc-head">Confusion volume on your top-flagged descriptors</label>
+          <span class="calc-hint">Your own dispute-volume ranking's head &mdash; the short list of strings that drive most of it</span>
+          <div class="calc-in"><input class="has-post" type="number" id="pc-head" value="50" min="0" max="100" step="1" inputmode="numeric"><span class="post">%</span></div>
+        </div>
+
         <details class="calc-adv" id="pc-advanced">
           <summary>Advanced assumptions</summary>
           <div class="calc-inner">
@@ -293,14 +299,14 @@
 
       <div>
         <div class="calc-hero-box">
-          <div class="calc-hero-k">The annual cost of confusion</div>
+          <div class="calc-hero-k">Confusion cost on descriptors covered today</div>
           <div class="calc-hero-v" id="pc-hero">&mdash;</div>
           <p id="pc-hero-copy">&mdash;</p>
         </div>
 
         <div class="calc-ladder-box">
           <div class="calc-lhead">
-            <div>Deflection</div>
+            <div>Resolution rate</div>
             <div>Monthly savings</div>
             <div class="r">Annualized</div>
           </div>
@@ -323,8 +329,10 @@
 
     <div class="calc-notes">
       <h3>How this is calculated</h3>
-      <p><strong>The deflection ladder</strong> applies the percentage to the confusion-driven share of disputes (set above) and to the full &ldquo;what is this charge?&rdquo; contact volume &mdash; those contacts are recognition questions by definition.</p>
-      <p><strong>The $85 default</strong> sits inside the commonly cited $75&ndash;100+ fully-loaded range for working a dispute. It is a default, not a claim about your bank &mdash; replace it with your own figure.</p>
+      <p><strong>The ladder is coverage-first.</strong> Deflection is applied only to the share of your confusion volume that sits on descriptors the registry already covers &mdash; your top-flagged head, set above from your own dispute-volume ranking. Coverage widens as merchants claim descriptors, and the note under the ladder shows the full-coverage figure.</p>
+      <p><strong>The head is not hypothetical.</strong> WhoBilled.me analyzed 192,911 real statement descriptors and built coverage for all 372 descriptors most frequently flagged in card-issuer dispute data &mdash; including the aggregator prefixes and processor strings no cardholder can decode. The most-looked-up merchants are household names, which is exactly why the head of your dispute ranking concentrates the way it does. Your dispute-volume ranking and our coverage list are substantially the same list.</p>
+      <p><strong>Resolution rates in the ladder's range are documented for descriptor-detail programs</strong> &mdash; Visa reports Order Insight deflecting 40&ndash;45% of confirmed first-party-misuse disputes, up to 90% for some subscription merchants. The ladder still treats the rate as a scenario, not a promise.</p>
+      <p><strong>The $85 default</strong> sits inside the commonly cited $75&ndash;100+ fully-loaded range for working a dispute. Replace it with your own figure.</p>
       <p><strong>Resolution paths sit alongside dispute rights, never in front of them.</strong> A descriptor lookup answers the recognition question; nothing about it gates, delays or discourages a cardholder's right to dispute under Reg E, Reg Z or network rules.</p>
       <p><strong>This is an arithmetic model of your own inputs, not a performance guarantee or a forecast.</strong> Actual results depend on descriptor coverage, your cardholder base and your dispute mix.</p>
     </div>
@@ -389,6 +397,6 @@
   </div>
 </footer>
 <script src="main.js"></script>
-<script src="portfolio-calculators.js?v=1"></script>
+<script src="portfolio-calculators.js?v=2"></script>
 </body>
 </html>
