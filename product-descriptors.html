@@ -20,7 +20,7 @@
 <meta name="twitter:image" content="https://arkonyk.com/og-image.png">
 <link rel="stylesheet" href="fonts.css?v=1">
 <script src="analytics.js?v=1"></script>
-<link rel="stylesheet" href="styles.css?v=14">
+<link rel="stylesheet" href="styles.css?v=15">
 <link rel="icon" href="favicon.svg">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
@@ -95,76 +95,15 @@
           <div style="font-family:var(--display);color:#fff;font-size:1.15rem;letter-spacing:.02em">SQ *XJ7K LLC 8889991234</div>
           <p style="margin-top:10px">No business name a customer recognizes. The likely outcome: &ldquo;I didn't make this charge&rdquo; &mdash; a dispute.</p>
         </div>
-        <p class="mp-pointer">With Descriptors.com, the same charge resolves to the verified merchant profile below &mdash; the customer recognizes it, and gets a path to the merchant instead of the dispute button.</p>
+        <p class="mp-pointer">With Descriptors.com, the same charge resolves to a full verified merchant profile:</p>
+        <figure class="mp-mini">
+          <img src="descriptors-profile-mockup.png" alt="Descriptors.com merchant profile: verified merchant with complete business details, address and map, receipt, refund and cancellation pathways, and live support channels" loading="lazy">
+          <figcaption>Verified business facts, MCC, location &mdash; plus receipt, refund and cancellation pathways and live support channels. Illustrative example.</figcaption>
+        </figure>
       </div>
     </div>
 
-<!-- Full merchant-profile mockup: replica of the Descriptors.com detail view, verified state -->
-<div class="mp-shell" aria-label="Example Descriptors.com merchant profile (illustrative)">
-  <div class="mp-card">
-    <div class="mp-head">
-      <span class="mp-badge">&#10003; Verified</span>
-      <div class="mp-avatar">HR</div>
-      <div class="mp-eyebrow">You bought from</div>
-      <div class="mp-name">Harbor Roast Coffee</div>
-      <span class="mp-pill">&#10003; Verified merchant</span>
-    </div>
-    <div class="mp-statement">Shows on your statement as <code>SQ *XJ7K LLC 8889991234</code></div>
-    <dl class="mp-rows">
-      <div><dt>Business</dt><dd>Harbor Roast Coffee LLC</dd></div>
-      <div><dt>DBA</dt><dd>Harbor Roast Coffee</dd></div>
-      <div><dt>Website</dt><dd><span class="mp-link">https://harborroast.com</span></dd></div>
-      <div><dt>Category</dt><dd>Coffee Shop &middot; Bean Subscriptions</dd></div>
-      <div><dt>MCC</dt><dd>5812 &mdash; Eating Places &amp; Restaurants</dd></div>
-    </dl>
-    <div class="mp-addr">
-      <dl class="mp-addr-row"><dt>Address</dt><dd>2481 Harbor Ave, Oakland, CA 94606, US</dd></dl>
-      <div class="mp-map" aria-hidden="true">
-        <svg viewBox="0 0 420 132" xmlns="http://www.w3.org/2000/svg" role="img">
-          <rect width="420" height="132" fill="#e9edf0"/>
-          <rect x="0" y="0" width="150" height="52" fill="#dfe6ea"/>
-          <rect x="285" y="70" width="135" height="62" fill="#dfe6ea"/>
-          <rect x="40" y="86" width="86" height="46" fill="#d4e6d2"/>
-          <path d="M0 64 H420" stroke="#ffffff" stroke-width="10"/>
-          <path d="M0 64 H420" stroke="#f6c26b" stroke-width="5"/>
-          <path d="M120 0 V132" stroke="#ffffff" stroke-width="7"/>
-          <path d="M262 0 V132" stroke="#ffffff" stroke-width="7"/>
-          <path d="M330 0 L420 96" stroke="#ffffff" stroke-width="9"/>
-          <path d="M0 108 H262" stroke="#ffffff" stroke-width="5"/>
-          <path d="M190 0 V64" stroke="#ffffff" stroke-width="4"/>
-          <text x="14" y="58" font-family="Arial, sans-serif" font-size="9" fill="#8b959d">Harbor Ave</text>
-          <text x="126" y="14" font-family="Arial, sans-serif" font-size="9" fill="#8b959d" transform="rotate(90 126 14)"></text>
-          <g transform="translate(210 40)">
-            <path d="M0 22 C-9 8 -9 -6 0 -12 C9 -6 9 8 0 22 Z" fill="#e5484d"/>
-            <circle cx="0" cy="-2" r="4.5" fill="#ffffff"/>
-          </g>
-        </svg>
-        <span class="mp-map-chip">&#8599; View map</span>
-      </div>
-    </div>
-    <p class="mp-note ok">&#10003; Merchant-verified location and details &mdash; re-verified monthly.</p>
-  </div>
 
-  <div class="mp-panel">
-    <div class="mp-ptitle">Resolve It Yourself <small>&mdash; fix this purchase</small></div>
-    <div class="mp-enrolled">This business is enrolled with Descriptors.com &mdash; requests below go directly to the merchant, with a tracked response.</div>
-    <div class="mp-action"><span class="mp-ic">&#9636;</span> Request Your Receipt <span class="mp-chev">&rsaquo;</span></div>
-    <div class="mp-action"><span class="mp-ic">&#8635;</span> Request a Refund <span class="mp-chev">&rsaquo;</span></div>
-    <div class="mp-action"><span class="mp-ic">&#8856;</span> Cancel Subscription <span class="mp-chev">&rsaquo;</span></div>
-    <div class="mp-action"><span class="mp-ic">&#8677;</span> Skip 1 Month Payment <span class="mp-chev">&rsaquo;</span></div>
-    <div class="mp-action"><span class="mp-ic">&#10073;&#10073;</span> Pause &amp; Restart Subscription <span class="mp-chev">&rsaquo;</span></div>
-
-    <div class="mp-ptitle" style="margin-top:18px">Contact Support <small>&mdash; reach a person</small></div>
-    <div class="mp-tiles">
-      <dl class="mp-tile"><span class="mp-ic">&#128172;</span><div><dt>Live chat</dt><dd>7am&ndash;6pm PT</dd></div></dl>
-      <dl class="mp-tile"><span class="mp-ic">&#128222;</span><div><dt>Phone</dt><dd>1-510-555-0184</dd></div></dl>
-      <dl class="mp-tile"><span class="mp-ic">&#9993;</span><div><dt>Email</dt><dd>support@harborroast.com</dd></div></dl>
-      <dl class="mp-tile"><span class="mp-ic">&#128241;</span><div><dt>Text / SMS</dt><dd>1-510-555-0184</dd></div></dl>
-    </div>
-    <p class="mp-foot">Support channels are set by the merchant and verified monthly. Resolution paths sit alongside dispute rights &mdash; never in front of them.</p>
-  </div>
-</div>
-<p style="margin-top:14px;font-size:.82rem;color:var(--text-soft)">Illustrative mockup of a fully verified Descriptors.com merchant profile. Harbor Roast Coffee is a fictional example.</p>
   </div>
 </section>
 
