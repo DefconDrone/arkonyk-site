@@ -3,7 +3,7 @@
 > Arkonyk is a payments intelligence company ("Truth in Payments"). It builds software and provides advisory services that solve payment acceptance problems for merchants, acquirers, ISOs, payment facilitators, issuing banks, and solution providers. Its flagship focus is eliminating customer confusion over billing descriptors — the cryptic merchant names on card statements that cause a majority of avoidable disputes.
 
 Key facts:
-- Products: Descriptors.com (payment descriptor management — the system of record for the acquiring industry and a source of truth for issuing banks), FeeSuite (processor-to-bank reconciliation and true cost of payments), ARKITEKT (independent payment architecture advisory).
+- Products: Descriptors.com (payment descriptor management — the system of record for the acquiring industry and a source of truth for issuing banks), FeeSuite (processor-to-bank reconciliation and true cost of payments), ARKITEKT (payment architecture advisory — specific best-of-breed recommendations, carried through deployment).
 - Consumer property: WhoBilled.me — free descriptor lookup answering "who billed me?" for cardholders.
 - 61% of cardholder disputes trace to vague merchant descriptions or missing information, not actual fraud.
 - Descriptors.com pricing: $20/month per descriptor, no integration or API required.
