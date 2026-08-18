@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trust &amp; Security — Arkonyk</title>
+<meta name="description" content="How Arkonyk handles your data: architecture, security practices, sub-processors, and the commitments behind arkonyk.com and whobilled.me.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://arkonyk.com/trust.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arkonyk">
+<meta property="og:title" content="Trust &amp; Security — Arkonyk">
+<meta property="og:description" content="How Arkonyk handles your data: architecture, security practices, sub-processors, and commitments.">
+<meta property="og:url" content="https://arkonyk.com/trust.html">
+<meta property="og:image" content="https://arkonyk.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Trust &amp; Security — Arkonyk">
+<meta name="twitter:description" content="How Arkonyk handles your data: architecture, security practices, sub-processors, and commitments.">
+<meta name="twitter:image" content="https://arkonyk.com/og-image.png">
+<link rel="stylesheet" href="fonts.css?v=1">
+<script src="analytics.js?v=1"></script>
+<link rel="stylesheet" href="styles.css?v=12">
+<link rel="icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html"><img class="brand-logo" src="logo-horizontal-white.svg" alt="Arkonyk"></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li class="has-dropdown"><a href="products.html">Products</a>
+        <div class="dropdown">
+          <a href="product-descriptors.html"><span class="dd-name">Descriptors.com</span><span class="dd-sub">Solving Customer Confusion</span></a>
+          <a href="product-feesuite.html"><span class="dd-name">FeeSuite</span><span class="dd-sub">Reconciliation Made Easy</span></a>
+          <a href="product-arkitekt.html"><span class="dd-name">ARKITEKT</span><span class="dd-sub">Global Payments By Design</span></a>
+        </div>
+      </li>
+      <li class="has-dropdown"><a href="solutions.html">Solutions</a>
+        <div class="dropdown">
+          <a href="solutions-issuers.html"><span class="dd-name">Issuers</span><span class="dd-sub">Banks &amp; financial institutions</span></a>
+          <a href="solutions-acquirers.html"><span class="dd-name">Acquirers &amp; ISOs</span><span class="dd-sub">Portfolio visibility &amp; retention</span></a>
+          <a href="solutions-payfacs.html"><span class="dd-name">PayFacs &amp; MORs</span><span class="dd-sub">Sub-merchant management at scale</span></a>
+          <a href="solutions-providers.html"><span class="dd-name">Solution Providers</span><span class="dd-sub">Fraud, risk &amp; dispute vendors</span></a>
+          <a href="solutions-merchants.html"><span class="dd-name">Merchants</span><span class="dd-sub">Any business that takes cards</span></a>
+        </div>
+      </li>
+      <li class="has-dropdown"><a href="about.html">Company</a>
+        <div class="dropdown">
+          <a href="about.html"><span class="dd-name">About Us</span><span class="dd-sub">Who we are</span></a>
+          <a href="insights.html"><span class="dd-name">Insights</span><span class="dd-sub">Analysis &amp; commentary</span></a>
+          <a href="contact.html"><span class="dd-name">Contact Us</span><span class="dd-sub">Get in touch</span></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<section class="page-hero" style="padding-bottom:44px">
+  <div class="container inner" style="max-width:820px">
+    <span class="eyebrow">Legal</span>
+    <h1 class="display" style="font-size:clamp(1.8rem,3.4vw,2.8rem)">Trust &amp; Security</h1>
+    <p class="lead">What we run, where your data goes, and the practices behind it. Written for the security reviewer as much as the curious visitor.</p>
+  </div>
+</section>
+
+<section class="section-light">
+  <div class="container">
+    <div class="legal">
+
+      <p class="updated"><strong>Last updated:</strong> August 18, 2026</p>
+
+      <h2 id="summary">1. The short version</h2>
+      <p>Arkonyk's public sites are static pages with a small, single-purpose backend for forms. We do not
+      process card payments, hold cardholder data, or operate user accounts on arkonyk.com. The personal
+      data we handle is what you choose to send us &mdash; a contact form, a report download, a benchmark
+      run, a subscription &mdash; plus standard website analytics described in our
+      <a href="privacy.html">privacy policy</a>.</p>
+
+      <h2 id="architecture">2. Architecture</h2>
+      <ul>
+        <li><strong>arkonyk.com</strong> is a static site &mdash; no database, no server-side sessions, no
+        login. Static architecture keeps the attack surface deliberately small.</li>
+        <li>Form submissions go to a single-purpose API we operate, which validates the input, relays it
+        by email, and records it in our CRM. Nothing else runs there.</li>
+        <li>All traffic is served over TLS (HTTPS). Our email domain enforces SPF, DKIM and a DMARC
+        quarantine policy.</li>
+      </ul>
+
+      <h2 id="data">3. What we collect, and how long we keep it</h2>
+      <ul>
+        <li><strong>Enquiries and leads:</strong> the details you submit (name, email, company, message or
+        benchmark answers). Kept while relevant to a business relationship; deleted on request.</li>
+        <li><strong>Analytics:</strong> aggregated usage data with IP anonymization, no advertising
+        signals, 14-month retention. Visitors in the EEA, UK and Switzerland see a consent banner and are
+        not tracked without opting in. We honour the Global Privacy Control signal.</li>
+        <li><strong>What we never collect on these sites:</strong> card numbers, transaction data,
+        passwords, or government identifiers.</li>
+      </ul>
+
+      <h2 id="subprocessors">4. Sub-processors</h2>
+      <p>These providers process data on our behalf in the operation of arkonyk.com and whobilled.me:</p>
+      <ul>
+        <li><strong>GitHub (Microsoft)</strong> &mdash; static site hosting, US.</li>
+        <li><strong>Vercel</strong> &mdash; form and API infrastructure, US.</li>
+        <li><strong>Railway</strong> &mdash; application hosting for whobilled.me, US.</li>
+        <li><strong>Resend</strong> &mdash; transactional email delivery, US.</li>
+        <li><strong>Google (Workspace &amp; Analytics)</strong> &mdash; business email and website
+        analytics, US.</li>
+        <li><strong>Attio</strong> &mdash; customer relationship management, US/EU.</li>
+        <li><strong>Apollo.io</strong> &mdash; company-level website visitor identification, US.</li>
+        <li><strong>RB2B</strong> &mdash; person-level visitor identification, US traffic only, US.</li>
+        <li><strong>GoDaddy</strong> &mdash; domain registration and DNS, US.</li>
+      </ul>
+      <p>We review this list when providers change and update this page accordingly.</p>
+
+      <h2 id="practices">5. Practices</h2>
+      <ul>
+        <li>Access to production systems and mailboxes is restricted to Arkonyk personnel with
+        multi-factor authentication.</li>
+        <li>API keys are stored in provider secret managers, scoped to least privilege, and rotated when
+        personnel or providers change.</li>
+        <li>Form endpoints validate input and screen abuse (honeypots, disposable-address checks), and
+        only serve our own domains.</li>
+        <li>We keep an independent audit log of every lead released or email sent, so we can answer
+        &ldquo;what happened to my data&rdquo; precisely.</li>
+      </ul>
+
+      <h2 id="disclosure">6. Reporting a vulnerability</h2>
+      <p>If you believe you have found a security issue on any Arkonyk property, email
+      <a href="mailto:info@arkonyk.com">info@arkonyk.com</a> with &ldquo;Security&rdquo; in the subject
+      line. We read every report, we will not take legal action against good-faith research, and we ask
+      that you give us a reasonable window to fix an issue before public disclosure.</p>
+
+      <h2 id="requests">7. Data requests</h2>
+      <p>To access, correct, or delete personal data we hold about you, email
+      <a href="mailto:privacy@arkonyk.com">privacy@arkonyk.com</a>. Details of your rights are in our
+      <a href="privacy.html">privacy policy</a>.</p>
+
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="logo-horizontal-white.svg" alt="Arkonyk">
+        <p>Payments intelligence for merchants, processors, acquirers, and enterprises.</p>
+      </div>
+      <div class="footer-col"><h4>Products</h4><a href="product-descriptors.html">Descriptors.com</a><a href="product-feesuite.html">FeeSuite</a><a href="product-arkitekt.html">ARKITEKT</a></div>
+      <div class="footer-col"><h4>Solutions</h4><a href="solutions-issuers.html">Issuers</a><a href="solutions-acquirers.html">Acquirers &amp; ISOs</a><a href="solutions-payfacs.html">PayFacs &amp; MORs</a><a href="solutions-providers.html">Solution Providers</a><a href="solutions-merchants.html">Merchants</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="insights.html">Insights</a><a href="contact.html">Contact Us</a><a href="privacy.html">Privacy Policy</a><a href="trust.html">Trust &amp; Security</a><a href="terms.html">Terms of Use</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year>2026</span> Arkonyk, LLC All rights reserved.</span>
+      <span>Truth in Payments.</span>
+    </div>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

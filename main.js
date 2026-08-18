@@ -82,6 +82,57 @@
     form.parentNode.replaceChild(wrap, form);
   }
 
+  // ---- Insights subscribe ----
+  // One-field email capture on the Insights hub and article pages. Posts to
+  // our own endpoint; on success the form is replaced with a confirmation.
+  var subForm = document.getElementById('insights-subscribe');
+  if (subForm) {
+    subForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (typeof subForm.checkValidity === 'function' && !subForm.checkValidity()) {
+        subForm.reportValidity();
+        return;
+      }
+      var hp = subForm.querySelector('input[name="website"]');
+      var emailEl = subForm.querySelector('input[name="email"]');
+      var btn = subForm.querySelector('button');
+      var btnHtml = btn ? btn.innerHTML : '';
+
+      function done() {
+        var d = document.createElement('p');
+        d.className = 'subscribe-done';
+        d.setAttribute('role', 'status');
+        d.innerHTML = "You're on the list. <small>One email per new analysis — nothing else.</small>";
+        subForm.parentNode.replaceChild(d, subForm);
+        try {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'generate_lead', source: 'insights_subscribe' });
+          if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { source: 'insights_subscribe' });
+        } catch (err) {}
+      }
+
+      if (hp && hp.value) { done(); return; }
+      if (btn) { btn.disabled = true; btn.innerHTML = 'Adding…'; }
+
+      fetch('https://arkonyk-gate.vercel.app/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: emailEl ? emailEl.value : '', page: window.location.pathname })
+      })
+        .then(function (r) {
+          if (r.ok) { done(); return; }
+          return r.json().catch(function () { return {}; }).then(function (d) {
+            if (btn) { btn.disabled = false; btn.innerHTML = btnHtml; }
+            window.alert((d && d.message) || 'Something went wrong. Please try again in a moment.');
+          });
+        })
+        .catch(function () {
+          if (btn) { btn.disabled = false; btn.innerHTML = btnHtml; }
+          window.alert('Something went wrong. Please try again in a moment.');
+        });
+    });
+  }
+
   // Footer year
   var y = document.querySelector('[data-year]');
   if (y) y.textContent = new Date().getFullYear();

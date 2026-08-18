@@ -693,3 +693,25 @@ details.calc-adv .calc-inner { padding-top: 15px; }
   .pb-logo { min-height: 150px; padding: 30px 24px; }
   .pb-logo img { max-width: 60%; }
 }
+
+/* ---------- Insights subscribe band ---------- */
+.subscribe-band {
+  display: grid; grid-template-columns: 1fr auto; gap: 36px; align-items: center;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 34px 38px;
+}
+.subscribe-band h3 { margin: 0 0 6px; }
+.subscribe-band p { margin: 0; color: var(--text-soft); font-size: .95rem; max-width: 46ch; }
+.subscribe-band form { display: flex; gap: 10px; flex-wrap: wrap; }
+.subscribe-band input[type="email"] {
+  background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+  color: var(--light); padding: 12px 14px; font: inherit; min-width: 260px;
+}
+.subscribe-band input[type="email"]:focus { outline: none; border-color: var(--accent); }
+.hp-field { position: absolute !important; left: -9999px !important; height: 0; width: 0; opacity: 0; pointer-events: none; }
+.subscribe-done { color: var(--light); font-weight: 600; }
+.subscribe-done small { display: block; color: var(--text-soft); font-weight: 400; margin-top: 4px; }
+@media (max-width: 860px) {
+  .subscribe-band { grid-template-columns: 1fr; gap: 20px; }
+  .subscribe-band input[type="email"] { flex: 1; min-width: 0; }
+}

@@ -143,6 +143,53 @@ var ARKONYK_RB2B_KEY = "4N210HXQ7M6Z";
   };
   if (stored === "granted" && window.gtag) window.Arkonyk.grantConsent();
 
+  /* --- EEA consent banner ------------------------------------------------
+     Shown only to European visitors with no stored choice. Everyone else
+     never sees it. GPC browsers are treated as an explicit opt-out and get
+     no banner either. Self-contained (inline styles) so it works on every
+     page that loads analytics.js, including the standalone benchmark. */
+  if (isEuropean && stored === null && !gpc) {
+    var renderBanner = function () {
+      if (document.getElementById("ark-consent")) return;
+      var bar = document.createElement("div");
+      bar.id = "ark-consent";
+      bar.setAttribute("role", "dialog");
+      bar.setAttribute("aria-label", "Cookie and analytics consent");
+      bar.style.cssText =
+        "position:fixed;left:0;right:0;bottom:0;z-index:9999;" +
+        "background:#121517;color:#f4f6f8;border-top:1px solid rgba(255,255,255,.14);" +
+        "font:14px/1.5 Inter,system-ui,sans-serif;padding:16px 20px;" +
+        "display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;" +
+        "box-shadow:0 -10px 30px rgba(0,0,0,.35)";
+      var txt = document.createElement("span");
+      txt.style.cssText = "max-width:62ch";
+      txt.innerHTML =
+        'We use analytics cookies to understand how this site is used. ' +
+        'See our <a href="privacy.html" style="color:#19e3e3">privacy policy</a>.';
+      var mkBtn = function (label, primary) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.textContent = label;
+        b.style.cssText =
+          "font:600 14px Inter,system-ui,sans-serif;border-radius:8px;cursor:pointer;" +
+          "padding:10px 18px;border:1px solid " +
+          (primary ? "#19e3e3;background:#19e3e3;color:#042020"
+                   : "rgba(255,255,255,.3);background:transparent;color:#f4f6f8");
+        return b;
+      };
+      var accept = mkBtn("Accept", true);
+      var decline = mkBtn("Decline", false);
+      var close = function () { if (bar.parentNode) bar.parentNode.removeChild(bar); };
+      accept.addEventListener("click", function () { window.Arkonyk.grantConsent(); close(); });
+      decline.addEventListener("click", function () { window.Arkonyk.denyConsent(); close(); });
+      bar.appendChild(txt); bar.appendChild(accept); bar.appendChild(decline);
+      document.body.appendChild(bar);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderBanner);
+    } else { renderBanner(); }
+  }
+
   /* Tracker boot: everywhere except Europe-without-consent and GPC browsers. */
   if (trackingAllowed) { loadApollo(); loadRB2B(); }
 

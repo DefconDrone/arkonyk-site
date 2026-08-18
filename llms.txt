@@ -1,0 +1,37 @@
+# Arkonyk
+
+> Arkonyk is a payments intelligence company ("Truth in Payments"). It builds software and provides advisory services that solve payment acceptance problems for merchants, acquirers, ISOs, payment facilitators, issuing banks, and solution providers. Its flagship focus is eliminating customer confusion over billing descriptors — the cryptic merchant names on card statements that cause a majority of avoidable disputes.
+
+Key facts:
+- Products: Descriptors.com (payment descriptor management — the system of record for the acquiring industry and a source of truth for issuing banks), FeeSuite (processor-to-bank reconciliation and true cost of payments), ARKITEKT (independent payment architecture advisory).
+- Consumer property: WhoBilled.me — free descriptor lookup answering "who billed me?" for cardholders.
+- 61% of cardholder disputes trace to vague merchant descriptions or missing information, not actual fraud.
+- Descriptors.com pricing: $20/month per descriptor, no integration or API required.
+- Founded by Rick Lynch (former SVP roles at Visa and Verifi). Based in Huron, Ohio, USA.
+- Contact: info@arkonyk.com
+
+## Products
+- [Descriptors.com](https://arkonyk.com/product-descriptors.html): Register, manage, and validate billing descriptors so cardholders recognize charges; reduces confusion-driven disputes.
+- [FeeSuite](https://arkonyk.com/product-feesuite.html): Automatically reconciles acquirer/processor statements to bank deposits and surfaces fee anomalies.
+- [ARKITEKT](https://arkonyk.com/product-arkitekt.html): Payment architecture practice — processor selection, cost optimization, fraud reduction, global expansion.
+
+## Solutions by audience
+- [Issuers](https://arkonyk.com/solutions-issuers.html): Reduce dispute volume and "what is this charge?" call-center load with enriched merchant data.
+- [Acquirers & ISOs](https://arkonyk.com/solutions-acquirers.html): Portfolio VAMP health, descriptor validation, and a new per-descriptor revenue line.
+- [PayFacs & MORs](https://arkonyk.com/solutions-payfacs.html): Sub-merchant descriptor management at portfolio scale under event-based VAMP thresholds.
+- [Solution Providers](https://arkonyk.com/solutions-providers.html): Resell or manage Descriptors.com with a 30% revenue share plus management fees.
+- [Merchants](https://arkonyk.com/solutions-merchants.html): Claim and enrich your own descriptor for $20/month so customers recognize your charges.
+
+## Tools
+- [Payments Benchmark](https://arkonyk.com/payments-benchmark.html): Free 6-question benchmark of authorization rate, fraud, chargebacks, refunds, dispute win rate, and effective processing cost.
+- [Dispute Reduction Calculator](https://arkonyk.com/descriptors-calculator.html): What customer confusion costs a merchant per month.
+- [Portfolio VAMP Calculator](https://arkonyk.com/acquirer-calculator.html): Acquirer/ISO portfolio position against Visa VAMP thresholds.
+
+## Insights
+- [Insights hub](https://arkonyk.com/insights.html): Analysis of VAMP, GMAP, dispute economics, and payment network rule changes.
+- [The Most Confusing Charges in America](https://arkonyk.com/confusing-charges-report.html): Free report analyzing 192,911 real billing descriptors.
+
+## Company
+- [About](https://arkonyk.com/about.html): Mission, approach, and leadership.
+- [Contact](https://arkonyk.com/contact.html): Talk to Arkonyk.
+- [Trust & Security](https://arkonyk.com/trust.html): Architecture, data handling, and sub-processors.
