@@ -981,7 +981,9 @@ function scoreAnswer(key, answer, bm){
     const flag = bandFromRange(answer.value, range, true);
     const { goodness, greenBoundary, amberBoundary } = bandInfoHigher(answer.value, range[0], range[1]);
     const note = flag === 'green'
-      ? `Your ${answer.value}% card-not-present auth rate is within the typical range for businesses like yours (${range[0]}–${range[1]}%).`
+      ? (answer.value > range[1]
+          ? `Your ${answer.value}% card-not-present auth rate is above the typical range for businesses like yours (${range[0]}–${range[1]}%) — better than typical.`
+          : `Your ${answer.value}% card-not-present auth rate is within the typical range for businesses like yours (${range[0]}–${range[1]}%).`)
       : `Merchants with your business model typically see ${range[0]}–${range[1]}% on card-not-present. Yours is ${answer.value}% — worth understanding why, it may be structural (issuer mix, 3DS friction, BIN) or fixable (retry logic, network tokens).`;
     return { flag, note, conf: 'D', goodness, greenBoundary, amberBoundary };
   }
@@ -990,7 +992,9 @@ function scoreAnswer(key, answer, bm){
     const flag = bandFromRange(answer.value, bm.fraud, false);
     const { goodness, greenBoundary, amberBoundary } = bandInfoLower(answer.value, bm.fraud[0], bm.fraud[1]);
     const note = flag === 'green'
-      ? `Your ${answer.value}% fraud rate sits within the typical range for your business model (${bm.fraud[0]}–${bm.fraud[1]}%).`
+      ? (answer.value < bm.fraud[0]
+          ? `Your ${answer.value}% fraud rate is below the typical range for your business model (${bm.fraud[0]}–${bm.fraud[1]}%) — better than typical.`
+          : `Your ${answer.value}% fraud rate sits within the typical range for your business model (${bm.fraud[0]}–${bm.fraud[1]}%).`)
       : `Typical for your business model is ${bm.fraud[0]}–${bm.fraud[1]}%. Yours is ${answer.value}% — outside the typical range. Worth checking your false-positive rate alongside this before tightening rules further.`;
     return { flag, note, conf: 'D', goodness, greenBoundary, amberBoundary };
   }
@@ -1018,7 +1022,9 @@ function scoreAnswer(key, answer, bm){
         : `Apparel and jewelry structurally run 15–30% refunds — that's expected here, not a red flag by itself. Yours is ${answer.value}%, outside even that wider band. If it's below 15%, that can mean an overly restrictive return policy is pushing customers to dispute instead of refund — check your refund-to-chargeback ratio.`;
     } else {
       note = flag === 'green'
-        ? `Your ${answer.value}% refund rate is within the typical range for your business model (${range[0]}–${range[1]}%).`
+        ? (answer.value < range[0]
+            ? `Your ${answer.value}% refund rate is below the typical range for your business model (${range[0]}–${range[1]}%). Low refunds are usually good — just confirm a restrictive return policy isn't pushing customers to dispute instead.`
+            : `Your ${answer.value}% refund rate is within the typical range for your business model (${range[0]}–${range[1]}%).`)
         : (answer.value < range[0]
             ? `Typical is ${range[0]}–${range[1]}%. Yours is ${answer.value}%, below that range — unusually low refund rates can mean a restrictive policy that pushes customers to file disputes instead, which cost more.`
             : `Typical is ${range[0]}–${range[1]}%. Yours is ${answer.value}%, above that range — worth investigating what's driving returns.`);
@@ -1030,7 +1036,9 @@ function scoreAnswer(key, answer, bm){
     const flag = bandFromRange(answer.value, bm.disputeWin, true);
     const { goodness, greenBoundary, amberBoundary } = bandInfoHigher(answer.value, bm.disputeWin[0], bm.disputeWin[1]);
     const note = flag === 'green'
-      ? `Your ${answer.value}% dispute win rate is within the typical range for your business model (${bm.disputeWin[0]}–${bm.disputeWin[1]}%).`
+      ? (answer.value > bm.disputeWin[1]
+          ? `Your ${answer.value}% dispute win rate is above the typical range for your business model (${bm.disputeWin[0]}–${bm.disputeWin[1]}%) — stronger than typical.`
+          : `Your ${answer.value}% dispute win rate is within the typical range for your business model (${bm.disputeWin[0]}–${bm.disputeWin[1]}%).`)
       : `Typical for your business model is ${bm.disputeWin[0]}–${bm.disputeWin[1]}%. Yours is ${answer.value}% — largely a function of the evidence you can produce. Proof of delivery and clear billing descriptors are usually the fastest lever.`;
     return { flag, note, conf: 'D', goodness, greenBoundary, amberBoundary };
   }
